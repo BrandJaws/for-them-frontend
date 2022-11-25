@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'Nostra v1.0 Stream Trial';
+    src: url('Nostrav10-StreamTrial.eot');
+    src: url('Nostrav10-StreamTrial.eot?#iefix') format('embedded-opentype'),
+        url('Nostrav10-StreamTrial.woff2') format('woff2'),
+        url('Nostrav10-StreamTrial.woff') format('woff'),
+        url('Nostrav10-StreamTrial.ttf') format('truetype'),
+        url('Nostrav10-StreamTrial.svg#Nostrav1.0-StreamTrial') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nostra v1.0 Sett Trial';
+    src: url('Nostrav10-SettTrial.eot');
+    src: url('Nostrav10-SettTrial.eot?#iefix') format('embedded-opentype'),
+        url('Nostrav10-SettTrial.woff2') format('woff2'),
+        url('Nostrav10-SettTrial.woff') format('woff'),
+        url('Nostrav10-SettTrial.ttf') format('truetype'),
+        url('Nostrav10-SettTrial.svg#Nostrav1.0-SettTrial') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Monument Extended';
+    src: url('MonumentExtended-Regular.eot');
+    src: url('MonumentExtended-Regular.eot?#iefix') format('embedded-opentype'),
+        url('MonumentExtended-Regular.woff2') format('woff2'),
+        url('MonumentExtended-Regular.woff') format('woff'),
+        url('MonumentExtended-Regular.ttf') format('truetype'),
+        url('MonumentExtended-Regular.svg#MonumentExtended-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Monument Extended Bold';
+    src: url('MonumentExtended-Ultrabold.eot');
+    src: url('MonumentExtended-Ultrabold.eot?#iefix') format('embedded-opentype'),
+        url('MonumentExtended-Ultrabold.woff2') format('woff2'),
+        url('MonumentExtended-Ultrabold.woff') format('woff'),
+        url('MonumentExtended-Ultrabold.ttf') format('truetype'),
+        url('MonumentExtended-Ultrabold.svg#MonumentExtended-Ultrabold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
