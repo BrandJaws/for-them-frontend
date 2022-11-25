@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
 import ProductsList from "../components/ProductsList";
 import { shopifyClient, parseShopifyResponse } from "../lib/shopify";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 import HeroSection from "../components/shop/HeroSection";
 import SizeFinderSection from "../components/shop/SizeFinderSection";
 

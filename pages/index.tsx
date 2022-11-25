@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import { shopifyClient, parseShopifyResponse } from "../lib/shopify";
-import { NextPage } from "next";
+import type { NextPage } from 'next'
 import HeroSection from "../components/home/HeroSection";
 import GiftSection from "../components/home/GiftSection";
 import StorySection from "../components/home/StorySection";
@@ -10,7 +10,7 @@ import Wellness from "../components/home/Wellness";
 import TestimonialSection from "../components/home/TestimonialSection";
 import { TESTIMONIALS } from "../utils/data";
 
-const IndexPage: NextPage = ({ products }: any) => {
+const Home: NextPage = ({ products }: any) => {
   return (
     <Layout title="Home | For Them">
       <HeroSection />
@@ -24,7 +24,7 @@ const IndexPage: NextPage = ({ products }: any) => {
   );
 };
 
-export default IndexPage;
+export default Home;
 
 export const getServerSideProps = async () => {
   // Fetch all the products
