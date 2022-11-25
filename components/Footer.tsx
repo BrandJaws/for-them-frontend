@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import FooterLogo from "../assets/images/footer-logo.svg";
 import useRouterToCheckPath from "../hooks/useRouterToCheckPath";
 import { NavItemProps } from "../interfaces";
-import { HiOutlineShoppingBag } from "react-icons/hi2";
 
 export default function Footer() {
   const shopNav: Array<NavItemProps> = [
@@ -54,7 +52,7 @@ export default function Footer() {
       title: "Press",
       slug: "press",
       url: "#",
-    }
+    },
   ];
   const discoverNav: Array<NavItemProps> = [
     {
@@ -86,7 +84,7 @@ export default function Footer() {
       title: "Privacy Policy",
       slug: "privacy-policy",
       url: "/privacy-policy",
-    }
+    },
   ];
   return (
     <div className="bg-primary section-padding font-monumentExtended">
@@ -99,31 +97,67 @@ export default function Footer() {
           </div>
           <div className="shop-widget flex lg:justify-center items-start mb-4">
             <ul className="list-none unstyled flex flex-col gap-4">
-                <li className="font-[600]">Shop</li>
-                {shopNav.length > 0 && shopNav.map((item, index) => {
-                    return <li key={index} className={`anchor hover:cursor-pointer${useRouterToCheckPath(item.url) ? ' active' : ''}`}><Link href={item.url} color="inherit" legacyBehavior><a className="anchor-nav">{item.title}</a></Link></li>
+              <li className="font-[600]">Shop</li>
+              {shopNav.length > 0 &&
+                shopNav.map((item, index) => {
+                  return (
+                    <li
+                      key={index}
+                      className={`anchor hover:cursor-pointer${
+                        useRouterToCheckPath(item.url) ? " active" : ""
+                      }`}
+                    >
+                      <Link href={item.url} color="inherit" legacyBehavior>
+                        <a className="anchor-nav">{item.title}</a>
+                      </Link>
+                    </li>
+                  );
                 })}
             </ul>
           </div>
           <div className="connect-widget flex lg:justify-center items-start mb-4">
             <ul className="list-none unstyled flex flex-col gap-4">
-                <li className="font-[600]">Connect</li>
-                {connectNav.length > 0 && connectNav.map((item, index) => {
-                    return <li key={index} className={`anchor hover:cursor-pointer${useRouterToCheckPath(item.url) ? ' active' : ''}`}><Link href={item.url} color="inherit" legacyBehavior><a className="anchor-nav">{item.title}</a></Link></li>
+              <li className="font-[600]">Connect</li>
+              {connectNav.length > 0 &&
+                connectNav.map((item, index) => {
+                  return (
+                    <li
+                      key={index}
+                      className={`anchor hover:cursor-pointer${
+                        useRouterToCheckPath(item.url) ? " active" : ""
+                      }`}
+                    >
+                      <Link href={item.url} color="inherit" legacyBehavior>
+                        <a className="anchor-nav">{item.title}</a>
+                      </Link>
+                    </li>
+                  );
                 })}
             </ul>
           </div>
           <div className="discover-widget flex lg:justify-center items-start mb-4">
             <ul className="list-none unstyled flex flex-col gap-4">
-                <li className="font-[600]">Discover</li>
-                {discoverNav.length > 0 && discoverNav.map((item, index) => {
-                    return <li key={index} className={`anchor hover:cursor-pointer${useRouterToCheckPath(item.url) ? ' active' : ''}`}><Link href={item.url} color="inherit" legacyBehavior><a className="anchor-nav">{item.title}</a></Link></li>
+              <li className="font-[600]">Discover</li>
+              {discoverNav.length > 0 &&
+                discoverNav.map((item, index) => {
+                  return (
+                    <li
+                      key={index}
+                      className={`anchor hover:cursor-pointer${
+                        useRouterToCheckPath(item.url) ? " active" : ""
+                      }`}
+                    >
+                      <Link href={item.url} color="inherit" legacyBehavior>
+                        <a className="anchor-nav">{item.title}</a>
+                      </Link>
+                    </li>
+                  );
                 })}
             </ul>
           </div>
         </div>
         <div className="grid grid-cols-1 mt-6">
-            <p>© 20XX-2022, for them, Inc. or its affiliates</p>
+          <p>© 20XX-2022, for them, Inc. or its affiliates</p>
         </div>
       </div>
     </div>

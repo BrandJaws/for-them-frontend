@@ -1,15 +1,14 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
-import Nav from './Nav'
-import Footer from './Footer'
+import React, { ReactNode } from "react";
+import Head from "next/head";
+import Nav from "./Nav";
+import Footer from "./Footer";
 
 type Props = {
-  children?: ReactNode
-  title?: string
-}
+  children?: ReactNode;
+  title?: string;
+};
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
+const Layout = ({ children, title = "This is the default title" }: Props) => (
   <div>
     <Head>
       <title>{title}</title>
@@ -19,17 +18,11 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     <header>
       <Nav />
     </header>
-    <main className='app-wrapper'>
-    {children}
-    </main>
+    <main className="app-wrapper">{children}</main>
     <footer>
       <Footer />
     </footer>
-    {/* <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer> */}
   </div>
-)
+);
 
-export default Layout
+export default Layout;

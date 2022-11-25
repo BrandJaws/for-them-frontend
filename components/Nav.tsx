@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import MainLogo from "../assets/images/FT-LOGO-BLACK-p-500.svg"
+import MainLogo from "../assets/images/FT-LOGO-BLACK-p-500.svg";
 import useRouterToCheckPath from "../hooks/useRouterToCheckPath";
 import { NavItemProps } from "../interfaces";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import useWindowSize from "../hooks/useWindowSize";
-import {GiHamburgerMenu} from "react-icons/gi"
+import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
 
 export default function Nav() {
@@ -16,33 +15,33 @@ export default function Nav() {
     {
       title: "Home",
       slug: "home",
-      url: "/"
+      url: "/",
     },
     {
       title: "Shop Now",
       slug: "shop-now",
-      url: "/shop"
+      url: "/shop",
     },
     {
       title: "Size Finder",
       slug: "size-finder",
-      url: "/size-finder"
+      url: "/size-finder",
     },
     {
       title: "Our Story",
       slug: "our-story",
-      url: "/our-story"
+      url: "/our-story",
     },
     {
       title: "Editorial",
       slug: "editorial",
-      url: "/editorial"
+      url: "/editorial",
     },
     {
       title: "The Community",
       slug: "community",
-      url: "/community"
-    }
+      url: "/community",
+    },
   ];
   return (
     <>
@@ -53,9 +52,21 @@ export default function Nav() {
           </Link>
           {windowSizeValue.width > 767 && (
             <ul className="list-none unstyled flex gap-1">
-              {navigation.length > 0 && navigation.map((item, index) => {
-                return <li key={index} className={`nav-list-item hover:cursor-pointer${useRouterToCheckPath(item.url) ? ' active' : ''}`}><Link href={item.url} color="inherit" legacyBehavior><a className="anchor-nav">{item.title}</a></Link></li>
-              })}
+              {navigation.length > 0 &&
+                navigation.map((item, index) => {
+                  return (
+                    <li
+                      key={index}
+                      className={`nav-list-item hover:cursor-pointer${
+                        useRouterToCheckPath(item.url) ? " active" : ""
+                      }`}
+                    >
+                      <Link href={item.url} color="inherit" legacyBehavior>
+                        <a className="anchor-nav">{item.title}</a>
+                      </Link>
+                    </li>
+                  );
+                })}
             </ul>
           )}
         </div>
@@ -73,13 +84,27 @@ export default function Nav() {
           )}
         </div>
       </div>
-      <ul className={`mobile-nav fixed left-0 right-0 list-none unstyled flex flex-col gap-1 p-4 border-b border-black bg-primary2${hamburger ? ' show' : ''}`}>
-        {navigation.length > 0 && navigation.map((item, index) => {
-          return <li key={index} className={`anchor hover:cursor-pointer${useRouterToCheckPath(item.url) ? ' active' : ''}`}><Link href={item.url} color="inherit" legacyBehavior><a className="anchor-nav">{item.title}</a></Link></li>
-        })}
+      <ul
+        className={`mobile-nav fixed left-0 right-0 list-none unstyled flex flex-col gap-1 p-4 border-b border-black bg-primary2${
+          hamburger ? " show" : ""
+        }`}
+      >
+        {navigation.length > 0 &&
+          navigation.map((item, index) => {
+            return (
+              <li
+                key={index}
+                className={`anchor hover:cursor-pointer${
+                  useRouterToCheckPath(item.url) ? " active" : ""
+                }`}
+              >
+                <Link href={item.url} color="inherit" legacyBehavior>
+                  <a className="anchor-nav">{item.title}</a>
+                </Link>
+              </li>
+            );
+          })}
       </ul>
     </>
-  )
-};
-
-
+  );
+}

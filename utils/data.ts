@@ -32,7 +32,6 @@ export const COLORS: Array<ColorProps> = [
   {
     hexCode: "#D33F21",
     name: "Orange"
-    // name: "Vermilion (Plochere)"
   },
   {
     hexCode: "#151B33",
