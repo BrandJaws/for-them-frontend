@@ -26,3 +26,8 @@ export type ColorProps = {
   hexCode?: string
   name?: string
 }
+
+export type TestimonialProps = {
+  name?: string
+  description?: string
+}
