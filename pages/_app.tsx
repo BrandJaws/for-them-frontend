@@ -2,7 +2,6 @@ import React from 'react'
 import { AppProps } from 'next/app'
 
 import '../styles/index.css'
-import '../styles/global.css'
 
 // Import css files
 import "slick-carousel/slick/slick.css";
