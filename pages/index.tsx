@@ -10,9 +10,6 @@ import Wellness from "../components/home/Wellness";
 import TestimonialSection from "../components/home/TestimonialSection";
 import { TESTIMONIALS } from "../utils/data";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
 const Home: NextPage = ({ products }: any) => {
   return (
     <Layout title="Home | For Them">
