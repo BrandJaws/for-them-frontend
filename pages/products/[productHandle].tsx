@@ -38,7 +38,7 @@ export default function ProductPage({ product }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: true,
+          infinite: false,
           dots: false,
         },
       },
@@ -80,7 +80,7 @@ export default function ProductPage({ product }) {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
+          infinite: false,
           dots: false,
         },
       },

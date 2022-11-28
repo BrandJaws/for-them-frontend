@@ -1,4 +1,4 @@
-import { ColorProps } from "../interfaces";
+import { ColorProps, TestimonialProps } from "../interfaces";
 
 export const PRODUCTS = [
   {
@@ -18,7 +18,7 @@ export const PRODUCTS = [
       "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fcohenwoodworking.com%2Fwp-content%2Fuploads%2F2016%2F09%2Fimage-placeholder-500x500.jpg&f=1&nofb=1",
   }
 ];
-export const TESTIMONIALS = [
+export const TESTIMONIALS: Array<TestimonialProps> = [
   {
     name: "Ember",
     description: `“Thank you guys so much for being the most hardworking and up-front company out there. It&apos;s obvious that you re all fantastic, sweet, dedicated people.”`,

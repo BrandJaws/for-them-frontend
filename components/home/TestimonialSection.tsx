@@ -5,12 +5,14 @@ import { AiFillStar } from "react-icons/ai";
 import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 import NextArrow from "../common/NextArrow";
 import PrevArrow from "../common/PrevArrow";
+import { TestimonialProps } from "../../interfaces";
 
 
 const TestimonialSection = ({ data }) => {
   var settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
+    autoplay: true,
     speed: 1500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -68,36 +70,23 @@ const TestimonialSection = ({ data }) => {
           <div className="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-4">
             <div>
               <Slider {...settings}>
-                <div className="text-center">
-                  <div className="text-large p-8">
-                    “Thank you guys so much for being the most hardworking and
-                    up-front company out there. It’s obvious that you re all
-                    fantastic, sweet, dedicated people.”
-                  </div>
-                  <div className="rating-stars flex gap-2 justify-center items-center mb-4">
-                    <AiFillStar color="primary" className="w-6 h-6" />
-                    <AiFillStar color="primary" className="w-6 h-6" />
-                    <AiFillStar color="primary" className="w-6 h-6" />
-                    <AiFillStar color="primary" className="w-6 h-6" />
-                    <AiFillStar color="primary" className="w-6 h-6" />
-                  </div>
-                  <div className="text-medium text-center">Ember</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-large p-8">
-                    “Thank you guys so much for being the most hardworking and
-                    up-front company out there. It’s obvious that you re all
-                    fantastic, sweet, dedicated people.”
-                  </div>
-                  <div className="rating-stars flex gap-2 justify-center items-center mb-4">
-                    <AiFillStar color="primary" className="w-6 h-6" />
-                    <AiFillStar color="primary" className="w-6 h-6" />
-                    <AiFillStar color="primary" className="w-6 h-6" />
-                    <AiFillStar color="primary" className="w-6 h-6" />
-                    <AiFillStar color="primary" className="w-6 h-6" />
-                  </div>
-                  <div className="text-medium text-center">Ember</div>
-                </div>
+                {data.length > 0 && data.map((item: TestimonialProps, index: number) => {
+                  return (
+                    <div key={index} className="text-center">
+                      <div className="text-large p-8">
+                        {item.description}
+                      </div>
+                      <div className="rating-stars flex gap-2 justify-center items-center mb-4">
+                        <AiFillStar color="primary" className="w-6 h-6" />
+                        <AiFillStar color="primary" className="w-6 h-6" />
+                        <AiFillStar color="primary" className="w-6 h-6" />
+                        <AiFillStar color="primary" className="w-6 h-6" />
+                        <AiFillStar color="primary" className="w-6 h-6" />
+                      </div>
+                      <div className="text-medium text-center">{item.name}</div>
+                    </div>
+                  )
+                })}
               </Slider>
             </div>
           </div>
