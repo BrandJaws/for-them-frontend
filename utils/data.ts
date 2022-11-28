@@ -21,11 +21,11 @@ export const PRODUCTS = [
 export const TESTIMONIALS: Array<TestimonialProps> = [
   {
     name: "Ember",
-    description: `“Thank you guys so much for being the most hardworking and up-front company out there. It&apos;s obvious that you re all fantastic, sweet, dedicated people.”`,
+    description: `“Thank you guys so much for being the most hardworking and up-front company out there. It's obvious that you re all fantastic, sweet, dedicated people.”`,
   },
   {
     name: "Ember 2",
-    description: `“Thank you guys so much for being the most hardworking and up-front company out there. It&apos;s obvious that you re all fantastic, sweet, dedicated people.”`,
+    description: `“Thank you guys so much for being the most hardworking and up-front company out there. It's obvious that you re all fantastic, sweet, dedicated people.”`,
   }
 ];
 export const COLORS: Array<ColorProps> = [
