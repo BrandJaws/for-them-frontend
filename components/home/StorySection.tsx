@@ -9,7 +9,7 @@ const StorySection = () => {
           <div className="grid xl:grid-cols-8 lg:grid-cols-8 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-4">
             <div className="col-span-6">
               {/* <Image src={sectionImage} alt="hero image" /> */}
-              <h2 className="title-medium text-[var(--primary2)]">
+              <h2 className="title-medium text-[var(--primary2)] pl-8">
                 We are human
                 <br className="sm:none md:none" />
                 beings forever in
@@ -33,7 +33,7 @@ const StorySection = () => {
                   xs:px-[30px] py-2 xl:min-h-[220px] lg:min-h-[200px] md:min-h-[180px] sm:min-h-[160px] xs:min-h-[120px] 
                   rounded-lg font-monumentExtended font-[800]"
                 >
-                  Shop now
+                  Our Story
                 </button>
               </Link>
             </div>

@@ -126,7 +126,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .text-large {
-    @apply font-monumentExtended xl:text-[45px] lg:text-[30px] md:text-[34px] sm:text-[26px] xs:text-[20px] text-[var(--primary1)] xl:leading-[56px] lg:leading-[42px] md:leading-[44px] sm:leading-[32px] xs:leading-[24px]
+    @apply font-monumentExtended xl:text-[36px] lg:text-[30px] md:text-[34px] sm:text-[26px] xs:text-[20px] text-[var(--primary1)] xl:leading-[46px] lg:leading-[42px] md:leading-[44px] sm:leading-[32px] xs:leading-[24px]
 }
 
 .title-large {
@@ -139,7 +139,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .title-medium {
-    @apply font-[100] font-monumentExtended xl:text-[60px] lg:text-[60px] md:text-[45px] sm:text-[30px] xs:text-[30px] text-left xl:leading-[70px] lg:leading-[70px] md:leading-[55px] sm:leading-[40px] xs:leading-[40px]
+    @apply font-[100] font-monumentExtended xl:text-[68px] lg:text-[60px] md:text-[45px] sm:text-[30px] xs:text-[30px] text-left xl:leading-[66px] lg:leading-[70px] md:leading-[55px] sm:leading-[40px] xs:leading-[40px]
 }
 
 .title-large:nth-of-type(2) {
