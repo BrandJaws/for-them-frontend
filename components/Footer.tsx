@@ -89,13 +89,13 @@ export default function Footer() {
   return (
     <div className="bg-primary section-padding font-monumentExtended">
       <div className="container mx-auto bg-primary md:px-[15px] sm:px-[15px] xs:px-[15px]">
-        <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4">
           <div className="mb-4">
             <Link href="/">
               <Image src={FooterLogo} alt="main logo" />
             </Link>
           </div>
-          <div className="shop-widget flex lg:justify-center items-start mb-4">
+          <div className="shop-widget flex xl:justify-center lg:justify-center items-start mb-4">
             <ul className="list-none unstyled flex flex-col gap-4">
               <li className="font-[600]">Shop</li>
               {shopNav.length > 0 &&
@@ -115,7 +115,7 @@ export default function Footer() {
                 })}
             </ul>
           </div>
-          <div className="connect-widget flex lg:justify-center items-start mb-4">
+          <div className="connect-widget flex xl:justify-center lg:justify-center items-start mb-4">
             <ul className="list-none unstyled flex flex-col gap-4">
               <li className="font-[600]">Connect</li>
               {connectNav.length > 0 &&
@@ -135,7 +135,7 @@ export default function Footer() {
                 })}
             </ul>
           </div>
-          <div className="discover-widget flex lg:justify-center items-start mb-4">
+          <div className="discover-widget flex xl:justify-center lg:justify-center items-start mb-4">
             <ul className="list-none unstyled flex flex-col gap-4">
               <li className="font-[600]">Discover</li>
               {discoverNav.length > 0 &&
@@ -157,7 +157,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="grid grid-cols-1 mt-6">
-          <p>© 20XX-2022, for them, Inc. or its affiliates</p>
+          <p className="xs:text-sm xs:leading-6">© 20XX-2022, for them, Inc. or its affiliates</p>
         </div>
       </div>
     </div>

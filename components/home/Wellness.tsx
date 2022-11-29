@@ -72,7 +72,7 @@ const Wellness = () => {
           wellness
         </span>
       </div>
-      <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 py-8">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 py-8">
         {WellnessData.length > 0 && WellnessData.map((item, index) => {
             return (
                 <WellnessComponent item={item} key={index} />

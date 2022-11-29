@@ -6,7 +6,7 @@ import sectionImage from "../../assets/images/range-image.png";
 const RangeSection = () => {
   return (
     <section className="min-h-full">
-      <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1">
+      <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1">
         <div className="">
           <Image src={sectionImage} alt="hero image" className="w-full" />
         </div>

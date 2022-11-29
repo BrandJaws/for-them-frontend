@@ -149,10 +149,10 @@ export default function ProductPage({ product }) {
     <Layout title={title}>
       {product && (
         <>
-          <section className="container mx-auto lg:px-[15px] md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding">
-            <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-6">
+          <section className="container mx-auto xl:px-[15px] lg:px-[15px] md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding">
+            <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-6">
               <div className="product-thumbnail flex flex-col gap-2">
-                <div className="main-slider xs:order-1 sm:order-1 md:order-1 lg:order-1">
+                <div className="main-slider xs:order-1 sm:order-1 md:order-1 lg:order-1 xl:order-1">
                   {images.length > 0 && (
                     <Slider
                       asNavFor={slider2}
@@ -163,7 +163,7 @@ export default function ProductPage({ product }) {
                         return (
                           <div
                             key={index}
-                            className="lg:h-[400px] lg:w-[400px] image-box flex items-center justify-center"
+                            className="xl:h-[400px] xl:w-[400px] lg:h-[400px] lg:w-[400px] image-box flex items-center justify-center"
                           >
                             <Image
                               src={img.src}
@@ -179,7 +179,7 @@ export default function ProductPage({ product }) {
                     </Slider>
                   )}
                 </div>
-                <div className="product-specs py-8 xs:order-3 sm:order-3 md:order-3 lg:order-2">
+                <div className="product-specs py-8 xs:order-3 sm:order-3 md:order-3 xl:order-2 lg:order-2">
                   <ul className="list-none unstyled flex flex-wrap gap-4 items-center justify-center">
                     {productSpecs.map((o, index) => {
                       return (
@@ -201,7 +201,7 @@ export default function ProductPage({ product }) {
                     })}
                   </ul>
                 </div>
-                <div className="thumbs xs:order-2 sm:order-2 md:order-2 lg:order-3">
+                <div className="thumbs xs:order-2 sm:order-2 md:order-2 lg:order-3 xl:order-3">
                   {images.length > 0 && (
                     <Slider
                       asNavFor={slider1}
@@ -230,7 +230,7 @@ export default function ProductPage({ product }) {
                   )}
                 </div>
               </div>
-              <div className="product-detail lg:px-16 md:px-10 sm:px-8 xs:px-6">
+              <div className="product-detail xl:px-16 lg:px-16 md:px-10 sm:px-8 xs:px-6">
                 <div className="subtitle-bold">{title}</div>
                 <div className="flex flex-col flex-wrap gap-4 items-start ">
                   <div className="title-large capitalize">Orange</div>
@@ -242,13 +242,13 @@ export default function ProductPage({ product }) {
                     <div className="size-field w-full font-monumentExtended relative">
                       <label
                         htmlFor="size"
-                        className="absolute left-0 lg:px-[30px] md:px-[20px] sm:px-[15px] xs:px-[10px] top-[50%] translate-y-[-50%] text-lg"
+                        className="absolute left-0 xl:px-[30px] lg:px-[30px] md:px-[20px] sm:px-[15px] xs:px-[10px] top-[50%] translate-y-[-50%] text-lg"
                       >
                         {sizeFound.name}
                       </label>
                       <select
                         name="size"
-                        className="select-field lg:px-[120px] md:px-[110px] sm:px-[100px] xs:px-[80px]"
+                        className="select-field xl:px-[120px] lg:px-[120px] md:px-[110px] sm:px-[100px] xs:px-[80px]"
                       >
                         {sizeFound.values.map((o: any, index: number) => {
                           return (
@@ -295,22 +295,22 @@ export default function ProductPage({ product }) {
                     </div>
                   )}
                   <br />
-                  <div className="cta-btns flex flex-col flex-wrap gap-4 justify-center lg:items-center sm:items-start">
+                  <div className="cta-btns flex flex-col flex-wrap gap-4 justify-center xl:items-center lg:items-center sm:items-start">
                     <Link href="/">
-                      <button type="button" className="btn-primary-outline lg:min-w-[400px]">
+                      <button type="button" className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px]">
                         Add to basket
                       </button>
                     </Link>
                     <Link href="/">
                       <button
                         type="button"
-                        className="btn-primary4 lg:min-w-[400px]"
+                        className="btn-primary4 xl:min-w-[400px] lg:min-w-[400px]"
                       >
                         Buy now
                       </button>
                     </Link>
                     <Link href="/">
-                      <p className="font-monumentExtended font-[700] underline">
+                      <p className="font-monumentExtended font-[700] underline xs:text-sm">
                         Gift the binder?
                       </p>
                     </Link>
@@ -323,10 +323,10 @@ export default function ProductPage({ product }) {
                         <h2 className="">
                           <button
                             onClick={() => handleAccordionClick(0)}
-                            className="relative flex justify-between items-center w-full border-b py-2 text-xl font-[800] text-left border-0 rounded-none transition focus:outline-none"
+                            className="relative flex justify-between items-center w-full border-b py-2 xl:text-xl lg:text-xl md:text-lg sm:text-md xs:text-sm font-[800] text-left border-0 rounded-none transition focus:outline-none"
                           >
                             <span>How it works</span>
-                            <TfiAngleDown className="text-[24px] font-[800]" />
+                            <TfiAngleDown className="lg:text-[24px] md:text-[20px] sm:text-[18px] xs:text-[16px] font-[800]" />
                           </button>
                         </h2>
                         <div
@@ -350,10 +350,10 @@ export default function ProductPage({ product }) {
                         <h2 className="">
                           <button
                             onClick={() => handleAccordionClick(1)}
-                            className="relative flex justify-between items-center w-full border-b py-2 text-xl font-[800] text-left border-0 rounded-none transition focus:outline-none"
+                            className="relative flex justify-between items-center w-full border-b py-2 xl:text-xl lg:text-xl md:text-lg sm:text-md xs:text-sm font-[800] text-left border-0 rounded-none transition focus:outline-none"
                           >
                             <span>Patented Design</span>
-                            <TfiAngleDown className="text-[24px] font-[800]" />
+                            <TfiAngleDown className="xl:text-[24px] lg:text-[24px] md:text-[20px] sm:text-[18px] xs:text-[16px] font-[800]" />
                           </button>
                         </h2>
                         <div
@@ -380,20 +380,20 @@ export default function ProductPage({ product }) {
             </div>
           </section>
           <section className="section-padding">
-            <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1">
+            <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1">
               <div className=""></div>
-              <div className="right-side section-padding bg-primary5 lg:px-[50px] flex flex-col flex-wrap gap-6 ">
+              <div className="right-side section-padding bg-primary5 xl:px-[50px] lg:px-[50px] md:px-[35px] sm:px-[25px] xs:px-[20px] flex flex-col flex-wrap gap-6 ">
                 <div className="text-large">Find your size</div>
                 <div className="text-small">
                   Before we begin, what would
-                  <br className="lg:block sm:hidden xs:hidden" />
+                  <br className="xl:block lg:block sm:hidden xs:hidden" />
                   you like us to call you?
                 </div>
                 <form action="#">
                   <div className="form-group mb-4">
-                    <input type="text" name="name" id="name" placeholder="Enter your chosen name" className="input-field" required />
+                    <input type="text" name="name" id="name" placeholder="Enter your chosen name" className="input-field xs:px-[20px] xs:py-4 xs:text-sm" required />
                   </div>
-                  <button type="submit" className="btn-primary4 min-w-[200px]">Next</button>
+                  <button type="submit" className="btn-primary4 xl:min-w-[200px] lg:min-w-[200px] xs:min-w-[120px]">Next</button>
                 </form>
               </div>
             </div>

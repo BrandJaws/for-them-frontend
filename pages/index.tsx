@@ -12,7 +12,7 @@ import { TESTIMONIALS } from "../utils/data";
 
 const Home: NextPage = ({ products }: any) => {
   return (
-    <Layout title="Home | For Them">
+    <Layout title="Home - For Them">
       <HeroSection />
       <GiftSection />
       <TestimonialSection data={TESTIMONIALS} />
