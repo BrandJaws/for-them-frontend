@@ -11,7 +11,7 @@ export const Product = ({ product, goToProductPage }) => {
       className="p-4 cursor-pointer text-center flex flex-col flex-wrap gap-4 items-center justify-center"
       onClick={() => goToProductPage(handle)}
     >
-      <div className="lg:h-[300px] lg:w-[300px] xs:w-full xs:h-full align-middle flex items-center justify-center">
+      <div className="xl:h-[300px] lg:h-[300px] xl:w-[300px] lg:w-[300px] xs:w-full xs:h-full align-middle flex items-center justify-center">
         <Image
           src={productImage}
           alt={title}
@@ -23,7 +23,7 @@ export const Product = ({ product, goToProductPage }) => {
       </div>
       <div className="subtitle-bold">Shop</div>
       <div className="text-large uppercase">{title}</div>
-      <div className="text break-before-all break-words w-full text-clip h-14 overflow-hidden">
+      <div className="text break-before-all break-words w-full text-clip h-16 overflow-hidden">
         {description}
       </div>
       <Link href={`/products/${handle}`}>
@@ -42,7 +42,7 @@ export default function ProductsList({ products }) {
     router.push(`/products/${productHandle}`);
   return (
     <div className="container mx-auto md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding">
-      <div className="grid lg:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-4">
+      <div className="grid xl:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-4">
         {products && products.length > 0 ? (
           products.map((product) => (
             <Product

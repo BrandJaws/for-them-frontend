@@ -22,23 +22,37 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .btn-primary {
-    @apply font-monumentExtended bg-[var(--primary1)] px-8 py-2 text-[var(--primary)] rounded-lg text-[12px]
+    @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-8 md:px-[45px] 
+    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-2 md:py-[14px] 
+    sm:py-[12px] xs:py-[10px] text-[var(--primary)] 
+    rounded-lg xl:text-[18px] lg:text-[12px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px]
 }
 
 .btn-primary2 {
-    @apply font-monumentExtended bg-[var(--primary1)] px-8 py-2 text-[var(--primary3)] rounded-lg text-[12px]
+    @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-8 md:px-[45px] 
+    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-2 md:py-[14px] 
+    sm:py-[12px] xs:py-[10px] text-[var(--primary3)] 
+    rounded-lg xl:text-[18px] lg:text-[12px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px]
 }
 
 .btn-primary3 {
-    @apply font-monumentExtended bg-[var(--primary1)] px-8 py-2 text-[var(--primary4)] rounded-lg text-[12px]
+    @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-8 md:px-[45px] 
+    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-2 md:py-[14px] 
+    sm:py-[12px] xs:py-[10px] text-[var(--primary4)] 
+    rounded-lg xl:text-[18px] lg:text-[12px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px]
 }
 
 .btn-primary4 {
-    @apply font-monumentExtended bg-[var(--primary1)] px-8 py-4 text-[var(--primary2)] border-black border-2 rounded-lg text-[14px]
+    @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-8 md:px-[45px] 
+    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-4 md:py-[14px] 
+    sm:py-[12px] xs:py-[10px] text-[var(--primary)] 
+    rounded-lg xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px]
 }
 
 .btn-primary-outline {
-    @apply font-monumentExtended bg-transparent px-8 py-4 text-[var(--primary1)] border-black border-2 rounded-lg text-[14px]
+    @apply font-monumentExtended bg-transparent xl:px-[60px] lg:px-8 md:px-[45px] 
+    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-4 md:py-[14px] 
+    sm:py-[12px] xs:py-[10px] text-[var(--primary1)] border-black border-2 rounded-lg xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px]
 }
 
 .section-padding {
@@ -54,7 +68,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .text {
-    @apply font-monumentExtended font-[400] text-[12px] leading-[14px] text-[var(--primary1)] relative;
+    @apply font-monumentExtended font-[400] xl:text-[18px] lg:text-[12px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] text-[var(--primary1)] relative;
 }
 
 .nav-list-item {
@@ -67,7 +81,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .anchor-nav {
-    @apply font-monumentExtended font-[400] text-[12px] leading-3 text-[var(--primary1)] relative;
+    @apply font-monumentExtended font-[400] xl:text-[16px] lg:text-[12px] md:text-[14px] sm:text-[14px] xs:text-[12px] xl:leading-[20px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] text-[var(--primary1)] relative h-full flex items-center;
 }
 
 .main-logo {
@@ -87,7 +101,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .shoppingBag {
-    @apply text-[18px];
+    @apply xl:text-[26px] lg:text-[18px] md:text-[20px] sm:text-[18px] xs:text-[16px];
 }
 
 .badge-count {
@@ -96,23 +110,23 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 
 .subtitle-bold {
     font-family: 'Nostra v1.0 Stream Trial';
-    @apply font-[900] lg:text-[22px] md:text-[20px] sm:text-[18px] xs:text-[16px] text-center text-[var(--primary1)] lg:leading-[22px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px]
+    @apply font-[900] xl:text-[32px] lg:text-[22px] md:text-[26px] sm:text-[20px] xs:text-[16px] text-center text-[var(--primary1)] xl:leading-[32px] lg:leading-[22px] md:leading-[26px] sm:leading-[20px] xs:leading-[16px]
 }
 
 .title-large {
-    @apply font-[100] font-monumentExtended lg:text-[80px] md:text-[60px] sm:text-[40px] xs:text-[20px] lg:leading-[100px] md:leading-[80px] sm:leading-[60px] xs:leading-[40px]
+    @apply font-[100] font-monumentExtended xl:text-[100px] lg:text-[80px] md:text-[80px] sm:text-[60px] xs:text-[40px] xl:leading-[120px] lg:leading-[100px] md:leading-[100px] sm:leading-[80px] xs:leading-[60px]
 }
 
 .text-small {
-    @apply font-monumentExtended lg:text-[18px] md:text-[16px] sm:text-[14px] xs:text-[12px] text-left text-[var(--primary1)] lg:leading-[24px] md:leading-[18px] sm:leading-[16px] xs:leading-[18px]
+    @apply font-monumentExtended xl:text-[18px] lg:text-[18px] md:text-[16px] sm:text-[14px] xs:text-[12px] text-left text-[var(--primary1)] xl:leading-[24px] lg:leading-[24px] md:leading-[18px] sm:leading-[16px] xs:leading-[18px]
 }
 
 .text-medium {
-    @apply font-monumentExtended lg:text-[26px] md:text-[18px] sm:text-[16px] xs:text-[14px] text-[var(--primary1)] lg:leading-[34px] md:leading-[18px] sm:leading-[16px] xs:leading-[18px]
+    @apply font-monumentExtended xl:text-[26px] lg:text-[26px] md:text-[18px] sm:text-[16px] xs:text-[14px] text-[var(--primary1)] xl:leading-[34px] lg:leading-[34px] md:leading-[18px] sm:leading-[16px] xs:leading-[18px]
 }
 
 .text-large {
-    @apply font-monumentExtended lg:text-[30px] md:text-[24px] sm:text-[20px] xs:text-[16px] text-[var(--primary1)] lg:leading-[42px] md:leading-[32px] sm:leading-[32px] xs:leading-[24px]
+    @apply font-monumentExtended xl:text-[45px] lg:text-[30px] md:text-[34px] sm:text-[26px] xs:text-[20px] text-[var(--primary1)] xl:leading-[56px] lg:leading-[42px] md:leading-[44px] sm:leading-[32px] xs:leading-[24px]
 }
 
 .title-large {
@@ -125,7 +139,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .title-medium {
-    @apply font-[100] font-monumentExtended lg:text-[60px] md:text-[45px] sm:text-[30px] xs:text-[30px] text-left lg:leading-[70px] md:leading-[55px] sm:leading-[40px] xs:leading-[40px]
+    @apply font-[100] font-monumentExtended xl:text-[60px] lg:text-[60px] md:text-[45px] sm:text-[30px] xs:text-[30px] text-left xl:leading-[70px] lg:leading-[70px] md:leading-[55px] sm:leading-[40px] xs:leading-[40px]
 }
 
 .title-large:nth-of-type(2) {
@@ -286,7 +300,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
     transition: all 500ms ease-out;
 }
 .accordion-content.show {
-    @apply transition-all duration-300 ease-linear lg:h-[180px] md:h-[120px] sm:h-auto xs:h-auto opacity-100;
+    @apply transition-all duration-300 ease-linear xl:h-[180px] lg:h-[160px] md:h-[120px] sm:h-auto xs:h-auto opacity-100;
     -webkit-transition: all 500ms ease-out;
     -moz-transition: all 500ms ease-out;
     -ms-transition: all 500ms ease-out;

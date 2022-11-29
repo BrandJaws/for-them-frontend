@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       screens: {
         xs: { raw: '(max-width: 576px)' },
+        'xl': '1440px'
       },
       backgroundColor: {
         primary: '#FFCC33',

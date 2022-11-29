@@ -7,7 +7,7 @@ import SizeFinderSection from "../components/shop/SizeFinderSection";
 
 const Shop: NextPage = ({ products }: any) => {
   return (
-    <Layout title="Shop | For Them">
+    <Layout title="Shop - For Them">
       <HeroSection />
       <ProductsList products={products} />
       <SizeFinderSection />
