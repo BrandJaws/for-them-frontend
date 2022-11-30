@@ -97,7 +97,7 @@ export default function Footer() {
           </div>
           <div className="shop-widget flex xl:justify-center lg:justify-center items-start mb-4">
             <ul className="list-none unstyled flex flex-col gap-4">
-              <li className="font-[600]">Shop</li>
+              <li className="anchor">Shop</li>
               {shopNav.length > 0 &&
                 shopNav.map((item, index) => {
                   return (
@@ -117,7 +117,7 @@ export default function Footer() {
           </div>
           <div className="connect-widget flex xl:justify-center lg:justify-center items-start mb-4">
             <ul className="list-none unstyled flex flex-col gap-4">
-              <li className="font-[600]">Connect</li>
+              <li className="anchor">Connect</li>
               {connectNav.length > 0 &&
                 connectNav.map((item, index) => {
                   return (
@@ -137,7 +137,7 @@ export default function Footer() {
           </div>
           <div className="discover-widget flex xl:justify-center lg:justify-center items-start mb-4">
             <ul className="list-none unstyled flex flex-col gap-4">
-              <li className="font-[600]">Discover</li>
+              <li className="anchor">Discover</li>
               {discoverNav.length > 0 &&
                 discoverNav.map((item, index) => {
                   return (
@@ -157,7 +157,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="grid grid-cols-1 mt-6">
-          <p className="xs:text-sm xs:leading-6">© 20XX-2022, for them, Inc. or its affiliates</p>
+          <p className="text-[14px] leading-[42px] xs:text-sm xs:leading-6">© 20XX-2022, for them, Inc. or its affiliates</p>
         </div>
       </div>
     </div>

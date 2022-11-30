@@ -13,6 +13,7 @@ import { TfiAngleDown } from "react-icons/tfi";
 import NextArrow from "../../components/common/NextArrow";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import PrevArrow from "../../components/common/PrevArrow";
+import Fade from "react-reveal/Fade"
 
 export default function ProductPage({ product }) {
   const { id, title, images, variants, handle, description, options } = product;
@@ -231,12 +232,14 @@ export default function ProductPage({ product }) {
                 </div>
               </div>
               <div className="product-detail xl:px-16 lg:px-16 md:px-10 sm:px-8 xs:px-6">
-                <div className="subtitle-bold">{title}</div>
+                <Fade top cascade><div className="subtitle-bold">{title}</div></Fade>
                 <div className="flex flex-col flex-wrap gap-4 items-start ">
                   <div className="title-large capitalize">Orange</div>
-                  <div className="text-large capitalize">
-                    ${price.amount} USD
-                  </div>
+                  <Fade bottom cascade>
+                    <div className="subtitle-bold capitalize">
+                      ${price.amount} USD
+                    </div>
+                  </Fade>
                   <div className="text-small">{description}</div>
                   {sizeFound && sizeFound.values.length > 0 && (
                     <div className="size-field w-full font-monumentExtended relative">
@@ -296,19 +299,23 @@ export default function ProductPage({ product }) {
                   )}
                   <br />
                   <div className="cta-btns flex flex-col flex-wrap gap-4 justify-center xl:items-center lg:items-center sm:items-start">
-                    <Link href="/">
-                      <button type="button" className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px]">
-                        Add to basket
-                      </button>
-                    </Link>
-                    <Link href="/">
-                      <button
-                        type="button"
-                        className="btn-primary4 xl:min-w-[400px] lg:min-w-[400px]"
-                      >
-                        Buy now
-                      </button>
-                    </Link>
+                    <Fade bottom>
+                      <Link href="/">
+                        <button type="button" className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px]">
+                          Add to basket
+                        </button>
+                      </Link>
+                    </Fade>
+                    <Fade bottom>
+                      <Link href="/">
+                        <button
+                          type="button"
+                          className="btn-primary4 xl:min-w-[400px] lg:min-w-[400px]"
+                        >
+                          Buy now
+                        </button>
+                      </Link>
+                    </Fade>
                     <Link href="/">
                       <p className="font-monumentExtended font-[700] underline xs:text-sm">
                         Gift the binder?
@@ -323,7 +330,7 @@ export default function ProductPage({ product }) {
                         <h2 className="">
                           <button
                             onClick={() => handleAccordionClick(0)}
-                            className="relative flex justify-between items-center w-full border-b py-2 xl:text-xl lg:text-xl md:text-lg sm:text-md xs:text-sm font-[800] text-left border-0 rounded-none transition focus:outline-none"
+                            className="relative flex justify-between items-center w-full border-b py-2 xl:text-lg lg:text-lg md:text-lg sm:text-md xs:text-sm font-[800] text-left border-0 rounded-none transition focus:outline-none"
                           >
                             <span>How it works</span>
                             <TfiAngleDown className="lg:text-[24px] md:text-[20px] sm:text-[18px] xs:text-[16px] font-[800]" />
@@ -350,7 +357,7 @@ export default function ProductPage({ product }) {
                         <h2 className="">
                           <button
                             onClick={() => handleAccordionClick(1)}
-                            className="relative flex justify-between items-center w-full border-b py-2 xl:text-xl lg:text-xl md:text-lg sm:text-md xs:text-sm font-[800] text-left border-0 rounded-none transition focus:outline-none"
+                            className="relative flex justify-between items-center w-full border-b py-2 xl:text-lg lg:text-lg md:text-lg sm:text-md xs:text-sm font-[800] text-left border-0 rounded-none transition focus:outline-none"
                           >
                             <span>Patented Design</span>
                             <TfiAngleDown className="xl:text-[24px] lg:text-[24px] md:text-[20px] sm:text-[18px] xs:text-[16px] font-[800]" />
@@ -389,12 +396,14 @@ export default function ProductPage({ product }) {
                   <br className="xl:block lg:block sm:hidden xs:hidden" />
                   you like us to call you?
                 </div>
-                <form action="#">
-                  <div className="form-group mb-4">
-                    <input type="text" name="name" id="name" placeholder="Enter your chosen name" className="input-field xs:px-[20px] xs:py-4 xs:text-sm" required />
-                  </div>
-                  <button type="submit" className="btn-primary4 xl:min-w-[200px] lg:min-w-[200px] xs:min-w-[120px]">Next</button>
-                </form>
+                <Fade>
+                  <form action="#">
+                    <div className="form-group mb-4">
+                      <input type="text" name="name" id="name" placeholder="Enter your chosen name" className="input-field xs:px-[20px] xs:py-4 xs:text-sm" required />
+                    </div>
+                    <button type="submit" className="btn-primary4 xl:min-w-[200px] lg:min-w-[200px] xs:min-w-[120px]">Next</button>
+                  </form>
+                </Fade>
               </div>
             </div>
           </section>
