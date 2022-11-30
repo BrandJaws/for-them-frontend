@@ -21,42 +21,50 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
     @apply font-monumentExtended;
 }
 
+p {
+    @apply text-[18px] leading-[46px] xs:leading-[28px] xs:text-[12px]
+}
+
 .btn-primary {
-    @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-8 md:px-[45px] 
-    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-2 md:py-[14px] 
+    @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-[45px] md:px-[45px] 
+    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-[18px] md:py-[14px] 
     sm:py-[12px] xs:py-[10px] text-[var(--primary)] 
     rounded-lg xl:text-[18px] lg:text-[12px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px]
 }
 
 .btn-primary2 {
-    @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-8 md:px-[45px] 
-    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-2 md:py-[14px] 
+    @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-[45px] md:px-[45px] 
+    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-[18px] md:py-[14px] 
     sm:py-[12px] xs:py-[10px] text-[var(--primary3)] 
     rounded-lg xl:text-[18px] lg:text-[12px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px]
 }
 
 .btn-primary3 {
-    @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-8 md:px-[45px] 
-    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-2 md:py-[14px] 
+    @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-[45px] md:px-[45px] 
+    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-[18px] md:py-[14px] 
     sm:py-[12px] xs:py-[10px] text-[var(--primary4)] 
     rounded-lg xl:text-[18px] lg:text-[12px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px]
 }
 
 .btn-primary4 {
-    @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-8 md:px-[45px] 
-    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-4 md:py-[14px] 
+    @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-[45px] md:px-[45px] 
+    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-[20px] md:py-[14px] 
     sm:py-[12px] xs:py-[10px] text-[var(--primary)] 
     rounded-lg xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px]
 }
 
 .btn-primary-outline {
-    @apply font-monumentExtended bg-transparent xl:px-[60px] lg:px-8 md:px-[45px] 
-    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-4 md:py-[14px] 
+    @apply font-monumentExtended bg-transparent xl:px-[60px] lg:px-[45px] md:px-[45px] 
+    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-[20px] md:py-[14px] 
     sm:py-[12px] xs:py-[10px] text-[var(--primary1)] border-black border-2 rounded-lg xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px]
 }
 
 .section-padding {
     @apply py-[60px];
+}
+
+.section-title {
+    @apply font-monumentExtended xl:text-[60px] lg:text-[52px] md:text-[44px] sm:text-[26px] xs:text-[20px] text-[var(--primary1)] xl:leading-[76px] lg:leading-[66px] md:leading-[52px] sm:leading-[42px] xs:leading-[30px];
 }
 
 .app-wrapper {
@@ -68,7 +76,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .text {
-    @apply font-monumentExtended font-[400] xl:text-[18px] lg:text-[12px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] text-[var(--primary1)] relative;
+    @apply font-monumentExtended font-[400] xl:text-[18px] lg:text-[16px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[24px] lg:leading-[22px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] text-[var(--primary1)] relative;
 }
 
 .nav-list-item {
@@ -109,12 +117,12 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .subtitle-bold {
-    font-family: 'Nostra v1.0 Stream Trial';
-    @apply font-[900] xl:text-[32px] lg:text-[22px] md:text-[26px] sm:text-[20px] xs:text-[16px] text-center text-[var(--primary1)] xl:leading-[32px] lg:leading-[22px] md:leading-[26px] sm:leading-[20px] xs:leading-[16px]
+    /* font-family: 'Nostra v1.0 Stream Trial'; */
+    @apply font-[200] xl:text-[32px] lg:text-[22px] md:text-[26px] sm:text-[20px] xs:text-[16px] text-center text-[var(--primary1)] xl:leading-[40px] lg:leading-[22px] md:leading-[26px] sm:leading-[20px] xs:leading-[16px]
 }
 
 .title-large {
-    @apply font-[100] font-monumentExtended xl:text-[100px] lg:text-[80px] md:text-[80px] sm:text-[60px] xs:text-[40px] xl:leading-[120px] lg:leading-[100px] md:leading-[100px] sm:leading-[80px] xs:leading-[60px]
+    @apply font-[100] font-monumentExtended xl:text-[100px] lg:text-[80px] md:text-[80px] sm:text-[60px] xs:text-[40px] xl:leading-[126px] lg:leading-[100px] md:leading-[100px] sm:leading-[80px] xs:leading-[60px]
 }
 
 .text-small {
@@ -122,11 +130,15 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .text-medium {
-    @apply font-monumentExtended xl:text-[26px] lg:text-[26px] md:text-[18px] sm:text-[16px] xs:text-[14px] text-[var(--primary1)] xl:leading-[34px] lg:leading-[34px] md:leading-[18px] sm:leading-[16px] xs:leading-[18px]
+    @apply font-monumentExtended xl:text-[24px] font-[700] lg:text-[22px] md:text-[18px] sm:text-[16px] xs:text-[14px] text-[var(--primary1)] xl:leading-[46px] lg:leading-[34px] md:leading-[18px] sm:leading-[16px] xs:leading-[18px]
 }
 
 .text-large {
-    @apply font-monumentExtended xl:text-[45px] lg:text-[30px] md:text-[34px] sm:text-[26px] xs:text-[20px] text-[var(--primary1)] xl:leading-[56px] lg:leading-[42px] md:leading-[44px] sm:leading-[32px] xs:leading-[24px]
+    @apply font-monumentExtended xl:text-[36px] lg:text-[30px] md:text-[34px] sm:text-[26px] xs:text-[20px] text-[var(--primary1)] xl:leading-[46px] lg:leading-[42px] md:leading-[44px] sm:leading-[32px] xs:leading-[24px]
+}
+
+.product-title {
+    @apply font-monumentExtended xl:text-[60px] lg:text-[52px] md:text-[44px] sm:text-[26px] xs:text-[26px] text-[var(--primary1)] xl:leading-[76px] lg:leading-[66px] md:leading-[52px] sm:leading-[42px] xs:leading-[30px]
 }
 
 .title-large {
@@ -139,14 +151,14 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .title-medium {
-    @apply font-[100] font-monumentExtended xl:text-[60px] lg:text-[60px] md:text-[45px] sm:text-[30px] xs:text-[30px] text-left xl:leading-[70px] lg:leading-[70px] md:leading-[55px] sm:leading-[40px] xs:leading-[40px]
+    @apply font-[400] font-monumentExtended xl:text-[68px] lg:text-[60px] md:text-[45px] sm:text-[30px] xs:text-[30px] text-left xl:leading-[66px] lg:leading-[70px] md:leading-[55px] sm:leading-[40px] xs:leading-[40px]
 }
 
 .title-large:nth-of-type(2) {
     animation-delay: 1.5s;
 }
 .select-field, .input-field {
-    @apply w-full border-2 border-primary1 py-3 text-xl rounded-md placeholder:text-[var(--primary1)];
+    @apply w-full border-2 border-primary1 py-3 text-2xl rounded-md placeholder:text-[var(--primary1)];
 }
 @keyframes pop-word {
     to {

@@ -11,7 +11,7 @@ import { TestimonialProps } from "../../interfaces";
 const TestimonialSection = ({ data }) => {
   var settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     autoplay: true,
     speed: 1500,
     slidesToShow: 1,

@@ -11,14 +11,18 @@ import wellness7 from "../../assets/images/wellness/wellness-7.png";
 import wellness8 from "../../assets/images/wellness/wellness-8.png";
 import wellness9 from "../../assets/images/wellness/wellness-9.png";
 import { WellnessProps } from "../../interfaces";
+import Fade from "react-reveal/Fade"
+
 
 export const WellnessComponent = ({ item }) => {
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-4 mb-4">
-        <Image src={item.url} alt="wellness image" />
-        <h3 className="text">{item.title}</h3>
-      </div>
+      <Fade bottom>
+        <div className="flex flex-col items-center justify-center gap-4 mb-4">
+          <Image src={item.url} alt="wellness image" />
+          <h3 className="text">{item.title}</h3>
+        </div>
+      </Fade>
     </>
   );
 };
@@ -65,13 +69,15 @@ const Wellness = () => {
 
   return (
     <section className="container mx-auto md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding">
-      <div className="text-medium text-center">
-        9 dimensions of
-        <br className="sm:none xs:none" />
-        <span className="title-medium text-[var(--primary1)]">
-          wellness
-        </span>
-      </div>
+      <Fade>
+        <div className="text-medium text-center">
+          9 dimensions of
+          <br className="sm:none xs:none" />
+          <span className="title-medium text-[var(--primary1)]">
+            wellness
+          </span>
+        </div>
+      </Fade>
       <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 py-8">
         {WellnessData.length > 0 && WellnessData.map((item, index) => {
             return (
