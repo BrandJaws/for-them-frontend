@@ -1,0 +1,83 @@
+import Link from "next/link";
+import type { NextPage } from "next";
+import Layout from "../components/Layout";
+import Head from "next/head";
+import parseHtml, { domToReact } from "html-react-parser";
+import get from "lodash/get";
+
+// Determines if URL is internal or external
+function isUrlInternal(link) {
+  if (
+    !link ||
+    link.indexOf(`https:`) === 0 ||
+    link.indexOf(`#`) === 0 ||
+    link.indexOf(`http`) === 0 ||
+    link.indexOf(`://`) === 0
+  ) {
+    return false;
+  }
+  return true;
+}
+
+// Replaces DOM nodes with React components
+function replace(node) {
+  const attribs = node.attribs || {};
+
+  // Replace links with Next links
+  if (node.name === `a` && isUrlInternal(attribs.href)) {
+    const { href, ...props } = attribs;
+    if (props.class) {
+      props.className = props.class;
+      delete props.class;
+    }
+    return (
+      <Link href={href}>
+        <a {...props}>
+          {!!node.children &&
+            !!node.children.length &&
+            domToReact(node.children, parseOptions)}
+        </a>
+      </Link>
+    );
+  }
+}
+const parseOptions = { replace };
+
+const AboutPage: NextPage = (props: any) => {
+  return (
+    <>
+      <Head>{parseHtml(props.headContent)}</Head>
+      <Layout title="About - For Them">
+        <div dangerouslySetInnerHTML={{ __html: props.bodyContent }} />
+      </Layout>
+    </>
+  );
+};
+
+export default AboutPage;
+
+export async function getStaticProps(ctx: any) {
+  // Import modules in here that aren't needed in the component
+  const cheerio = await import(`cheerio`);
+  const axios = (await import(`axios`)).default;
+
+  // Fetch HTML
+  let res = await axios(process.env.WEBFLOW_URL).catch((err) => {
+    console.error(err);
+  });
+  // @ts-ignore
+  const html = res.data;
+
+  // Parse HTML with Cheerio
+  const $ = cheerio.load(html);
+  const bodyContent = $(`body`).html();
+  const headContent = $(`head`).html();
+
+  // Send HTML to component via props
+  return {
+    props: {
+      bodyContent,
+      headContent,
+    },
+  };
+}
