@@ -319,3 +319,9 @@ p {
     -o-transition: all 500ms ease-out;
     transition: all 500ms ease-out;
 }
+div.navigation {
+    display: none !important;
+}
+div.footer-wrap {
+    display: none !important;
+}

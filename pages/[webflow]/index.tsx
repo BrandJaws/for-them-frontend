@@ -1,9 +1,9 @@
 import Link from "next/link";
 import type { NextPage } from "next";
-import Layout from "../components/Layout";
 import Head from "next/head";
 import parseHtml, { domToReact } from "html-react-parser";
 import get from "lodash/get";
+import Layout from "../../components/Layout";
 
 // Determines if URL is internal or external
 function isUrlInternal(link) {
@@ -55,7 +55,7 @@ function replace(node){
 }
 const parseOptions = { replace };
 
-const AboutPage: NextPage = (props: any) => {
+const IndexPage: NextPage = (props: any) => {
   return (
     <>
       <Head>{parseHtml(props.headContent)}</Head>
@@ -102,4 +102,4 @@ export async function getStaticProps(ctx) {
   };
 }
 
-export default AboutPage;
+export default IndexPage;
