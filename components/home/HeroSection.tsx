@@ -3,6 +3,7 @@ import Link from "next/link";
 import * as React from "react";
 import sectionImage from "../../assets/images/hero-image.png";
 import Fade from 'react-reveal/Fade';
+import SectionHeader from "../common/SectionHeader";
 
 const HeroSection = () => {
   return (
@@ -13,18 +14,22 @@ const HeroSection = () => {
             <Image src={sectionImage} alt="hero image" />
           </Fade>
           <div className="flex gap-4 flex-col flex-wrap justify-center items-center">
-            <Fade right cascade>
+            <SectionHeader 
+              title="Binder"
+              subtitle="The"
+              description="Your maximum healthy bind with comfort, breathability and style."
+            />
+            {/* <Fade right cascade>
               <div className="subtitle-bold">The</div>
             </Fade>
             <div className="title-large text-center uppercase">Binder</div>
             <Fade right cascade>
               <div className="text-small">
-                For every day, all day comfort. The{" "}
+                Your maximum healthy bind with{" "}
                 <br className="sm:none xs:none" />
-                Binder moves and breathes with you.
-                <br className="sm:none xs:none" /> Customize yours here.
+                comfort, breathability and style.
               </div>
-            </Fade>
+            </Fade> */}
             <Link href="/shop">
               <button type="button" className="btn-primary">
                 Shop now

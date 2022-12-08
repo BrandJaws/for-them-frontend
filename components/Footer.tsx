@@ -156,9 +156,6 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="grid grid-cols-1 mt-6">
-          <p className="text-[14px] text-primary leading-[42px] xs:text-sm xs:leading-6">© 20XX-2022, for them, Inc. or its affiliates</p>
-        </div>
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ import NextArrow from "../../components/common/NextArrow";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import PrevArrow from "../../components/common/PrevArrow";
 import Fade from "react-reveal/Fade"
+import BinderShopList from "../../components/common/BinderShopList";
 
 export default function ProductPage({ product }) {
   const { id, title, images, variants, handle, description, options } = product;
@@ -415,6 +416,9 @@ export default function ProductPage({ product }) {
                 </Fade>
               </div>
             </div>
+          </section>
+          <section>
+            <BinderShopList />
           </section>
         </>
       )}

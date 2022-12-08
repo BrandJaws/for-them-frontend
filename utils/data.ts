@@ -21,7 +21,7 @@ export const PRODUCTS = [
 export const TESTIMONIALS: Array<TestimonialProps> = [
   {
     name: "Ember",
-    description: `“Thank you guys so much for being the most hardworking and up-front company out there. It's obvious that you re all fantastic, sweet, dedicated people.”`,
+    description: `“This binder changed my life, I’ve never felt so at home in my body. You’ve given me back my joy, my self love and my sanity.”`,
   },
   {
     name: "Ember 2",

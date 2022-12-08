@@ -14,16 +14,18 @@ const HeroSection = () => {
             <Fade right cascade>
               <div className="subtitle-bold">our</div>
             </Fade>
-            <div className="title-large text-center capitalize">Offerings</div>
+            <div className="title-large text-center capitalize">PRODUCTS</div>
             <Fade bottom>
               <div className="xl:text-[24px] lg:text-[20px] md:text-[18px] sm:text-[18px] xs:text-[16px] 
               xl:leading-[32px] lg:leading-[30px] md:leading-[28px] 
-              sm:leading-[26px] xs:leading-[26px]">
-                Feel at home in your body without compromise.
+              sm:leading-[26px] xs:leading-[26px] text-center">
+                Feel at home in your body without
                 <br className="sm:none xs:none" />
-                Patented design and made from 100% recycled
+                compromise. Patented design and 
                 <br className="sm:none xs:none" />
-                nylon that never curls, rolls, or pills.
+                made from 100% recycled nylon 
+                <br className="sm:none xs:none" />
+                that never curls, rolls, or pills.
               </div>
             </Fade>
             <Link href="/shop">

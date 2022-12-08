@@ -22,6 +22,11 @@ export type WellnessProps = {
   url?: StaticImageData
 }
 
+export type BinderShopProps = {
+  title?: string
+  url?: StaticImageData
+}
+
 export type ColorProps = {
   hexCode?: string
   name?: string
