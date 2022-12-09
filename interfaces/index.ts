@@ -36,3 +36,11 @@ export type TestimonialProps = {
   name?: string
   description?: string
 }
+
+export type PageProps = {
+  id?: string
+  title?: string
+  body?: string
+  bodySummary?: string
+  handle?: string
+}

@@ -5,12 +5,16 @@ import type { NextPage } from "next";
 import HeroSection from "../components/shop/HeroSection";
 import BinderShopList from "../components/common/BinderShopList";
 
-const Shop: NextPage = ({ products }: any) => {
+export interface ShopProps {
+  products?: any
+}
+
+const Shop: React.FC<ShopProps> = ({ products }) => {
   return (
     <Layout title="Shop - For Them">
       <HeroSection />
       <ProductsList products={products} />
-      <section className="section-padding">
+      <section className="">
         <BinderShopList />
       </section>
     </Layout>

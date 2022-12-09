@@ -242,15 +242,15 @@ export default function ProductPage({ product }) {
                 </div>
               </div>
               <div className="product-detail xl:px-16 lg:px-16 md:px-10 sm:px-8 xs:px-6">
-                <Fade top cascade><div className="subtitle-bold">{title}</div></Fade>
+                <Fade top cascade><div className="subtitle-bold text-left">{title}</div></Fade>
                 <div className="flex flex-col flex-wrap gap-4 items-start ">
                   <div className="title-large capitalize">Orange</div>
                   <Fade bottom cascade>
-                    <div className="subtitle-bold capitalize">
+                    <div className="subtitle-bold text-center capitalize">
                       ${price.amount} USD
                     </div>
                   </Fade>
-                  <div className="text-small">{description}</div>
+                  <div className="text-small text-left">{description}</div>
                   {sizeFound && sizeFound.values.length > 0 && (
                     <div className="size-field w-full font-monumentExtended relative">
                       <label
@@ -283,7 +283,7 @@ export default function ProductPage({ product }) {
                   <br />
                   {colorFound && colorFound.values.length > 0 && (
                     <div className="color-field w-full font-monumentExtended relative">
-                      <div className="text-small">
+                      <div className="text-small text-left">
                         Color:{" "}
                         <span className="font-[800]">{selectedColor}</span>
                       </div>
@@ -334,7 +334,7 @@ export default function ProductPage({ product }) {
                   </div>
                   <br />
                   <div className="product-info">
-                    <div className="text-small">More Info</div>
+                    <div className="text-small text-left">More Info</div>
                     <div className="accordion">
                       <div className="accordion-item bg-white">
                         <h2 className="z-[999]">
@@ -401,7 +401,7 @@ export default function ProductPage({ product }) {
               <div className=""></div>
               <div className="right-side section-padding bg-primary5 xl:px-[50px] lg:px-[50px] md:px-[35px] sm:px-[25px] xs:px-[20px] flex flex-col flex-wrap gap-6 ">
                 <div className="text-large">Find your size</div>
-                <div className="text-small">
+                <div className="text-small text-left">
                   Before we begin, what would
                   <br className="xl:block lg:block sm:hidden xs:hidden" />
                   you like us to call you?

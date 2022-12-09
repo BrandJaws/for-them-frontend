@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
-import Fade from "react-reveal/Fade"
+import Fade from "react-reveal/Fade";
 
 export const Product = ({ product, goToProductPage }) => {
   const { title, images, handle, description } = product;
@@ -24,9 +24,9 @@ export const Product = ({ product, goToProductPage }) => {
               height={300}
             />
           </div>
-          <div className="subtitle-bold">Shop</div>
+          <div className="subtitle-bold text-center">Shop</div>
           <div className="product-title uppercase">{title}</div>
-          <div className="text break-before-all break-words w-full text-clip xl:h-20 lg:h-20 md:h-20 sm:h-20 xs:h-20 overflow-hidden">
+          <div className="text break-before-all break-words w-full text-clip xl:h-24 lg:h-24 md:h-20 sm:h-14 xs:h-14 overflow-hidden">
             {description}
           </div>
           <Link href={`/products/${handle}`}>

@@ -11,7 +11,7 @@ const BinderCallToActionSection = () => {
         <div className="flex gap-10 flex-col flex-wrap justify-center items-center section-padding h-full">
           <div className="flex gap-4 flex-col justify-center items-center">
             <Fade top cascade>
-              <div className="subtitle-bold">The</div>
+              <div className="subtitle-bold text-center">The</div>
             </Fade>
             <div className="title-large text-center uppercase">Binder</div>
           </div>

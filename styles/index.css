@@ -142,7 +142,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 
 .subtitle-bold {
     /* font-family: 'Nostra v1.0 Stream Trial'; */
-    @apply font-[200] xl:text-[32px] lg:text-[22px] md:text-[26px] sm:text-[20px] xs:text-[16px] text-center text-[var(--primary1)] xl:leading-[40px] lg:leading-[22px] md:leading-[26px] sm:leading-[20px] xs:leading-[16px]
+    @apply font-[200] xl:text-[32px] lg:text-[22px] md:text-[26px] sm:text-[20px] xs:text-[16px] text-[var(--primary1)] xl:leading-[40px] lg:leading-[22px] md:leading-[26px] sm:leading-[20px] xs:leading-[16px]
 }
 
 .title-large {
@@ -150,7 +150,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .text-small {
-    @apply font-monumentExtended xl:text-[18px] lg:text-[18px] md:text-[16px] sm:text-[14px] xs:text-[12px] text-center text-[var(--primary1)] xl:leading-[24px] lg:leading-[24px] md:leading-[18px] sm:leading-[16px] xs:leading-[18px]
+    @apply font-monumentExtended xl:text-[18px] lg:text-[18px] md:text-[16px] sm:text-[14px] xs:text-[12px] text-[var(--primary1)] xl:leading-[24px] lg:leading-[24px] md:leading-[18px] sm:leading-[16px] xs:leading-[18px]
 }
 
 .section-subtitle {

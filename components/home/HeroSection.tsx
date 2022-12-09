@@ -20,7 +20,7 @@ const HeroSection = () => {
               description="Your maximum healthy bind with comfort, breathability and style."
             />
             {/* <Fade right cascade>
-              <div className="subtitle-bold">The</div>
+              <div className="subtitle-bold text-center">The</div>
             </Fade>
             <div className="title-large text-center uppercase">Binder</div>
             <Fade right cascade>

@@ -11,7 +11,7 @@ const SizeFinderSection = () => {
           <div className="grid xl:grid-cols-1 lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-4">
             <div className="flex gap-4 flex-col flex-wrap justify-center items-center">
               <div className="section-title uppercase">Offerings</div>
-              <div className="text-small xs:text-center">
+              <div className="text-small xs:text-center text-center">
                 <strong>Kylo</strong>, where you are on your binding journey?
               </div>
               <div className="grid xl:grid-cols-12 lg:grid-cols-8 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-[30px] lg:section-padding xl:section-padding w-full">

@@ -16,7 +16,7 @@ const GiftSection = () => {
             subtitle="The"
             description="The ultimate euphoria-inducing gift, delivered by email or text so they can choose their perfect fit."
           />
-          {/* <Fade bottom><div className="subtitle-bold">The</div></Fade>
+          {/* <Fade bottom><div className="subtitle-bold text-center">The</div></Fade>
           <div className="title-large text-center uppercase">Gift Card</div>
           <Fade left>
             <div className="text-small">

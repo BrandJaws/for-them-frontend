@@ -1,10 +1,14 @@
 import Image from "next/image";
+import { useEffect } from "react";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
 import FooterLogo from "../assets/images/footer-logo-12.svg";
 import useRouterToCheckPath from "../hooks/useRouterToCheckPath";
 import { NavItemProps } from "../interfaces";
+import { client, parseShopifyResponse } from "../lib/shopify";
+import { setPagesToStore } from "../reducers/pages";
 
-export default function Footer() {
+export default function Footer({ data }: any) {
   const shopNav: Array<NavItemProps> = [
     {
       title: "Shop All",
@@ -86,6 +90,12 @@ export default function Footer() {
       url: "/privacy-policy",
     },
   ];
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (data) {
+      dispatch(setPagesToStore(data.pages));
+    }
+  }, [data, dispatch]);
   return (
     <div className="bg-primary1 section-padding font-monumentExtended">
       <div className="container mx-auto bg-primary1 md:px-[15px] sm:px-[15px] xs:px-[15px]">
@@ -160,3 +170,26 @@ export default function Footer() {
     </div>
   );
 }
+
+export const getServerSideProps = async () => {
+  // Build a custom products query using the unoptimized version of the SDK
+  const productsQuery = client.graphQLClient.query((root: any) => {
+    root.addConnection('pages', {args: {first: 20}}, (page: any) => {
+      page.add('id');
+      page.add('title');
+      page.add('body');
+      page.add('bodySummary');
+      page.add('handle');
+    });
+  });
+  // Call the send method with the custom products query
+  let pages = await client.graphQLClient.send(productsQuery).then(({model, data}) => {
+    // Do something with the products
+    return data;
+  });
+  return {
+    props: {
+      data: parseShopifyResponse(pages),
+    },
+  };
+};

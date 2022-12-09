@@ -18,11 +18,11 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
     <>
       <div className="flex gap-4 flex-col flex-wrap justify-center items-center">
         <Fade top cascade>
-          <div className="subtitle-bold">{subtitle}</div>
+          <div className="subtitle-bold text-center">{subtitle}</div>
         </Fade>
         <div className="title-large text-center uppercase">{title}</div>
         <Fade top cascade>
-          <div className="text-small xl:max-w-[480px] lg:max-w-[480px] md:max-w-[680px] sm:max-w-max xs:max-w-max xs:px-[15px]">
+          <div className="text-small text-center xl:max-w-[480px] lg:max-w-[480px] md:max-w-[680px] sm:max-w-max xs:max-w-max xs:px-[15px]">
             {description}
             {/* Your maximum healthy bind without
             <br className="sm:none xs:none" />
