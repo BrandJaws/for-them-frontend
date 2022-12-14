@@ -44,3 +44,22 @@ export type PageProps = {
   bodySummary?: string
   handle?: string
 }
+
+export type PageSingleEdgeProps = {
+  cursor?: string
+  node?: PageProps
+}
+
+export type PageEdgesProps = Array<PageSingleEdgeProps>
+
+export type FooterProps = {
+  footerType?: string
+  data?: any
+}
+
+export type FooterNavProps = {
+  discover?: any | null
+  shop?: any | null
+  connect?: any | null
+}
+

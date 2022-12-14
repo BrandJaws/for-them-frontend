@@ -63,7 +63,9 @@ export const COLORS: Array<ColorProps> = [
   }
 ]
 
-
+export const FOOTER_DISCOVER_MENU = process.env.FOOTER_DISCOVER_MENU;
+export const FOOTER_SHOP_MENU = process.env.FOOTER_SHOP_MENU;
+export const FOOTER_CONNECT_MENU = process.env.FOOTER_CONNECT_MENU;
 
 
 
