@@ -20,6 +20,8 @@ export const setNavToStore = createAction(
   }
 );
 
+export const setShopifyToEmpty = createAction("setShopifyToEmpty");
+
 export interface shopifyState {
   pages?: Array<PageProps> | null;
   footerNavs?: FooterNavProps | null;
@@ -43,6 +45,14 @@ export const shopifySlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(setPagesToStore, (state, action) => {
       state.pages = action.payload;
+    });
+    builder.addCase(setShopifyToEmpty, (state, action) => {
+      state.footerNavs = {
+        discover: null,
+        shop: null,
+        connect: null
+      };
+      state.headerNav = null;
     });
     builder.addCase(setNavToStore, (state, action) => {
       if (action.payload.navType === process.env.FOOTER_DISCOVER_MENU) {

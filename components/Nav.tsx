@@ -8,11 +8,13 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import useWindowSize from "../hooks/useWindowSize";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../stores/store";
+import { setShopifyToEmpty } from "../reducers/shopify";
 
 export default function Nav() {
   const windowSizeValue = useWindowSize();
+  const dispatch = useDispatch();
   const [hamburger, setHamBurger] = useState<boolean>(false);
   const navigation: Array<NavItemProps> = [
     {
@@ -31,27 +33,6 @@ export default function Nav() {
       url: "/size-finder",
     }
   ];
-  // ,
-  // {
-  //   title: "Size Finder",
-  //   slug: "size-finder",
-  //   url: "/size-finder",
-  // },
-  // {
-  //   title: "Our Story",
-  //   slug: "our-story",
-  //   url: "/our-story",
-  // },
-  // {
-  //   title: "Editorial",
-  //   slug: "editorial",
-  //   url: "/editorial",
-  // },
-  // {
-  //   title: "The Community",
-  //   slug: "community",
-  //   url: "/community",
-  // },
   const { headerNav } = useSelector((state: RootState) => state.shopifyReducer);
   const [nav, setNav] = useState<Array<NavItemProps>>(navigation);
   useEffect(() => {
@@ -64,8 +45,9 @@ export default function Nav() {
         }
       })
       setNav([...nav,...navFound]);
+      dispatch(setShopifyToEmpty());
     }
-  }, [headerNav])
+  }, [headerNav, dispatch])
   return (
     <>
       <div className="fixed bg-white text-black px-5 top-0 left-0 right-0 flex justify-between items-center border-b-2 border-black z-[999]">
@@ -107,27 +89,29 @@ export default function Nav() {
           )}
         </div>
       </div>
-      <ul
-        className={`mobile-nav fixed left-0 z-[500] right-0 list-none unstyled flex flex-col gap-1 p-4 border-b border-black bg-primary2${
-          hamburger ? " show" : ""
-        }`}
-      >
-        {nav.length > 0 &&
-          nav.map((item, index) => {
-            return (
-              <li
-                key={index}
-                className={`anchor hover:cursor-pointer${
-                  useRouterToCheckPath(item.url) ? " active" : ""
-                }`}
-              >
-                <Link href={item.url} color="inherit" legacyBehavior>
-                  <a className="anchor-nav">{item.title}</a>
-                </Link>
-              </li>
-            );
-          })}
-      </ul>
+      {windowSizeValue.width < 767 && (
+        <ul
+          className={`mobile-nav fixed left-0 z-[500] right-0 list-none unstyled flex flex-col gap-1 p-4 border-b border-black bg-primary2${
+            hamburger ? " show" : ""
+          }`}
+        >
+          {nav.length > 0 &&
+            nav.map((item, index) => {
+              return (
+                <li
+                  key={index}
+                  className={`anchor hover:cursor-pointer${
+                    useRouterToCheckPath(item.url) ? " active" : ""
+                  }`}
+                >
+                  <Link href={item.url} color="inherit" legacyBehavior>
+                    <a className="anchor-nav">{item.title}</a>
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
+      )}
     </>
   );
 }
