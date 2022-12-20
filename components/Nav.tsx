@@ -30,7 +30,7 @@ export default function Nav() {
     {
       title: "Size Finder",
       slug: "size-finder",
-      url: "/size-finder",
+      url: "/pages/size-finder",
     }
   ];
   const { headerNav } = useSelector((state: RootState) => state.shopifyReducer);
