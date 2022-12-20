@@ -157,7 +157,7 @@ export default function ProductPage({ product }) {
     setIsAccordionOpen(index);
   };
   return (
-    <Layout title={title}>
+    <>
       {product && (
         <>
           <section className="container mx-auto xl:px-[15px] lg:px-[15px] md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding">
@@ -422,7 +422,7 @@ export default function ProductPage({ product }) {
           </section>
         </>
       )}
-    </Layout>
+    </>
   );
 }
 

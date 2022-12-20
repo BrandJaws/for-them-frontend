@@ -19,7 +19,6 @@ import { setNavToStore, setPagesToStore } from "../reducers/shopify";
 const Home: NextPage = () => {
   return (
     <>
-    {/* <Layout title="Home - For Them"> */}
       <HeroSection />
       <GiftSection />
       <TestimonialSection data={TESTIMONIALS} />
@@ -29,7 +28,6 @@ const Home: NextPage = () => {
       <FollowUsSection />
       <BinderShopSection />
       <BinderCallToActionSection />
-    {/* </Layout> */}
     </>
   );
 };

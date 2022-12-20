@@ -5,14 +5,14 @@ import _ from "lodash";
 export default function SinglePage({ page }) {
   const { title, body } = page?.page;
   return (
-    <Layout title={title}>
+    <>
       {body && (
         <div
           className="container mx-auto section-padding page-content"
           dangerouslySetInnerHTML={{ __html: body }}
         ></div>
       )}
-    </Layout>
+    </>
   );
 }
 
