@@ -22,6 +22,11 @@ export type WellnessProps = {
   url?: StaticImageData
 }
 
+export type BinderShopProps = {
+  title?: string
+  url?: StaticImageData
+}
+
 export type ColorProps = {
   hexCode?: string
   name?: string
@@ -31,3 +36,30 @@ export type TestimonialProps = {
   name?: string
   description?: string
 }
+
+export type PageProps = {
+  id?: string
+  title?: string
+  body?: string
+  bodySummary?: string
+  handle?: string
+}
+
+export type PageSingleEdgeProps = {
+  cursor?: string
+  node?: PageProps
+}
+
+export type PageEdgesProps = Array<PageSingleEdgeProps>
+
+export type FooterProps = {
+  navType?: string
+  data?: any
+}
+
+export type FooterNavProps = {
+  discover?: any | null
+  shop?: any | null
+  connect?: any | null
+}
+

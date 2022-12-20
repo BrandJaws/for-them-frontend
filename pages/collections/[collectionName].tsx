@@ -1,17 +1,15 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
-import BreadcrumbsNavigation from "../../components/BreadcrumbsNavigation";
 import Nav from "../../components/Nav";
 import ProductsList from "../../components/ProductsList";
 import { shopifyClient, parseShopifyResponse } from "../../lib/shopify";
 
-export default function CollectionPage({ products, collectionName }) {
+export default function CollectionPage({ products }) {
   return (
     <div>
       <Nav />
       <div>
-        <BreadcrumbsNavigation collection={collectionName} />
         <ProductsList products={products} />
       </div>
     </div>

@@ -7,20 +7,26 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.8",
     "animate.css": "^4.1.1",
+    "axios": "^1.2.1",
     "lodash": "^4.17.21",
     "next": "latest",
     "react": "^18.2.0",
     "react-animate-on-scroll": "^2.1.5",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
+    "react-redux": "^8.0.5",
     "react-reveal": "^1.2.2",
     "react-slick": "^0.29.0",
     "react-toastify": "^9.1.1",
+    "redux-persist": "^6.0.0",
+    "reduxsauce": "^1.2.1",
     "shopify-buy": "^2.17.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "swr": "^2.0.0"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",

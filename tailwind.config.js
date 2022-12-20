@@ -22,6 +22,7 @@ module.exports = {
         primary3: '#E68EAF !important',
         primary4: '#F076CB !important',
         primary5: '#F5F6F6 !important',
+        primary6: '#708355 !important',
       },
       textColor: {
         primary: '#FFCC33 !important',
@@ -30,6 +31,7 @@ module.exports = {
         primary3: '#E68EAF !important',
         primary4: '#F076CB !important',
         primary5: '#F5F6F6 !important',
+        primary6: '#708355 !important',
       },
       borderColor: {
         primary: '#FFCC33 !important',
@@ -38,6 +40,7 @@ module.exports = {
         primary3: '#E68EAF !important',
         primary4: '#F076CB !important',
         primary5: '#F5F6F6 !important',
+        primary6: '#708355 !important',
       },
       fontFamily: {
         monumentExtended: ['Monument Extended'],

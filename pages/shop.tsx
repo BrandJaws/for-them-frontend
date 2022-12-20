@@ -3,15 +3,21 @@ import ProductsList from "../components/ProductsList";
 import { shopifyClient, parseShopifyResponse } from "../lib/shopify";
 import type { NextPage } from "next";
 import HeroSection from "../components/shop/HeroSection";
-import SizeFinderSection from "../components/shop/SizeFinderSection";
+import BinderShopList from "../components/common/BinderShopList";
 
-const Shop: NextPage = ({ products }: any) => {
+export interface ShopProps {
+  products?: any
+}
+
+const Shop: React.FC<ShopProps> = ({ products }) => {
   return (
-    <Layout title="Shop - For Them">
+    <>
       <HeroSection />
       <ProductsList products={products} />
-      <SizeFinderSection />
-    </Layout>
+      <section className="">
+        <BinderShopList />
+      </section>
+    </>
   );
 };
 

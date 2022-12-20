@@ -86,7 +86,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
     @apply bg-[var(--primary1)] absolute top-[-3px] right-[-3px] px-1 text-[8px] text-[var(--primary2)] text-center leading-[14px] rounded;
 }
 
-.subtitle-bold {
+.subtitle-bold text-center {
     font-family: 'Nostra v1.0 Stream Trial';
     @apply font-[900] lg:text-[22px] md:text-[20px] sm:text-[18px] xs:text-[16px] text-center text-[var(--primary1)] lg:leading-[22px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px]
 }

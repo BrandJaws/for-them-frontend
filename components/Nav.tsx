@@ -1,4 +1,5 @@
 import Image from "next/image";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import MainLogo from "../assets/images/FT-LOGO-BLACK-p-500.svg";
 import useRouterToCheckPath from "../hooks/useRouterToCheckPath";
@@ -7,9 +8,13 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import useWindowSize from "../hooks/useWindowSize";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../stores/store";
+import { setShopifyToEmpty } from "../reducers/shopify";
 
 export default function Nav() {
   const windowSizeValue = useWindowSize();
+  const dispatch = useDispatch();
   const [hamburger, setHamBurger] = useState<boolean>(false);
   const navigation: Array<NavItemProps> = [
     {
@@ -25,24 +30,24 @@ export default function Nav() {
     {
       title: "Size Finder",
       slug: "size-finder",
-      url: "/size-finder",
-    },
-    {
-      title: "Our Story",
-      slug: "our-story",
-      url: "/our-story",
-    },
-    {
-      title: "Editorial",
-      slug: "editorial",
-      url: "/editorial",
-    },
-    {
-      title: "The Community",
-      slug: "community",
-      url: "/community",
-    },
+      url: "/pages/size-finder",
+    }
   ];
+  const { headerNav } = useSelector((state: RootState) => state.shopifyReducer);
+  const [nav, setNav] = useState<Array<NavItemProps>>(navigation);
+  useEffect(() => {
+    if (headerNav) {
+      let navFound = headerNav?.menu?.items?.map((o: any, index: number) => {
+        return {
+          title: o.title,
+          slug: o.title.split(" ").join("-"),
+          url: o.type === "PAGE" ? "/pages"+o.url.split("pages")[o.url.split("pages").length - 1] : o.url
+        }
+      })
+      setNav([...nav,...navFound]);
+    }
+    dispatch(setShopifyToEmpty());
+  }, [headerNav, dispatch])
   return (
     <>
       <div className="fixed bg-white text-black px-5 top-0 left-0 right-0 flex justify-between items-center border-b-2 border-black z-[999]">
@@ -52,8 +57,8 @@ export default function Nav() {
           </Link>
           {windowSizeValue.width > 767 && (
             <ul className="list-none unstyled flex gap-1">
-              {navigation.length > 0 &&
-                navigation.map((item, index) => {
+              {nav.length > 0 &&
+                nav.map((item, index) => {
                   return (
                     <li
                       key={index}
@@ -84,27 +89,29 @@ export default function Nav() {
           )}
         </div>
       </div>
-      <ul
-        className={`mobile-nav fixed left-0 z-[500] right-0 list-none unstyled flex flex-col gap-1 p-4 border-b border-black bg-primary2${
-          hamburger ? " show" : ""
-        }`}
-      >
-        {navigation.length > 0 &&
-          navigation.map((item, index) => {
-            return (
-              <li
-                key={index}
-                className={`anchor hover:cursor-pointer${
-                  useRouterToCheckPath(item.url) ? " active" : ""
-                }`}
-              >
-                <Link href={item.url} color="inherit" legacyBehavior>
-                  <a className="anchor-nav">{item.title}</a>
-                </Link>
-              </li>
-            );
-          })}
-      </ul>
+      {windowSizeValue.width < 767 && (
+        <ul
+          className={`mobile-nav fixed left-0 z-[500] right-0 list-none unstyled flex flex-col gap-1 p-4 border-b border-black bg-primary2${
+            hamburger ? " show" : ""
+          }`}
+        >
+          {nav.length > 0 &&
+            nav.map((item, index) => {
+              return (
+                <li
+                  key={index}
+                  className={`anchor hover:cursor-pointer${
+                    useRouterToCheckPath(item.url) ? " active" : ""
+                  }`}
+                >
+                  <Link href={item.url} color="inherit" legacyBehavior>
+                    <a className="anchor-nav">{item.title}</a>
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
+      )}
     </>
   );
 }
