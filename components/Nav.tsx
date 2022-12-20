@@ -45,8 +45,8 @@ export default function Nav() {
         }
       })
       setNav([...nav,...navFound]);
-      dispatch(setShopifyToEmpty());
     }
+    dispatch(setShopifyToEmpty());
   }, [headerNav, dispatch])
   return (
     <>
