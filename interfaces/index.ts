@@ -53,7 +53,7 @@ export type PageSingleEdgeProps = {
 export type PageEdgesProps = Array<PageSingleEdgeProps>
 
 export type FooterProps = {
-  footerType?: string
+  navType?: string
   data?: any
 }
 

@@ -11,13 +11,15 @@ export interface ShopProps {
 
 const Shop: React.FC<ShopProps> = ({ products }) => {
   return (
-    <Layout title="Shop - For Them">
+    <>
+    {/* // <Layout title="Shop - For Them"> */}
       <HeroSection />
       <ProductsList products={products} />
       <section className="">
         <BinderShopList />
       </section>
-    </Layout>
+    {/* // </Layout> */}
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import MainLogo from "../assets/images/FT-LOGO-BLACK-p-500.svg";
 import useRouterToCheckPath from "../hooks/useRouterToCheckPath";
@@ -7,6 +8,8 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import useWindowSize from "../hooks/useWindowSize";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../stores/store";
 
 export default function Nav() {
   const windowSizeValue = useWindowSize();
@@ -26,23 +29,43 @@ export default function Nav() {
       title: "Size Finder",
       slug: "size-finder",
       url: "/size-finder",
-    },
-    {
-      title: "Our Story",
-      slug: "our-story",
-      url: "/our-story",
-    },
-    {
-      title: "Editorial",
-      slug: "editorial",
-      url: "/editorial",
-    },
-    {
-      title: "The Community",
-      slug: "community",
-      url: "/community",
-    },
+    }
   ];
+  // ,
+  // {
+  //   title: "Size Finder",
+  //   slug: "size-finder",
+  //   url: "/size-finder",
+  // },
+  // {
+  //   title: "Our Story",
+  //   slug: "our-story",
+  //   url: "/our-story",
+  // },
+  // {
+  //   title: "Editorial",
+  //   slug: "editorial",
+  //   url: "/editorial",
+  // },
+  // {
+  //   title: "The Community",
+  //   slug: "community",
+  //   url: "/community",
+  // },
+  const { headerNav } = useSelector((state: RootState) => state.shopifyReducer);
+  const [nav, setNav] = useState<Array<NavItemProps>>(navigation);
+  useEffect(() => {
+    if (headerNav) {
+      let navFound = headerNav?.menu?.items?.map((o: any, index: number) => {
+        return {
+          title: o.title,
+          slug: o.title.split(" ").join("-"),
+          url: o.type === "PAGE" ? "/pages"+o.url.split("pages")[o.url.split("pages").length - 1] : o.url
+        }
+      })
+      setNav([...nav,...navFound]);
+    }
+  }, [headerNav])
   return (
     <>
       <div className="fixed bg-white text-black px-5 top-0 left-0 right-0 flex justify-between items-center border-b-2 border-black z-[999]">
@@ -52,8 +75,8 @@ export default function Nav() {
           </Link>
           {windowSizeValue.width > 767 && (
             <ul className="list-none unstyled flex gap-1">
-              {navigation.length > 0 &&
-                navigation.map((item, index) => {
+              {nav.length > 0 &&
+                nav.map((item, index) => {
                   return (
                     <li
                       key={index}
@@ -89,8 +112,8 @@ export default function Nav() {
           hamburger ? " show" : ""
         }`}
       >
-        {navigation.length > 0 &&
-          navigation.map((item, index) => {
+        {nav.length > 0 &&
+          nav.map((item, index) => {
             return (
               <li
                 key={index}

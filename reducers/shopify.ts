@@ -11,8 +11,8 @@ export const setPagesToStore = createAction(
   }
 );
 
-export const setFooterNavToStore = createAction(
-  "setFooterNavToStore",
+export const setNavToStore = createAction(
+  "setNavToStore",
   function prepare(footerNav: FooterProps) {
     return {
       payload: footerNav,
@@ -23,6 +23,7 @@ export const setFooterNavToStore = createAction(
 export interface shopifyState {
   pages?: Array<PageProps> | null;
   footerNavs?: FooterNavProps | null;
+  headerNav?: any | null;
 }
 
 export const initialState: shopifyState = {
@@ -31,7 +32,8 @@ export const initialState: shopifyState = {
     discover: null,
     shop: null,
     connect: null
-  }
+  },
+  headerNav: null
 };
 
 export const shopifySlice = createSlice({
@@ -42,15 +44,18 @@ export const shopifySlice = createSlice({
     builder.addCase(setPagesToStore, (state, action) => {
       state.pages = action.payload;
     });
-    builder.addCase(setFooterNavToStore, (state, action) => {
-      if (action.payload.footerType === process.env.FOOTER_DISCOVER_MENU) {
+    builder.addCase(setNavToStore, (state, action) => {
+      if (action.payload.navType === process.env.FOOTER_DISCOVER_MENU) {
         state.footerNavs.discover = action.payload.data;
       }
-      if (action.payload.footerType === process.env.FOOTER_SHOP_MENU) {
+      if (action.payload.navType === process.env.FOOTER_SHOP_MENU) {
         state.footerNavs.shop = action.payload.data;
       }
-      if (action.payload.footerType === process.env.FOOTER_CONNECT_MENU) {
+      if (action.payload.navType === process.env.FOOTER_CONNECT_MENU) {
         state.footerNavs.connect = action.payload.data;
+      }
+      if (action.payload.navType === process.env.HEADER_MENU) {
+        state.headerNav = action.payload.data;
       }
     });
   },

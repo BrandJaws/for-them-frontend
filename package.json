@@ -25,7 +25,8 @@
     "redux-persist": "^6.0.0",
     "reduxsauce": "^1.2.1",
     "shopify-buy": "^2.17.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "swr": "^2.0.0"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",

@@ -4,10 +4,11 @@ import '../styles/index.css'
 import "animate.css/animate.min.css";
 import {Provider, useDispatch} from 'react-redux'
 import {store} from "../stores/store";
+import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }: any) {
   const [showChild, setShowChild] = useState(false);
-  useEffect(() => {    
+  useEffect(() => {
     setShowChild(true);
   }, []);
   if (!showChild) {
@@ -20,7 +21,9 @@ function MyApp({ Component, pageProps }: any) {
     return (
       <>
         <Provider store={store}>
-          <Component {...pageProps} />
+          <Layout title="Shop - For Them">
+            <Component {...pageProps} />
+          </Layout>
         </Provider>
       </>
     );
