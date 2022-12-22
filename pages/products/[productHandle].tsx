@@ -1,6 +1,5 @@
 import Image, { StaticImageData } from "next/image";
-import { useState } from "react";
-import Layout from "../../components/Layout";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import weightLessFeel from "../../assets/images/product/weightless-feel.png";
 import antiitchFabric from "../../assets/images/product/anti-itch-fabric.png";
@@ -13,8 +12,205 @@ import { TfiAngleDown } from "react-icons/tfi";
 import NextArrow from "../../components/common/NextArrow";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import PrevArrow from "../../components/common/PrevArrow";
-import Fade from "react-reveal/Fade"
+import Fade from "react-reveal/Fade";
 import BinderShopList from "../../components/common/BinderShopList";
+import { apexChest, apexSizeChart } from "../../utils/data";
+import { withCookies, Cookies, useCookies } from "react-cookie";
+import { SizeChartProps } from "../../interfaces";
+
+export const SizeBinderForm = ({
+  setStep,
+  step,
+  apexChestNumber,
+  handleApexChest,
+  handleBuyNow,
+  sizeErrorMessage,
+  chestSizeChartObj,
+}) => {
+  const nextStep = () => {
+    setStep(step + 1);
+  };
+  const prevStep = () => {
+    if (step > 0) {
+      setStep(step - 1);
+    }
+  };
+  switch (step) {
+    case 1:
+      return (
+        <div>
+          <Fade right>
+            <div className="flex gap-4 flex-col flex-wrap justify-center items-start">
+              <div className="text-large xs:text-center">
+                Where you are on your binding journey?
+              </div>
+              <div className="lg:section-padding xl:section-padding w-full flex xl:gap-[50px] lg:gap-[50px] md:gap-[40px] sm:gap-[30px] xs:gap-[30px]">
+                <div className="text-box px-[20px] py-[30px] border-4 rounded-md border-black text-center w-full flex items-center justify-center">
+                  <Fade>
+                    <p className="text-[18px] leading-[22px]">
+                      I&apos;m new to binding + not sure where to start
+                    </p>
+                  </Fade>
+                </div>
+                <div className="text-box px-[20px] py-[30px] border-4 rounded-md border-black text-center w-full flex items-center justify-center">
+                  <Fade>
+                    <p className="text-[18px] leading-[22px]">
+                      None of the binders out there are doing it for me
+                    </p>
+                  </Fade>
+                </div>
+                <div className="text-box px-[20px] py-[30px] border-4 rounded-md border-black text-center w-full flex items-center justify-center">
+                  <Fade>
+                    <p className="text-[18px] leading-[22px]">
+                      I wear a binder daily + I&apos;m looking to get a new one
+                    </p>
+                  </Fade>
+                </div>
+              </div>
+              <div className="flex gap-4 items-center justify-center">
+                <div className="prev-btn">
+                  <Fade>
+                    <button
+                      type="button"
+                      className="binder-btn min-w-[200px]"
+                      onClick={prevStep}
+                    >
+                      prev
+                    </button>
+                  </Fade>
+                </div>
+                <div className="next-btn">
+                  <Fade>
+                    <button
+                      type="button"
+                      className="binder-btn min-w-[200px]"
+                      onClick={nextStep}
+                    >
+                      next
+                    </button>
+                  </Fade>
+                </div>
+              </div>
+            </div>
+          </Fade>
+        </div>
+      );
+    case 2:
+      return (
+        <div>
+          <Fade right>
+            <div className="flex gap-4 flex-col flex-wrap justify-center items-start">
+              <div className="text-large xs:text-center">
+                Measure your apex chest
+              </div>
+              <div className="font-monumentExtended font-[300] paragraph">
+                Need help? Watch this <span className="underline">video</span>
+              </div>
+              <div className="lg:section-padding xl:section-padding w-full flex flex-wrap gap-2">
+                {apexChest.map((item, index) => {
+                  return (
+                    <div key={index} className="block">
+                      <label
+                        className={`checkbox-chest inline-flex items-center cursor-pointer relative ${
+                          apexChestNumber === item && "active"
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          className="w-6 h-6 rounded-full opacity-0"
+                          name="chest"
+                          value={item}
+                          onChange={(event) => handleApexChest(event)}
+                        />
+                        <span className="absolute top-0 right-0 left-0 bottom-0 inline-flex items-center justify-center">
+                          {item}
+                        </span>
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="flex gap-4 items-center justify-center">
+                <div className="prev-btn">
+                  <Fade>
+                    <button
+                      type="button"
+                      className="binder-btn min-w-[200px]"
+                      onClick={prevStep}
+                    >
+                      prev
+                    </button>
+                  </Fade>
+                </div>
+                <div className="next-btn">
+                  <Fade>
+                    <button
+                      type="button"
+                      className="binder-btn min-w-[200px]"
+                      onClick={nextStep}
+                    >
+                      next
+                    </button>
+                  </Fade>
+                </div>
+              </div>
+            </div>
+          </Fade>
+        </div>
+      );
+    case 3:
+      return (
+        <div>
+          <Fade right>
+            <div className="pt-16 pb-16">
+              <div className="text-large xs:text-center">
+                Your Binder size is
+              </div>
+              {chestSizeChartObj && (
+                <div className="product-title uppercase">
+                  {chestSizeChartObj.code}
+                </div>
+              )}
+            </div>
+          </Fade>
+          <div className="flex flex-col gap-2 items-start justify-start">
+            <Fade right>
+              <button
+                type="button"
+                className="binder-btn max-w-max"
+                onClick={handleBuyNow}
+              >
+                Buy now
+              </button>
+            </Fade>
+            {sizeErrorMessage && (
+              <p className="text text-red-500 font-[600]">{sizeErrorMessage}</p>
+            )}
+          </div>
+        </div>
+      );
+    default:
+      return (
+        <div>
+          <Fade left>
+            <div className="pt-16 pb-16">
+              <div className="subtitle-bold">Find your size</div>
+              <div className="product-title uppercase">Size Finder</div>
+            </div>
+          </Fade>
+          <Fade bottom>
+            <button
+              type="button"
+              className="binder-btn max-w-max"
+              onClick={nextStep}
+            >
+              Get Started
+            </button>
+          </Fade>
+        </div>
+      );
+  }
+};
 
 export default function ProductPage({ product }) {
   const { id, title, images, variants, handle, description, options } = product;
@@ -29,6 +225,12 @@ export default function ProductPage({ product }) {
   const [selectedColor, setSelectedColor] = useState<string>(
     colorFound && colorFound.values.length > 0 ? colorFound.values[0].value : ""
   );
+  const [selectedSize, setSelectedSize] = useState<string>("");
+  const [sizesDropdown, setSizesDropdown] = useState<any>([]);
+  const [step, setStep] = useState<number>(0);
+  const [apexChestNumber, setApexChestNumber] = useState<string>("");
+  const [sizeErrorMessage, setSizeErrorMessage] = useState<string>("");
+  const [chestSizeChartObj, setChestSizeChartObj] = useState<any | null>(null);
   const settingsMainSlider = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -142,6 +344,11 @@ export default function ProductPage({ product }) {
       title: "Rotatable neckline",
     },
   ];
+  useEffect(() => {
+    if (sizeFound && sizeFound.values.length > 0) {
+      setSizesDropdown(sizeFound.values);
+    }
+  }, [sizeFound]);
   const handleColorChange = (val) => {
     setSelectedColor(val);
   };
@@ -149,13 +356,92 @@ export default function ProductPage({ product }) {
     if (accordionOpen) {
       setAccordionOpen(false);
     }
-    if ((index !== isAccordionOpen) || (index === isAccordionOpen && !accordionOpen)) {
+    if (
+      index !== isAccordionOpen ||
+      (index === isAccordionOpen && !accordionOpen)
+    ) {
       setAccordionOpen(true);
     } else {
       setAccordionOpen(false);
     }
     setIsAccordionOpen(index);
   };
+  const handleSize = (e: any) => {
+    setSelectedSize(e.target.value);
+  };
+  const handleApexChest = (e: any) => {
+    setApexChestNumber(e.target.value);
+  };
+  const [cookies, setCookie, getCookie] = useCookies(["size"]);
+  const handleBuyNow = () => {
+    if (apexChestNumber !== "") {
+      setSelectedSize(apexChestNumber);
+      let isExistsChestNumber = apexSizeChart.find(
+        (o: SizeChartProps, index: number) => {
+          let isCheckNumberExists = o.measurements.find(
+            (num: string) => num === apexChestNumber
+          );
+          return isCheckNumberExists;
+        }
+      );
+      if (isExistsChestNumber) {
+        setChestSizeChartObj(isExistsChestNumber);
+        setCookie("size", isExistsChestNumber.code, { path: "/" });
+        if (typeof window !== "undefined") {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }
+        setStep(3);
+        setApexChestNumber("");
+        setSizeErrorMessage("");
+      } else {
+        setChestSizeChartObj(null);
+        setSizeErrorMessage("Size does not exists.");
+      }
+    } else {
+      if (typeof window !== "undefined") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    }
+  };
+  useEffect(() => {
+    if (cookies.hasOwnProperty("size")) {
+      setSelectedSize(cookies.size);
+      setStep(3);
+      let isExistsChestNumber = apexSizeChart.find(
+        (o: SizeChartProps) => o.code === cookies.size
+      );
+      if (isExistsChestNumber) {
+        setChestSizeChartObj(isExistsChestNumber);
+        setSizeErrorMessage("");
+      } else {
+        setChestSizeChartObj(null);
+        setSizeErrorMessage("Size does not exists.");
+      }
+    }
+  }, [cookies]);
+  useEffect(() => {
+    if (apexChestNumber) {
+      let isExistsChestNumber = apexSizeChart.find((o: SizeChartProps) => {
+        let isCheckNumberExists = o.measurements.find(
+          (num: string) => num === apexChestNumber
+        );
+        return isCheckNumberExists;
+      });
+      if (isExistsChestNumber) {
+        setChestSizeChartObj(isExistsChestNumber);
+        setSizeErrorMessage("");
+      } else {
+        setChestSizeChartObj(null);
+        setSizeErrorMessage("Size does not exists.");
+      }
+    }
+  }, [apexChestNumber]);
   return (
     <>
       {product && (
@@ -242,7 +528,9 @@ export default function ProductPage({ product }) {
                 </div>
               </div>
               <div className="product-detail xl:px-16 lg:px-16 md:px-10 sm:px-8 xs:px-6">
-                <Fade top cascade><div className="subtitle-bold text-left">{title}</div></Fade>
+                <Fade top cascade>
+                  <div className="subtitle-bold text-left">{title}</div>
+                </Fade>
                 <div className="flex flex-col flex-wrap gap-4 items-start ">
                   <div className="title-large capitalize">Orange</div>
                   <Fade bottom cascade>
@@ -251,7 +539,7 @@ export default function ProductPage({ product }) {
                     </div>
                   </Fade>
                   <div className="text-small text-left">{description}</div>
-                  {sizeFound && sizeFound.values.length > 0 && (
+                  {sizesDropdown.length > 0 && (
                     <div className="size-field w-full font-monumentExtended relative">
                       <label
                         htmlFor="size"
@@ -262,10 +550,16 @@ export default function ProductPage({ product }) {
                       <select
                         name="size"
                         className="select-field xl:px-[120px] lg:px-[120px] md:px-[110px] sm:px-[100px] xs:px-[80px]"
+                        onChange={handleSize}
+                        value={selectedSize}
                       >
-                        {sizeFound.values.map((o: any, index: number) => {
+                        {sizesDropdown.map((o: any, index: number) => {
                           return (
-                            <option key={index} value={o.value}>
+                            <option
+                              key={index}
+                              value={o.value}
+                              // selected={selectedSize === o.value}
+                            >
                               {o.value}
                             </option>
                           );
@@ -311,7 +605,10 @@ export default function ProductPage({ product }) {
                   <div className="cta-btns flex flex-col flex-wrap gap-4 justify-center xl:items-center lg:items-center sm:items-start">
                     <Fade bottom>
                       <Link href="/">
-                        <button type="button" className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px]">
+                        <button
+                          type="button"
+                          className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px]"
+                        >
                           Add to basket
                         </button>
                       </Link>
@@ -348,7 +645,9 @@ export default function ProductPage({ product }) {
                         </h2>
                         <div
                           className={`accordion-content z-[444]${
-                            isAccordionOpen === 0 && accordionOpen ? " show" : ""
+                            isAccordionOpen === 0 && accordionOpen
+                              ? " show"
+                              : ""
                           }`}
                         >
                           <div className="accordion-body py-2">
@@ -375,7 +674,9 @@ export default function ProductPage({ product }) {
                         </h2>
                         <div
                           className={`accordion-content z-[444]${
-                            isAccordionOpen === 1 && accordionOpen ? " show" : ""
+                            isAccordionOpen === 1 && accordionOpen
+                              ? " show"
+                              : ""
                           }`}
                         >
                           <div className="accordion-body py-2">
@@ -399,21 +700,16 @@ export default function ProductPage({ product }) {
           <section className="section-padding">
             <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1">
               <div className=""></div>
-              <div className="right-side section-padding bg-primary5 xl:px-[50px] lg:px-[50px] md:px-[35px] sm:px-[25px] xs:px-[20px] flex flex-col flex-wrap gap-6 ">
-                <div className="text-large">Find your size</div>
-                <div className="text-small text-left">
-                  Before we begin, what would
-                  <br className="xl:block lg:block sm:hidden xs:hidden" />
-                  you like us to call you?
-                </div>
-                <Fade>
-                  <form action="#">
-                    <div className="form-group mb-4">
-                      <input type="text" name="name" id="name" placeholder="Enter your chosen name" className="input-field xs:px-[20px] xs:py-4 xs:text-sm" required />
-                    </div>
-                    <button type="submit" className="btn-primary4 xl:min-w-[200px] lg:min-w-[200px] xs:min-w-[120px]">Next</button>
-                  </form>
-                </Fade>
+              <div className="right-side section-padding bg-primary5 xl:px-[50px] lg:px-[50px] md:px-[35px] sm:px-[25px] xs:px-[20px] flex flex-col flex-wrap justify-center">
+                <SizeBinderForm
+                  setStep={setStep}
+                  step={step}
+                  apexChestNumber={apexChestNumber}
+                  handleApexChest={handleApexChest}
+                  handleBuyNow={handleBuyNow}
+                  sizeErrorMessage={sizeErrorMessage}
+                  chestSizeChartObj={chestSizeChartObj}
+                />
               </div>
             </div>
           </section>

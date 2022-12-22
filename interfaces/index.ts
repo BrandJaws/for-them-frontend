@@ -63,3 +63,8 @@ export type FooterNavProps = {
   connect?: any | null
 }
 
+export type SizeChartProps = {
+  code?: string | null
+  measurements?: Array<string> | null
+}
+

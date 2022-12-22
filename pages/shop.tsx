@@ -1,7 +1,5 @@
-import Layout from "../components/Layout";
 import ProductsList from "../components/ProductsList";
 import { shopifyClient, parseShopifyResponse } from "../lib/shopify";
-import type { NextPage } from "next";
 import HeroSection from "../components/shop/HeroSection";
 import BinderShopList from "../components/common/BinderShopList";
 

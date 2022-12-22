@@ -4,7 +4,7 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import useSWR from "swr";
 import axios from "axios";
-import { setNavToStore, setPagesToStore } from "../reducers/shopify";
+import { setNavToStore, setPagesToStore, setShopifyToEmpty } from "../reducers/shopify";
 import { useDispatch } from "react-redux";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);

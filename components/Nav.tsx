@@ -34,8 +34,9 @@ export default function Nav() {
     }
   ];
   const { headerNav } = useSelector((state: RootState) => state.shopifyReducer);
-  const [nav, setNav] = useState<Array<NavItemProps>>(navigation);
+  const [nav, setNav] = useState<Array<NavItemProps>>([]);
   useEffect(() => {
+    let copiedNavs = [];
     if (headerNav) {
       let navFound = headerNav?.menu?.items?.map((o: any, index: number) => {
         return {
@@ -44,9 +45,9 @@ export default function Nav() {
           url: o.type === "PAGE" ? "/pages"+o.url.split("pages")[o.url.split("pages").length - 1] : o.url
         }
       })
-      setNav([...nav,...navFound]);
+      copiedNavs = [...navigation,...navFound];
+      setNav(copiedNavs);
     }
-    dispatch(setShopifyToEmpty());
   }, [headerNav, dispatch])
   return (
     <>
