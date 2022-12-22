@@ -1,4 +1,4 @@
-import { ColorProps, TestimonialProps } from "../interfaces";
+import { ColorProps, SizeChartProps, TestimonialProps } from "../interfaces";
 
 export const PRODUCTS = [
   {
@@ -62,7 +62,61 @@ export const COLORS: Array<ColorProps> = [
     name: "Granite Gray"
   }
 ]
-
+export const apexChest: Array<string> = [
+  "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39",
+  "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
+  "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63"
+]
+export const apexSizeChart: Array<SizeChartProps> = [
+  {
+    code: "Amethyst",
+    measurements: ["28", "29", "30"]
+  },
+  {
+    code: "Balance",
+    measurements: ["31", "32"]
+  },
+  {
+    code: "Conjur",
+    measurements: ["33", "34"]
+  },
+  {
+    code: "Dawn",
+    measurements: ["35", "36"]
+  },
+  {
+    code: "Ethereal",
+    measurements: ["37", "38", "39"]
+  },
+  {
+    code: "Fire",
+    measurements: ["40", "41", "42", "43"]
+  },
+  {
+    code: "Gemini",
+    measurements: ["44", "45", "46", "47"]
+  },
+  {
+    code: "Hypnotic",
+    measurements: ["48", "49", "50", "51"]
+  },
+  {
+    code: "Illusion",
+    measurements: ["52", "53", "54", "55"]
+  },
+  {
+    code: "Jasmine",
+    measurements: ["56", "57", "58", "59"]
+  },
+  {
+    code: "Kindred",
+    measurements: ["60", "61", "62"]
+  },
+  {
+    code: "Gemini 2.0",
+    measurements: []
+  }
+]
 export const FOOTER_DISCOVER_MENU = process.env.FOOTER_DISCOVER_MENU;
 export const FOOTER_SHOP_MENU = process.env.FOOTER_SHOP_MENU;
 export const FOOTER_CONNECT_MENU = process.env.FOOTER_CONNECT_MENU;

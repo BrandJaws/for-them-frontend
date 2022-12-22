@@ -5,6 +5,7 @@ import "animate.css/animate.min.css";
 import {Provider, useDispatch} from 'react-redux'
 import {store} from "../stores/store";
 import Layout from '../components/Layout';
+import { CookiesProvider } from 'react-cookie';
 
 function MyApp({ Component, pageProps }: any) {
   const [showChild, setShowChild] = useState(false);
@@ -21,9 +22,11 @@ function MyApp({ Component, pageProps }: any) {
     return (
       <>
         <Provider store={store}>
-          <Layout title="Shop - For Them">
-            <Component {...pageProps} />
-          </Layout>
+          <CookiesProvider>
+            <Layout title="Shop - For Them">
+              <Component {...pageProps} />
+            </Layout>
+          </CookiesProvider>
         </Provider>
       </>
     );

@@ -34,6 +34,15 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
     sm:leading-[18px] xs:leading-[16px] rounded-[38px]
 }
 
+.binder-btn {
+    @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-[45px] md:px-[45px]
+    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-[18px] md:py-[14px]
+    sm:py-[12px] xs:py-[10px] text-[var(--primary2)]
+    xl:text-[18px] lg:text-[12px] md:text-[16px] sm:text-[14px]
+    xs:text-[12px] xl:leading-[22px] lg:leading-[16px] md:leading-[20px]
+    sm:leading-[18px] xs:leading-[16px] rounded-[10px]
+}
+
 .btn-primary2 {
     @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-[45px] md:px-[45px]
     sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-[18px] md:py-[14px]
@@ -365,4 +374,9 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 .page-content p {
     @apply mb-2;
 }
-
+.checkbox-chest {
+    @apply p-4 rounded-full flex items-center justify-center border-2 border-black transition-all ease-in-out duration-700;
+}
+.checkbox-chest.active {
+    @apply bg-black text-white;
+}

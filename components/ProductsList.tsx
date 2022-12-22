@@ -29,11 +29,13 @@ export const Product = ({ product, goToProductPage }) => {
           <div className="text break-before-all break-words w-full text-clip xl:h-24 lg:h-24 md:h-20 sm:h-14 xs:h-14 overflow-hidden">
             {description}
           </div>
-          <Link href={`/products/${handle}`}>
-            <button type="button" className="btn-primary">
-              Shop now
-            </button>
-          </Link>
+          <div className="">
+            <Link href={`/products/${handle}`}>
+              <button type="button" className="binder-btn">
+                Shop now
+              </button>
+            </Link>
+          </div>
         </div>
       </Fade>
     </>
