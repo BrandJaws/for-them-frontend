@@ -43,6 +43,7 @@ module.exports = {
         primary6: '#708355 !important',
       },
       fontFamily: {
+        monumentExtendedLight: ['Monument Extended Light'],
         monumentExtended: ['Monument Extended'],
         monumentExtendedBold: ['Monument Extended Bold'],
         nostraSet: ['Nostra v1.0 Sett Trial'],

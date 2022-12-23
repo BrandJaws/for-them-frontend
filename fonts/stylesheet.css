@@ -25,6 +25,19 @@
 }
 
 @font-face {
+    font-family: 'Monument Extended Light';
+    src: url('MonumentExtended-Thin.eot');
+    src: url('MonumentExtended-Thin.eot?#iefix') format('embedded-opentype'),
+        url('MonumentExtended-Thin.woff2') format('woff2'),
+        url('MonumentExtended-Thin.woff') format('woff'),
+        url('MonumentExtended-Thin.ttf') format('truetype'),
+        url('MonumentExtended-Thin.svg#MonumentExtended-Thin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
     font-family: 'Monument Extended';
     src: url('MonumentExtended-Regular.eot');
     src: url('MonumentExtended-Regular.eot?#iefix') format('embedded-opentype'),

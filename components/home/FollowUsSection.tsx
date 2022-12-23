@@ -17,10 +17,8 @@ const FollowUsSection = () => {
             </div>
           </Fade>
           <Fade bottom>
-            <Link href="/shop">
-              <button type="button" className="section-btn">
-                Follow us
-              </button>
+            <Link href="https://community.forthem.com/" target="_blank" className="section-btn">
+              Follow us
             </Link>
           </Fade>
         </div>
