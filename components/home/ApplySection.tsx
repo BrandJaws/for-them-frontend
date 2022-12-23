@@ -35,7 +35,7 @@ const ApplySection = () => {
             </div>
           </Fade> */}
           <Fade bottom>
-            <Link href="/shop">
+            <Link href="#">
               <button type="button" className="section-btn">
                 Apply here
               </button>

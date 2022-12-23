@@ -1,6 +1,12 @@
-import { createSlice, createAction } from "@reduxjs/toolkit";
+import { createSlice, createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { FooterNavProps, FooterProps, PageProps } from "../interfaces/index";
-import { FOOTER_CONNECT_MENU, FOOTER_DISCOVER_MENU, FOOTER_SHOP_MENU } from "../utils/data";
+import {
+  FOOTER_CONNECT_MENU,
+  FOOTER_DISCOVER_MENU,
+  FOOTER_SHOP_MENU,
+} from "../utils/data";
+import instance from "../services/services";
+import { client } from "../lib/shopify";
 
 export const setPagesToStore = createAction(
   "setPagesToStore",
@@ -20,12 +26,86 @@ export const setNavToStore = createAction(
   }
 );
 
+export const setActiveCartModal = createAction(
+  "setActiveCartModal",
+  function prepare(status: boolean) {
+    return {
+      payload: status,
+    };
+  }
+);
+
+export const addProductToCart = createAction(
+  "addProductToCart",
+  function prepare(product: any) {
+    return {
+      payload: product,
+    };
+  }
+);
+
+export const setCheckout = createAction(
+  "setCheckout",
+  function prepare(checkout: any) {
+    return {
+      payload: checkout,
+    };
+  }
+);
+
+export const setCheckoutWebUrl = createAction(
+  "setCheckoutWebUrl",
+  function prepare(webUrl: string) {
+    return {
+      payload: webUrl,
+    };
+  }
+);
+
 export const setShopifyToEmpty = createAction("setShopifyToEmpty");
+
+export const minusProductQuantity = createAction(
+  "minusProductQuantity",
+  function prepare(id: string) {
+    return {
+      payload: id,
+    };
+  }
+);
+
+export const plusProductQuantity = createAction(
+  "plusProductQuantity",
+  function prepare(id: string) {
+    return {
+      payload: id,
+    };
+  }
+);
+
+// export const handleCheckoutBuyNow = createAsyncThunk(
+//   "users/handleCheckoutBuyNow",
+//   async () => {
+//     try {
+// // Create an empty checkout
+// let checkoutInst = client.checkout.create().then((checkout) => {
+//   // Do something with the checkout
+//   console.log(checkout, "checkout");
+//   return checkout;
+// });
+// console.log(checkoutInst, "checkoutInst")
+//     } catch (e) {
+//       return e;
+//     }
+//   }
+// );
 
 export interface shopifyState {
   pages?: Array<PageProps> | null;
   footerNavs?: FooterNavProps | null;
   headerNav?: any | null;
+  isCartOpen?: boolean;
+  cartItems?: any | null;
+  checkout?: any | null
 }
 
 export const initialState: shopifyState = {
@@ -33,9 +113,12 @@ export const initialState: shopifyState = {
   footerNavs: {
     discover: null,
     shop: null,
-    connect: null
+    connect: null,
   },
-  headerNav: null
+  headerNav: null,
+  isCartOpen: false,
+  cartItems: null,
+  checkout: null
 };
 
 export const shopifySlice = createSlice({
@@ -50,7 +133,7 @@ export const shopifySlice = createSlice({
       state.footerNavs = {
         discover: null,
         shop: null,
-        connect: null
+        connect: null,
       };
       state.headerNav = null;
     });
@@ -66,6 +149,47 @@ export const shopifySlice = createSlice({
       }
       if (action.payload.navType === process.env.HEADER_MENU) {
         state.headerNav = action.payload.data;
+      }
+    });
+    builder.addCase(setActiveCartModal, (state, action) => {
+      state.isCartOpen = action.payload;
+    });
+    builder.addCase(addProductToCart, (state, action) => {
+      if (state.cartItems && state.cartItems.length > 0) {
+        let foundProductIndexFromStore = state.cartItems.findIndex((item) => item.product.id === action.payload.product.id);
+        if (foundProductIndexFromStore > -1) {
+          if (state.cartItems[foundProductIndexFromStore].selectedSize === action.payload.selectedSize) {
+            state.cartItems[foundProductIndexFromStore].quantity = state.cartItems[foundProductIndexFromStore].quantity + action.payload.quantity;
+          } else {
+            state.cartItems = [...state.cartItems, action.payload];
+          }
+        } else {
+          state.cartItems = [...state.cartItems, action.payload];
+        }
+      } else {
+        state.cartItems = [action.payload];
+      }
+    });
+    builder.addCase(setCheckout, (state, action) => {
+      state.checkout = action.payload;
+    });
+    builder.addCase(minusProductQuantity, (state, action) => {
+      let foundProductIndexFromStore = state.cartItems.findIndex((item) => item.selectedSize === action.payload);
+      if (foundProductIndexFromStore > -1) {
+        let objectFound = state.cartItems[foundProductIndexFromStore];
+        if (objectFound.quantity > 1) {
+          objectFound.quantity = objectFound.quantity - 1;
+        }
+      }
+    });
+    builder.addCase(plusProductQuantity, (state, action) => {
+      let foundProductIndexFromStore = state.cartItems.findIndex((item) => item.selectedSize === action.payload);
+      if (foundProductIndexFromStore > -1) {
+        let objectFound = state.cartItems[foundProductIndexFromStore];
+        if (objectFound.quantity >= 1) {
+          objectFound.quantity = objectFound.quantity + 1;
+        }
+        state.cartItems[foundProductIndexFromStore] = objectFound;
       }
     });
   },

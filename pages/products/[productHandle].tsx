@@ -5,7 +5,7 @@ import weightLessFeel from "../../assets/images/product/weightless-feel.png";
 import antiitchFabric from "../../assets/images/product/anti-itch-fabric.png";
 import customMade from "../../assets/images/product/custom-made.png";
 import rotatableNeckline from "../../assets/images/product/rotatable-neckline.png";
-import { parseShopifyResponse, shopifyClient } from "../../lib/shopify";
+import { client, parseShopifyResponse, shopifyClient } from "../../lib/shopify";
 import Link from "next/link";
 import _ from "lodash";
 import { TfiAngleDown } from "react-icons/tfi";
@@ -17,6 +17,18 @@ import BinderShopList from "../../components/common/BinderShopList";
 import { apexChest, apexSizeChart } from "../../utils/data";
 import { withCookies, Cookies, useCookies } from "react-cookie";
 import { SizeChartProps } from "../../interfaces";
+import useSWR from "swr";
+import { fetcher } from "../../components/Layout";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import CartModal from "../../components/common/CartModal";
+import {
+  addProductToCart,
+  setActiveCartModal,
+  setCheckout,
+} from "../../reducers/shopify";
+import { RootState } from "../../stores/store";
+// import { handleBuyNowCheckout } from "../../utils/helper";
 
 export const SizeBinderForm = ({
   setStep,
@@ -225,7 +237,9 @@ export default function ProductPage({ product }) {
   const [selectedColor, setSelectedColor] = useState<string>(
     colorFound && colorFound.values.length > 0 ? colorFound.values[0].value : ""
   );
-  const [selectedSize, setSelectedSize] = useState<string>("");
+  const [selectedSize, setSelectedSize] = useState<string>(
+    sizeFound && sizeFound.values.length > 0 ? sizeFound.values[0].value : ""
+  );
   const [sizesDropdown, setSizesDropdown] = useState<any>([]);
   const [step, setStep] = useState<number>(0);
   const [apexChestNumber, setApexChestNumber] = useState<string>("");
@@ -442,6 +456,75 @@ export default function ProductPage({ product }) {
       }
     }
   }, [apexChestNumber]);
+  const { cartItems, checkout } = useSelector(
+    (state: RootState) => state.shopifyReducer
+  );
+  const router = useRouter();
+  const [isAddToBasket, setIsAddToBasket] = useState<boolean>(false);
+  const [lineItems, setLineItems] = useState<Array<any>>([]);
+  const dispatch = useDispatch();
+  const handleBuyNowCheckout = async () => {
+    let findProductVariant = variants.find((o: any) => {
+      return o.selectedOptions.find((option) => option.value === selectedSize);
+    });
+    if (findProductVariant) {
+      const lineItemsToAdd = [
+        {
+          // variantId: 'gid://shopify/ProductVariant/29106064584',
+          variantId: findProductVariant.id,
+          quantity: 1,
+          // customAttributes: [{key: "MyKey", value: "MyValue"}]
+        },
+      ];
+      client.checkout.create().then((checkout: any) => {
+        client.checkout
+          .addLineItems(checkout.id, lineItemsToAdd)
+          .then((data: any) => {
+            dispatch(setCheckout(data));
+            window.open(data.webUrl, "_blank");
+          });
+      });
+    }
+  };
+  const handleAddToBasket = () => {
+    let findProductVariant = variants.find((o: any) => {
+      return o.selectedOptions.find((option) => option.value === selectedSize);
+    });
+    if (findProductVariant) {
+      const lineItemsToAdd = [
+        {
+          variantId: findProductVariant.id,
+          quantity: 1,
+          // customAttributes: [{key: "MyKey", value: "MyValue"}]
+        },
+      ];
+      if (checkout) {
+        client.checkout
+          .addLineItems(checkout.id, lineItemsToAdd)
+          .then((data: any) => {
+            dispatch(setCheckout(data));
+          });
+      } else {
+        client.checkout.create().then((checkout: any) => {
+          client.checkout
+            .addLineItems(checkout.id, lineItemsToAdd)
+            .then((data: any) => {
+              dispatch(setCheckout(data));
+            });
+        });
+      }
+    }
+    // dispatch(addProductToCart({
+    //   selectedSize,
+    //   product,
+    //   quantity: 1
+    // }));
+    dispatch(setActiveCartModal(true));
+    setTimeout(() => {
+      dispatch(setActiveCartModal(false));
+    }, 3000);
+  };
+
   return (
     <>
       {product && (
@@ -604,24 +687,22 @@ export default function ProductPage({ product }) {
                   <br />
                   <div className="cta-btns flex flex-col flex-wrap gap-4 justify-center xl:items-center lg:items-center sm:items-start">
                     <Fade bottom>
-                      <Link href="/">
-                        <button
-                          type="button"
-                          className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px]"
-                        >
-                          Add to basket
-                        </button>
-                      </Link>
+                      <button
+                        type="button"
+                        className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px]"
+                        onClick={handleAddToBasket}
+                      >
+                        Add to basket
+                      </button>
                     </Fade>
                     <Fade bottom>
-                      <Link href="/">
-                        <button
-                          type="button"
-                          className="btn-primary4 xl:min-w-[400px] lg:min-w-[400px]"
-                        >
-                          Buy now
-                        </button>
-                      </Link>
+                      <button
+                        type="button"
+                        className="btn-primary4 xl:min-w-[400px] lg:min-w-[400px]"
+                        onClick={handleBuyNowCheckout}
+                      >
+                        Buy now
+                      </button>
                     </Fade>
                     <Link href="/">
                       <p className="font-monumentExtended font-[700] underline xs:text-sm">

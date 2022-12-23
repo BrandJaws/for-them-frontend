@@ -92,6 +92,15 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
     xs:leading-[16px] rounded-[38px]
 }
 
+.binder-btn-outline {
+    @apply font-monumentExtended bg-transparent xl:px-[60px] lg:px-[45px] md:px-[45px]
+    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-[20px] md:py-[14px]
+    sm:py-[12px] xs:py-[10px] text-[var(--primary1)] border-black border-2
+    xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[12px]
+    xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px]
+    xs:leading-[16px] rounded-[10px]
+}
+
 .section-padding {
     @apply py-[80px];
 }
@@ -380,3 +389,9 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 .checkbox-chest.active {
     @apply bg-black text-white;
 }
+.cart-modal {
+    z-index: 9999;
+    @apply min-w-[400px] max-w-full bg-white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+

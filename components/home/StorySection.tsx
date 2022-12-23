@@ -16,7 +16,7 @@ const StorySection = () => {
     <>
       <section className="section-padding homeStorySection">
         <div className="container mx-auto md:px-[15px] sm:px-[15px] xs:px-[15px]">
-          <div className="grid xl:grid-cols-1 lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 xl:gap-[70px] 
+          <div className="grid xl:grid-cols-1 lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 xl:gap-[70px]
             lg:gap-[70px] md:gap-[60px] sm:gap-[50px] xs:gap-[40px]">
             <div className="flex flex-row xs:flex-wrap gap-2 justify-around items-center">
               <Image src={img1} alt="story icon 1" />
@@ -33,7 +33,7 @@ const StorySection = () => {
               Supporting the ecosystem within you, because your evolution  is the revolution
             </div>
             <div className="story-btn text-center">
-              <Link href="/shop">
+              <Link href="/pages/our-story">
                 <button
                   type="button"
                   className="btn-primary5"
@@ -65,9 +65,9 @@ const StorySection = () => {
               <Link href="/shop">
                 <button
                   type="button"
-                  className="bg-primary xl:text-[18px] lg:text-[12px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px] 
-                  lg:leading-[20px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] xl:px-[60px] lg:px-[40px] md:px-[50px] sm:px-[40px] 
-                  xs:px-[30px] py-2 xl:min-h-[220px] lg:min-h-[200px] md:min-h-[180px] sm:min-h-[160px] xs:min-h-[120px] 
+                  className="bg-primary xl:text-[18px] lg:text-[12px] md:text-[16px] sm:text-[14px] xs:text-[12px] xl:leading-[22px]
+                  lg:leading-[20px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] xl:px-[60px] lg:px-[40px] md:px-[50px] sm:px-[40px]
+                  xs:px-[30px] py-2 xl:min-h-[220px] lg:min-h-[200px] md:min-h-[180px] sm:min-h-[160px] xs:min-h-[120px]
                   rounded-lg font-monumentExtended font-[800]"
                 >
                   Our Story
