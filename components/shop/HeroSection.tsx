@@ -29,7 +29,7 @@ const HeroSection = () => {
               </div>
             </Fade>
             <Link href="/shop">
-              <p className="font-monumentExtended font-[300] underline paragraph">
+              <p className="font-monumentExtended font-[400] underline paragraph">
                 find your size
               </p>
             </Link>

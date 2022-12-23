@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import "../fonts/stylesheet.css";
+@import "custom.css";
 
 /* // Import css files */
 @import "slick-carousel/slick/slick.css";
@@ -67,29 +68,33 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
     xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] rounded-[38px]
 }
 
+.product-cta-btns .react-reveal{
+    @apply w-full
+}
+
 .btn-primary4 {
     @apply font-monumentExtended bg-[var(--primary1)] xl:px-[60px] lg:px-[45px] md:px-[45px]
     sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-[20px] md:py-[14px]
-    sm:py-[12px] xs:py-[10px] text-[var(--primary)]
-    xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[12px]
-    xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] rounded-[38px]
+    sm:py-[12px] xs:py-[18px] text-[var(--primary)]
+    xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[18px]
+    xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] rounded-[6px] w-full
 }
 
 .btn-primary5 {
     @apply font-monumentExtended bg-[var(--primary2)] xl:px-[60px] lg:px-[45px] md:px-[45px]
     sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-[20px] md:py-[14px]
-    sm:py-[12px] xs:py-[10px] text-[var(--primary1)]
-    xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[12px]
+    sm:py-[12px] xs:py-[18px] text-[var(--primary1)]
+    xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[18px]
     xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] rounded-[38px]
 }
 
 .btn-primary-outline {
     @apply font-monumentExtended bg-transparent xl:px-[60px] lg:px-[45px] md:px-[45px]
     sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-[20px] md:py-[14px]
-    sm:py-[12px] xs:py-[10px] text-[var(--primary1)] border-black border-2
-    xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[12px]
+    sm:py-[12px] xs:py-[18px] text-[var(--primary1)] border-black border-2
+    xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[18px]
     xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px]
-    xs:leading-[16px] rounded-[38px]
+    xs:leading-[16px] rounded-[6px] w-full
 }
 
 .binder-btn-outline {
@@ -102,7 +107,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .section-padding {
-    @apply py-[80px];
+    @apply py-[80px] xs:py-[30px];
 }
 
 .section-title {
@@ -114,7 +119,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .anchor {
-    @apply font-monumentExtended font-[400] text-[16px] leading-[19px] text-[var(--primary1)] relative;
+    @apply font-monumentExtended font-[400] uppercase xl:text-[24px] text-[16px] leading-[19px] text-[var(--primary1)] relative;
 }
 
 .text {
@@ -122,7 +127,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .nav-list-item {
-    @apply relative flex items-center justify-center z-10 px-6;
+    @apply relative flex items-center justify-center z-10 px-6 md:px-[10px];
 }
 
 .nav-list-item:hover .anchor-nav, .nav-list-item.active .anchor-nav {
@@ -131,7 +136,10 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .anchor-nav {
-    @apply font-monumentExtended font-[400] xl:text-[16px] lg:text-[12px] md:text-[14px] sm:text-[14px] xs:text-[12px] xl:leading-[20px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] text-[var(--primary1)] relative h-full flex items-center;
+    @apply font-monumentExtendedLight font-[100] xl:text-[16px] lg:text-[12px] md:text-[14px] sm:text-[14px] xs:text-[12px] xl:leading-[20px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] text-[var(--primary1)] relative h-full flex items-center capitalize;
+}
+header .anchor-nav {
+    @apply font-monumentExtended font-[400] xl:text-[16px] lg:text-[12px] md:text-[12px] sm:text-[14px] xs:text-[12px] xl:leading-[20px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] text-[var(--primary1)] relative h-full flex items-center capitalize;
 }
 
 .main-logo {
@@ -163,12 +171,21 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
     @apply font-[200] xl:text-[32px] lg:text-[22px] md:text-[26px] sm:text-[20px] xs:text-[16px] text-[var(--primary1)] xl:leading-[40px] lg:leading-[22px] md:leading-[26px] sm:leading-[20px] xs:leading-[16px]
 }
 
+.main-slider-box {
+    position: sticky;
+    top:120px;
+}
+
+.subtitle-top.subtitle-bold span, .accordion-body{
+    @apply font-[100] font-monumentExtendedLight
+}
+
 .title-large {
-    @apply font-[100] font-monumentExtended xl:text-[100px] lg:text-[80px] md:text-[80px] sm:text-[60px] xs:text-[40px] xl:leading-[126px] lg:leading-[100px] md:leading-[100px] sm:leading-[80px] xs:leading-[60px]
+    @apply font-[100] font-monumentExtended xl:text-[100px] lg:text-[70px] md:text-[60px] sm:text-[60px] xs:text-[40px] xl:leading-[126px] lg:leading-[100px] md:leading-[100px] sm:leading-[80px] xs:leading-[60px]
 }
 
 .text-small {
-    @apply font-monumentExtended xl:text-[18px] lg:text-[18px] md:text-[16px] sm:text-[14px] xs:text-[12px] text-[var(--primary1)] xl:leading-[24px] lg:leading-[24px] md:leading-[18px] sm:leading-[16px] xs:leading-[18px]
+    @apply font-monumentExtended xl:text-[18px] lg:text-[16px] md:text-[14px] sm:text-[14px] xs:text-[12px] text-[var(--primary1)] xl:leading-[24px] lg:leading-[24px] md:leading-[18px] sm:leading-[16px] xs:leading-[18px]
 }
 
 .section-subtitle {

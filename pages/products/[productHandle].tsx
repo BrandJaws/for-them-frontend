@@ -205,7 +205,7 @@ export const SizeBinderForm = ({
       return (
         <div>
           <Fade left>
-            <div className="pt-16 pb-16">
+            <div className="xs:py-[8] py-16 ">
               <div className="subtitle-bold">Find your size</div>
               <div className="product-title uppercase">Size Finder</div>
             </div>
@@ -532,87 +532,89 @@ export default function ProductPage({ product }) {
           <section className="container mx-auto xl:px-[15px] lg:px-[15px] md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding">
             <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-6">
               <div className="product-thumbnail flex flex-col gap-2">
-                <div className="main-slider xs:order-1 sm:order-1 md:order-1 lg:order-1 xl:order-1">
-                  {images.length > 0 && (
-                    <Slider
-                      asNavFor={slider2}
-                      ref={(slider) => setSlider1(slider)}
-                      {...settingsMainSlider}
-                    >
-                      {images.map((img: StaticImageData, index: number) => {
+                <div className="main-slider-box">
+                  <div className="main-slider xs:order-1 sm:order-1 md:order-1 lg:order-1 xl:order-1">
+                    {images.length > 0 && (
+                      <Slider
+                        asNavFor={slider2}
+                        ref={(slider) => setSlider1(slider)}
+                        {...settingsMainSlider}
+                      >
+                        {images.map((img: StaticImageData, index: number) => {
+                          return (
+                            <div
+                              key={index}
+                              className="xl:h-[400px] xl:w-[400px] lg:h-[400px] lg:w-[400px] image-box flex items-center justify-center"
+                            >
+                              <Image
+                                src={img.src}
+                                alt={`Picture of ${title}`}
+                                width={400}
+                                height={400}
+                                loading="lazy"
+                                className="object-cover"
+                              />
+                            </div>
+                          );
+                        })}
+                      </Slider>
+                    )}
+                  </div>
+                  <div className="product-specs py-8 xs:order-3 sm:order-3 md:order-3 xl:order-2 lg:order-2">
+                    <ul className="list-none unstyled flex flex-wrap gap-4 items-center justify-center">
+                      {productSpecs.map((o, index) => {
                         return (
-                          <div
+                          <li
                             key={index}
-                            className="xl:h-[400px] xl:w-[400px] lg:h-[400px] lg:w-[400px] image-box flex items-center justify-center"
+                            className="flex flex-col items-center justify-center text-center gap-4"
                           >
-                            <Image
-                              src={img.src}
-                              alt={`Picture of ${title}`}
-                              width={400}
-                              height={400}
-                              loading="lazy"
-                              className="object-cover"
-                            />
-                          </div>
+                            <div className="spec-box">
+                              <Image
+                                src={o.image}
+                                alt="icon"
+                                width={30}
+                                height={30}
+                              />
+                            </div>
+                            <div className="max-w-[150px]">{o.title}</div>
+                          </li>
                         );
                       })}
-                    </Slider>
-                  )}
-                </div>
-                <div className="product-specs py-8 xs:order-3 sm:order-3 md:order-3 xl:order-2 lg:order-2">
-                  <ul className="list-none unstyled flex flex-wrap gap-4 items-center justify-center">
-                    {productSpecs.map((o, index) => {
-                      return (
-                        <li
-                          key={index}
-                          className="flex flex-col items-center justify-center text-center gap-4"
-                        >
-                          <div className="spec-box">
-                            <Image
-                              src={o.image}
-                              alt="icon"
-                              width={30}
-                              height={30}
-                            />
-                          </div>
-                          <div className="max-w-[150px]">{o.title}</div>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-                <div className="thumbs xs:order-2 sm:order-2 md:order-2 lg:order-3 xl:order-3">
-                  {images.length > 0 && (
-                    <Slider
-                      asNavFor={slider1}
-                      className="image-carousel-secondary"
-                      ref={(slider) => setSlider2(slider)}
-                      {...settingsThumbsSlider}
-                    >
-                      {images.map((img: StaticImageData, index: number) => {
-                        return (
-                          <div
-                            key={index}
-                            className="lg:h-[150px] lg:w-[150px] image-box flex items-center justify-center"
-                          >
-                            <Image
-                              src={img.src}
-                              alt={`Picture of ${title}`}
-                              width={150}
-                              height={150}
-                              loading="lazy"
-                              className="object-cover"
-                            />
-                          </div>
-                        );
-                      })}
-                    </Slider>
-                  )}
+                    </ul>
+                  </div>
+                  <div className="thumbs xs:order-2 sm:order-2 md:order-2 lg:order-3 xl:order-3">
+                    {images.length > 0 && (
+                      <Slider
+                        asNavFor={slider1}
+                        className="image-carousel-secondary"
+                        ref={(slider) => setSlider2(slider)}
+                        {...settingsThumbsSlider}
+                      >
+                        {images.map((img: StaticImageData, index: number) => {
+                          return (
+                            <div
+                              key={index}
+                              className="lg:h-[150px] lg:w-[150px] image-box flex items-center justify-center"
+                            >
+                              <Image
+                                src={img.src}
+                                alt={`Picture of ${title}`}
+                                width={150}
+                                height={150}
+                                loading="lazy"
+                                className="object-cover"
+                              />
+                            </div>
+                          );
+                        })}
+                      </Slider>
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="product-detail xl:px-16 lg:px-16 md:px-10 sm:px-8 xs:px-6">
                 <Fade top cascade>
-                  <div className="subtitle-bold text-left">{title}</div>
+                  <div className="subtitle-bold subtitle-top text-left ">{title}</div>
                 </Fade>
                 <div className="flex flex-col flex-wrap gap-4 items-start ">
                   <div className="title-large capitalize">Orange</div>
@@ -621,7 +623,7 @@ export default function ProductPage({ product }) {
                       ${price.amount} USD
                     </div>
                   </Fade>
-                  <div className="text-small text-left">{description}</div>
+                  <div className="text-small mt-5 mb-10 text-left">{description}</div>
                   {sizesDropdown.length > 0 && (
                     <div className="size-field w-full font-monumentExtended relative">
                       <label
@@ -632,7 +634,7 @@ export default function ProductPage({ product }) {
                       </label>
                       <select
                         name="size"
-                        className="select-field xl:px-[120px] lg:px-[120px] md:px-[110px] sm:px-[100px] xs:px-[80px]"
+                        className="select-field xl:text-[24px] xl:px-[120px] lg:px-[120px] md:px-[110px] sm:px-[100px] xs:px-[80px]"
                         onChange={handleSize}
                         value={selectedSize}
                       >
@@ -655,16 +657,10 @@ export default function ProductPage({ product }) {
                       find your size
                     </p>
                   </Link>
-                  <br />
-                  <br />
-                  <br />
                   {colorFound && colorFound.values.length > 0 && (
-                    <div className="color-field w-full font-monumentExtended relative">
-                      <div className="text-small text-left">
-                        Color:{" "}
-                        <span className="font-[800]">{selectedColor}</span>
-                      </div>
-                      <div className="flex flex-wrap gap-4 py-6">
+                    <div className="color-field xs:mt-[15px] xs:mb-[15px] mt-10 mb-10 w-full font-monumentExtended relative">
+
+                      <div className="flex flex-wrap gap-4 pt-0 pb-5">
                         {colorFound.values.map((o, index) => {
                           return (
                             <div key={index} className="color-switch">
@@ -682,14 +678,18 @@ export default function ProductPage({ product }) {
                           );
                         })}
                       </div>
+                      <div className="text-small text-left">
+                        Color:{" "}
+                        <span className="font-[800]">{selectedColor}</span>
+                      </div>
                     </div>
                   )}
                   <br />
-                  <div className="cta-btns flex flex-col flex-wrap gap-4 justify-center xl:items-center lg:items-center sm:items-start">
+                  <div className="cta-btns product-cta-btns flex flex-col flex-wrap  w-full gap-4 justify-center xl:items-center lg:items-center sm:items-start">
                     <Fade bottom>
                       <button
                         type="button"
-                        className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px]"
+                        className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px] w-full"
                         onClick={handleAddToBasket}
                       >
                         Add to basket
@@ -698,21 +698,21 @@ export default function ProductPage({ product }) {
                     <Fade bottom>
                       <button
                         type="button"
-                        className="btn-primary4 xl:min-w-[400px] lg:min-w-[400px]"
+                        className="btn-primary4 xl:min-w-[400px] lg:min-w-[400px] w-full"
                         onClick={handleBuyNowCheckout}
                       >
                         Buy now
                       </button>
                     </Fade>
                     <Link href="/">
-                      <p className="font-monumentExtended font-[700] underline xs:text-sm">
+                      <p className="font-monumentExtended hidden font-[700] underline xs:text-sm">
                         Gift the binder?
                       </p>
                     </Link>
                   </div>
                   <br />
                   <div className="product-info">
-                    <div className="text-small text-left">More Info</div>
+                    <div className="text-small text-left mb-5">More Info</div>
                     <div className="accordion">
                       <div className="accordion-item bg-white">
                         <h2 className="z-[999]">

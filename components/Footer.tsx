@@ -52,7 +52,7 @@ const Footer = () => {
   return (
     <div className="bg-primary1 section-padding font-monumentExtended">
       <div className="container mx-auto bg-primary1 md:px-[15px] sm:px-[15px] xs:px-[15px]">
-        <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-1 sm:grid-cols-2 xs:grid-cols-1 gap-4">
           <div className="mb-4">
             <Link href="/">
               <Image src={FooterLogo} alt="main logo" />
