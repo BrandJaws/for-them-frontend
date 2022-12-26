@@ -4,14 +4,13 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import Fade from "react-reveal/Fade";
 
-export const Product = ({ key, product, goToProductPage }) => {
+export const Product = ({ product, goToProductPage }) => {
   const { title, images, handle, description } = product;
   const { src: productImage } = images[0];
   return (
     <>
       <Fade bottom>
         <div
-          key={key}
           className="p-4 cursor-pointer text-center flex flex-col items-center justify-between xl:gap-[50px] lg:gap-[42px] md:gap-[34px] sm:gap-[26px] xs:gap-[26px] xl:mb-[50px] lg:mb-[42px] md:mb-[34px] sm:mb-[26px] xs:mb-[26px]"
           onClick={() => goToProductPage(handle)}
         >
@@ -52,11 +51,11 @@ export default function ProductsList({ products }) {
     <div className="container mx-auto md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding">
       <div className="grid xl:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-4">
         {products && products.length > 0 ? (
-          products.map((product) => (
+          products.map((product: any, index: number) => (
             <Product
-              key={product.handle}
               product={product}
               goToProductPage={goToProductPage}
+              key={index}
             />
           ))
         ) : (

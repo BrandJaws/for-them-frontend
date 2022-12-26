@@ -53,53 +53,76 @@ const CartBody: React.FC<any> = () => {
   };
   return (
     <>
-      {checkout && checkout.lineItems.length > 0 ? (
-        checkout.lineItems.map((item: any, index: number) => {
-          return (
-            <div key={index} className="mb-4 flex gap-2">
-              <div>
-                <Image
-                  src={item.variant.image.src}
-                  alt="featured image"
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="content flex flex-col items-start justify-center gap-4">
-                <div>
-                  <p>{item.title}</p>
-                  <p>${item.variant.price.amount * item.quantity}</p>
+      <div className="flex flex-col justify-between items-center h-full">
+        <div className="w-full overflow-y-auto">
+          {checkout && checkout.lineItems.length > 0 ? (
+            checkout.lineItems.map((item: any, index: number) => {
+              return (
+                <div key={index} className="mb-4 flex gap-2">
+                  <div>
+                    <Image
+                      src={item.variant.image.src}
+                      alt="featured image"
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                  <div className="content flex flex-col items-start justify-center gap-4">
+                    <div>
+                      <p>{item.title}</p>
+                      <p>${item.variant.price.amount * item.quantity}</p>
+                    </div>
+                    <div className="flex gap-2 items-center justify-center">
+                      <span
+                        className="border w-9 h-8 flex items-center justify-center cursor-pointer"
+                        onClick={() => handleUpdateLineItems(item.id, "minus")}
+                      >
+                        <FaMinus />
+                      </span>
+                      <span className="border w-9 h-8 flex items-center justify-center cursor-pointer">
+                        {item.quantity}
+                      </span>
+                      <span
+                        className="border w-9 h-8 flex items-center justify-center cursor-pointer"
+                        onClick={() => handleUpdateLineItems(item.id, "plus")}
+                      >
+                        <FaPlus />
+                      </span>
+                      <p
+                        className="lightFont text-[14px] cursor-pointer"
+                        onClick={() => handleRemoveCartItem(item.id)}
+                      >
+                        remove
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex gap-2 items-center justify-center">
-                  <span
-                    className="border w-9 h-8 flex items-center justify-center cursor-pointer"
-                    onClick={() => handleUpdateLineItems(item.id, "minus")}
-                  >
-                    <FaMinus />
-                  </span>
-                  <span className="border w-9 h-8 flex items-center justify-center cursor-pointer">
-                    {item.quantity}
-                  </span>
-                  <span
-                    className="border w-9 h-8 flex items-center justify-center cursor-pointer"
-                    onClick={() => handleUpdateLineItems(item.id, "plus")}
-                  >
-                    <FaPlus />
-                  </span>
-                  <p
-                    className="lightFont text-[14px] cursor-pointer"
-                    onClick={() => handleRemoveCartItem(item.id)}
-                  >
-                    remove
-                  </p>
-                </div>
-              </div>
-            </div>
-          );
-        })
-      ) : (
-        <p>Your cart is empty!</p>
-      )}
+              );
+            })
+          ) : (
+            <p>Your cart is empty!</p>
+          )}
+        </div>
+        {checkout && (
+          <div className="w-full">
+            <ul className="mb-4">
+              <li className="flex justify-between py-2">
+                <span>Subtotal Price:</span>
+                <span>${checkout.subtotalPrice.amount}</span>
+              </li>
+              <li className="flex justify-between py-2">
+                <span>Total Taxes:</span>
+                <span>${checkout.totalTax.amount}</span>
+              </li>
+              <hr />
+              <li className="flex justify-between py-2">
+                <span>Total Price:</span>
+                <span>${checkout.totalPrice.amount}</span>
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
     </>
   );
 };

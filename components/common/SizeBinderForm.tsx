@@ -32,7 +32,7 @@ const SizeBinderForm: React.FC<any> = ({
       return (
         <div>
           <Fade right>
-            <div className="flex gap-4 flex-col flex-wrap justify-center flex-col items-start">
+            <div className="flex gap-4 flex-wrap justify-center flex-col items-start">
               <div className="text-large xs:text-center xs:text-[16px]">
                 Where you are on your binding journey?
               </div>
@@ -170,6 +170,15 @@ const SizeBinderForm: React.FC<any> = ({
             </div>
           </Fade>
           <div className="flex gap-2 items-start justify-center">
+            <Fade>
+              <button
+                type="button"
+                className="binder-btn min-w-[200px]"
+                onClick={prevStep}
+              >
+                prev
+              </button>
+            </Fade>
             <Fade right>
               <button
                 type="button"

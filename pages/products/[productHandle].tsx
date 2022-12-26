@@ -321,6 +321,8 @@ export default function ProductPage({ product }) {
   const handleResetSizeFinder = () => {
     setSelectedSize(sizeFound && sizeFound.values.length > 0 ? sizeFound.values[0].value : "");
     setChestSizeChartObj(null);
+    setApexChestNumber("");
+    setBindingJourney("");
     setStep(0);
     removeCookie("size", { path: "/" });
     removeCookie("bindingJourney", { path: "/" });
@@ -603,7 +605,7 @@ export default function ProductPage({ product }) {
             </div>
           </section>
           <section>
-            <BinderShopList />
+            <BinderShopList product={product} />
           </section>
         </>
       )}

@@ -15,6 +15,7 @@ export type NavItemProps = {
   title?: string
   slug?: string
   url?: string
+  target?: string
 }
 
 export type WellnessProps = {
@@ -25,6 +26,7 @@ export type WellnessProps = {
 export type BinderShopProps = {
   title?: string
   url?: StaticImageData
+  handle?: string
 }
 
 export type ColorProps = {
