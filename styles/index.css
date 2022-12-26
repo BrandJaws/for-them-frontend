@@ -411,4 +411,27 @@ header .anchor-nav {
     @apply min-w-[400px] max-w-full bg-white;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
-
+.binder-journey-box {
+    @apply transition-all ease-in-out duration-700;
+}
+.binder-journey-box.active {
+    @apply bg-black text-white;
+}
+.overlay {
+    @apply fixed left-0 right-0 top-0 bottom-0 w-full h-full bg-[rgba(0,0,0,0.9)] z-[999] hidden;
+}
+.size-finder-modal {
+    @apply fixed left-0 right-0 top-0 bottom-0 w-full h-full z-[999] hidden;
+}
+.size-finder-modal-active .overlay {
+    @apply block;
+}
+.size-finder-modal-active .size-finder-modal {
+    @apply flex h-[70%] w-[60%];
+}
+.size-finder-modal-active {
+    @apply overflow-hidden;
+}
+.modal {
+    @apply w-full sm:h-auto xs:h-auto;
+}

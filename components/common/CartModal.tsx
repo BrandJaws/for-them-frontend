@@ -22,29 +22,6 @@ const CartModal: React.FC<any> = () => {
     if (checkout) {
       window.open(checkout.webUrl, "_blank");
     }
-    // let lineItemsToAdd = cartItems.map((item: any) => {
-    //   let findProductVariant = item.product.variants.find((o: any) => {
-    //     return o.selectedOptions.find(
-    //       (option) => option.value === item.selectedSize
-    //     );
-    //   });
-    //   if (findProductVariant) {
-    //     return {
-    //       variantId: findProductVariant.id,
-    //       quantity: item.quantity,
-    //     };
-    //   }
-    // });
-    // if (lineItemsToAdd.length > 0) {
-    //   client.checkout.create().then((checkout: any) => {
-    //     client.checkout
-    //       .addLineItems(checkout.id, lineItemsToAdd)
-    //       .then((data: any) => {
-    //         dispatch(setCheckout(data));
-    //         window.open(data.webUrl, "_blank");
-    //       });
-    //   });
-    // }
   };
   return (
     <>
