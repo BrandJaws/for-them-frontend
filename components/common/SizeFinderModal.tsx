@@ -101,7 +101,7 @@ const SizeFinderModal: React.FC<any> = () => {
                 <FaTimes className="w-6 h-6" />
               </span>
             </div>
-            <div className="modal-body p-4">
+            <div className="modal-body p-4 text-center">
               <SizeBinderForm
                 setStep={setStep}
                 step={step}

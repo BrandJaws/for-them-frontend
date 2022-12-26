@@ -181,7 +181,7 @@ header .anchor-nav {
 }
 
 .title-large {
-    @apply font-[100] font-monumentExtended xl:text-[100px] lg:text-[70px] md:text-[60px] sm:text-[60px] xs:text-[40px] xl:leading-[126px] lg:leading-[100px] md:leading-[100px] sm:leading-[80px] xs:leading-[60px]
+    @apply font-[100] font-monumentExtended xl:text-[100px] lg:text-[70px] md:text-[60px] sm:text-[60px] xs:text-[40px] xl:leading-[100px] lg:leading-[70px] md:leading-[60px] sm:leading-[60px] xs:leading-[60px]
 }
 
 .text-small {
@@ -203,7 +203,7 @@ header .anchor-nav {
 }
 
 .product-title {
-    @apply font-monumentExtended xl:text-[60px] lg:text-[52px] md:text-[44px] sm:text-[26px] xs:text-[26px] text-[var(--primary1)] xl:leading-[76px] lg:leading-[66px] md:leading-[52px] sm:leading-[42px] xs:leading-[30px]
+    @apply font-monumentExtended xl:text-[100px] lg:text-[70px] md:text-[60px] sm:text-[60px] xs:text-[40px] xl:leading-[100px] lg:leading-[70px] md:leading-[60px] sm:leading-[60px] xs:leading-[60px] text-[var(--primary1)]  mt-5;
 }
 
 .title-large {
@@ -401,14 +401,14 @@ header .anchor-nav {
     @apply mb-2;
 }
 .checkbox-chest {
-    @apply p-4 rounded-full flex items-center justify-center border-2 border-black transition-all ease-in-out duration-700;
+    @apply p-4 xs:p-1 xs:text-[12px] rounded-full flex items-center justify-center border-2 border-black transition-all ease-in-out duration-700;
 }
 .checkbox-chest.active {
     @apply bg-black text-white;
 }
 .cart-modal {
     z-index: 9999;
-    @apply min-w-[400px] max-w-full bg-white;
+    @apply min-w-[300px] max-w-full bg-white;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .binder-journey-box {
@@ -427,7 +427,7 @@ header .anchor-nav {
     @apply block;
 }
 .size-finder-modal-active .size-finder-modal {
-    @apply flex h-[70%] w-[60%];
+    @apply flex h-[70%] w-[60%] xs:w-[94%] ;
 }
 .size-finder-modal-active {
     @apply overflow-hidden;
@@ -435,3 +435,17 @@ header .anchor-nav {
 .modal {
     @apply w-full sm:h-auto xs:h-auto;
 }
+
+.lightFont, .lightFont span
+{ 
+    @apply font-monumentExtendedLight font-[100]; 
+}
+
+#size-finder .modal-body{
+    @apply overflow-auto h-full flex justify-center items-center; 
+}
+
+.previousBtn {
+    @apply bg-slate-200 text-black;
+}
+
