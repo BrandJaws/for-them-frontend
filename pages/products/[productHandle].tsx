@@ -603,7 +603,7 @@ export default function ProductPage({ product }) {
             </div>
           </section>
           <section>
-            <BinderShopList />
+            <BinderShopList product={product} />
           </section>
         </>
       )}

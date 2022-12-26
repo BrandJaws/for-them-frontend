@@ -77,7 +77,7 @@ export default function Nav() {
                           key={index}
                           className={`nav-list-item hover:cursor-pointer`}
                         >
-                          <a type="button" className="anchor-nav" onClick={(e) => handleClickSizeFinder(e)}>Editorial</a>
+                          <a type="button" className="anchor-nav">Editorial</a>
                         </li>
                       ) : (
                         <li

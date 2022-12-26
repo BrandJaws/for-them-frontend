@@ -32,7 +32,6 @@ const Layout: React.FC<any> = ({
   );
   const { data } = useSWR("/api/pages", (url) => fetcher(url));
   const { data: blogs } = useSWR("/api/articles", (url) => fetcher(url));
-  console.log(blogs, "Blogs");
   const { data: discoverMenu } = useSWR("/api/footerDiscover", (url) =>
     fetcher(url)
   );

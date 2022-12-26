@@ -13,7 +13,7 @@ const Shop: React.FC<ShopProps> = ({ products }) => {
       <HeroSection />
       <ProductsList products={products} />
       <section className="">
-        <BinderShopList />
+        <BinderShopList products={products} />
       </section>
     </>
   );

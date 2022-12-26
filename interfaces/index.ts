@@ -25,6 +25,7 @@ export type WellnessProps = {
 export type BinderShopProps = {
   title?: string
   url?: StaticImageData
+  handle?: string
 }
 
 export type ColorProps = {
