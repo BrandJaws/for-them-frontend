@@ -103,23 +103,25 @@ const CartBody: React.FC<any> = () => {
             <p>Your cart is empty!</p>
           )}
         </div>
-        <div className="w-full">
-          <ul className="mb-4">
-            <li className="flex justify-between py-2">
-              <span>Subtotal Price:</span>
-              <span>${checkout.subtotalPrice.amount}</span>
-            </li>
-            <li className="flex justify-between py-2">
-              <span>Total Taxes:</span>
-              <span>${checkout.totalTax.amount}</span>
-            </li>
-            <hr />
-            <li className="flex justify-between py-2">
-              <span>Total Price:</span>
-              <span>${checkout.totalPrice.amount}</span>
-            </li>
-          </ul>
-        </div>
+        {checkout && (
+          <div className="w-full">
+            <ul className="mb-4">
+              <li className="flex justify-between py-2">
+                <span>Subtotal Price:</span>
+                <span>${checkout.subtotalPrice.amount}</span>
+              </li>
+              <li className="flex justify-between py-2">
+                <span>Total Taxes:</span>
+                <span>${checkout.totalTax.amount}</span>
+              </li>
+              <hr />
+              <li className="flex justify-between py-2">
+                <span>Total Price:</span>
+                <span>${checkout.totalPrice.amount}</span>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </>
   );

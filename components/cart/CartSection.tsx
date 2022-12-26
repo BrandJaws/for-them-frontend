@@ -106,21 +106,23 @@ const CartSection = () => {
                 );
               }) : <div className="text-large">Your cart is empty!</div>}
           </div>
-          <ul className="mb-4">
-            <li className="flex justify-between py-2">
-              <span>Subtotal Price:</span>
-              <span>${checkout.subtotalPrice.amount}</span>
-            </li>
-            <li className="flex justify-between py-2">
-              <span>Total Taxes:</span>
-              <span>${checkout.totalTax.amount}</span>
-            </li>
-            <hr />
-            <li className="flex justify-between py-2">
-              <span>Total Price:</span>
-              <span>${checkout.totalPrice.amount}</span>
-            </li>
-          </ul>
+          {checkout && (
+            <ul className="mb-4">
+              <li className="flex justify-between py-2">
+                <span>Subtotal Price:</span>
+                <span>${checkout.subtotalPrice.amount}</span>
+              </li>
+              <li className="flex justify-between py-2">
+                <span>Total Taxes:</span>
+                <span>${checkout.totalTax.amount}</span>
+              </li>
+              <hr />
+              <li className="flex justify-between py-2">
+                <span>Total Price:</span>
+                <span>${checkout.totalPrice.amount}</span>
+              </li>
+            </ul>
+          )}
           <div className="cart-btns flex gap-2">
             <Link href="/shop">
               <button className="binder-btn-outline">Continue Shopping</button>
