@@ -35,6 +35,15 @@ export const setActiveCartModal = createAction(
   }
 );
 
+export const setActiveSizeFinderModal = createAction(
+  "setActiveSizeFinderModal",
+  function prepare(status: boolean) {
+    return {
+      payload: status,
+    };
+  }
+);
+
 export const addProductToCart = createAction(
   "addProductToCart",
   function prepare(product: any) {
@@ -105,7 +114,8 @@ export interface shopifyState {
   headerNav?: any | null;
   isCartOpen?: boolean;
   cartItems?: any | null;
-  checkout?: any | null
+  checkout?: any | null;
+  isSizeFinderModal?: any | null;
 }
 
 export const initialState: shopifyState = {
@@ -118,7 +128,8 @@ export const initialState: shopifyState = {
   headerNav: null,
   isCartOpen: false,
   cartItems: null,
-  checkout: null
+  checkout: null,
+  isSizeFinderModal: false
 };
 
 export const shopifySlice = createSlice({
@@ -191,6 +202,9 @@ export const shopifySlice = createSlice({
         }
         state.cartItems[foundProductIndexFromStore] = objectFound;
       }
+    });
+    builder.addCase(setActiveSizeFinderModal, (state, action) => {
+      state.isSizeFinderModal = action.payload;
     });
   },
 });

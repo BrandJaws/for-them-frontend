@@ -48,6 +48,9 @@ module.exports = {
         monumentExtendedBold: ['Monument Extended Bold'],
         nostraSet: ['Nostra v1.0 Sett Trial'],
         nostraStream: ['Nostra v1.0 Stream Trial']
+      },
+      boxShadow: {
+        'primary': 'rgba(149, 157, 165, 0.2) 0px 8px 24px'
       }
     },
   },

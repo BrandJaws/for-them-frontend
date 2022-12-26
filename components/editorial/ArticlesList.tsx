@@ -4,20 +4,19 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import Fade from "react-reveal/Fade";
 
-export const Product = ({ key, product, goToProductPage }) => {
-  const { title, images, handle, description } = product;
-  const { src: productImage } = images[0];
+export const Article = ({ key, product, goToProductPage }) => {
+  const { title, image, handle, content, blog } = product;
+  const { src } = image;
   return (
     <>
       <Fade bottom>
         <div
           key={key}
           className="p-4 cursor-pointer text-center flex flex-col items-center justify-between xl:gap-[50px] lg:gap-[42px] md:gap-[34px] sm:gap-[26px] xs:gap-[26px] xl:mb-[50px] lg:mb-[42px] md:mb-[34px] sm:mb-[26px] xs:mb-[26px]"
-          onClick={() => goToProductPage(handle)}
         >
-          <div className="xl:h-[300px] lg:h-[300px] xl:w-[300px] lg:w-[300px] xs:w-full xs:h-full align-middle flex items-center justify-center">
+          <div className="xl:h-[300px] lg:h-[300px] xl:w-[300px] lg:w-[300px] xs:w-full xs:h-full align-middle flex items-center justify-center overflow-hidden">
             <Image
-              src={productImage}
+              src={src}
               alt={title}
               loading="lazy"
               className="product-image object-cover"
@@ -25,15 +24,12 @@ export const Product = ({ key, product, goToProductPage }) => {
               height={300}
             />
           </div>
-          <div className="subtitle-bold text-center">Shop</div>
-          <div className="product-title uppercase">{title}</div>
-          <div className="text break-before-all break-words w-full text-clip xl:h-24 lg:h-24 md:h-20 sm:h-14 xs:h-14 overflow-hidden">
-            {description}
-          </div>
+          <div className="text-small text-center">{blog.title}</div>
+          <div className="subtitle-bold text-center">{title}</div>
           <div className="">
-            <Link href={`/products/${handle}`}>
+            <Link href={`/blog/${blog.handle}/articles/${handle}`}>
               <button type="button" className="binder-btn">
-                Shop now
+                Read more
               </button>
             </Link>
           </div>
@@ -43,24 +39,24 @@ export const Product = ({ key, product, goToProductPage }) => {
   );
 };
 
-export default function ProductsList({ products }) {
+export default function ArticlesList({ articles }) {
   const router = useRouter();
   // Navigate to product's page
-  const goToProductPage = (productHandle) =>
-    router.push(`/products/${productHandle}`);
+  const goToProductPage = (articleHandle: string) =>
+    router.push(`/articles/${articleHandle}`);
   return (
     <div className="container mx-auto md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding">
       <div className="grid xl:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-4">
-        {products && products.length > 0 ? (
-          products.map((product) => (
-            <Product
-              key={product.handle}
-              product={product}
+        {articles && articles.length > 0 ? (
+          articles.map((article) => (
+            <Article
+              key={article.handle}
+              product={article.node}
               goToProductPage={goToProductPage}
             />
           ))
         ) : (
-          <p>There are no products in this collection</p>
+          <p>There are no articles in the website.</p>
         )}
       </div>
     </div>

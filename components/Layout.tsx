@@ -6,6 +6,7 @@ import useSWR from "swr";
 import axios from "axios";
 import {
   setActiveCartModal,
+  setActiveSizeFinderModal,
   setNavToStore,
   setPagesToStore,
   setShopifyToEmpty,
@@ -13,6 +14,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../stores/store";
 import CartModal from "./common/CartModal";
+import SizeFinderModal from "./common/SizeFinderModal";
 
 export const fetcher = (url) => axios.get(url).then((res) => res.data);
 
@@ -25,10 +27,11 @@ const Layout: React.FC<any> = ({
   children,
   title = "This is the default title",
 }) => {
-  const { isCartOpen } = useSelector(
+  const { isCartOpen, isSizeFinderModal } = useSelector(
     (state: RootState) => state.shopifyReducer
   );
   const { data } = useSWR("/api/pages", (url) => fetcher(url));
+  const { data: blogs } = useSWR("/api/articles", (url) => fetcher(url));
   const { data: discoverMenu } = useSWR("/api/footerDiscover", (url) =>
     fetcher(url)
   );
@@ -84,10 +87,12 @@ const Layout: React.FC<any> = ({
     if (isCartOpen && !document.getElementById("cart").contains(e.target)) {
       dispatch(setActiveCartModal(false));
     }
+    if (isSizeFinderModal && !document.getElementById("size-finder").contains(e.target)) {
+      dispatch(setActiveSizeFinderModal(false));
+    }
   };
-
   return (
-    <div onClick={(event) => handleClickForHideCartModal(event)}>
+    <div className="relative" onClick={(event) => handleClickForHideCartModal(event)}>
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
@@ -104,6 +109,11 @@ const Layout: React.FC<any> = ({
       <footer>
         <Footer />
       </footer>
+      {isSizeFinderModal && (
+        <div className={isSizeFinderModal ? 'size-finder-modal-active' : ''}>
+          <SizeFinderModal />
+        </div>
+      )}
     </div>
   );
 };
