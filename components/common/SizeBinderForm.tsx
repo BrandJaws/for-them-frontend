@@ -170,6 +170,15 @@ const SizeBinderForm: React.FC<any> = ({
             </div>
           </Fade>
           <div className="flex gap-2 items-start justify-start">
+            <Fade>
+              <button
+                type="button"
+                className="binder-btn min-w-[200px]"
+                onClick={prevStep}
+              >
+                prev
+              </button>
+            </Fade>
             <Fade right>
               <button
                 type="button"
