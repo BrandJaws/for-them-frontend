@@ -18,7 +18,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
     <>
       <div className="flex gap-4 flex-col flex-wrap justify-center items-center">
         <Fade top cascade>
-          <div className="subtitle-bold text-center">{subtitle}</div>
+          <div className="subtitle-bold text-center lightFont">{subtitle}</div>
         </Fade>
         <div className="title-large text-center uppercase">{title}</div>
         <Fade top cascade>

@@ -118,20 +118,38 @@ export default function Nav() {
           }`}
         >
           {nav.length > 0 &&
-            nav.map((item, index) => {
-              return (
-                <li
-                  key={index}
-                  className={`anchor hover:cursor-pointer${
-                    useRouterToCheckPath(item.url) ? " active" : ""
-                  }`}
-                >
-                  <Link href={item.url} color="inherit" legacyBehavior>
-                    <a className="anchor-nav">{item.title}</a>
-                  </Link>
-                </li>
-              );
-            })}
+                nav.map((item, index) => {
+                  return (
+                    <>
+                      {item.slug === "size-finder" ? (
+                        <li
+                          key={index}
+                          className={`nav-list-item hover:cursor-pointer`}
+                        >
+                          <a type="button" className="anchor-nav" onClick={(e) => handleClickSizeFinder(e)}>Size Finder</a>
+                        </li>
+                      ) : item.slug === "editorial" ? (
+                        <li
+                          key={index}
+                          className={`nav-list-item hover:cursor-pointer`}
+                        >
+                          <a type="button" className="anchor-nav" onClick={(e) => handleClickSizeFinder(e)}>Editorial</a>
+                        </li>
+                      ) : (
+                        <li
+                          key={index}
+                          className={`nav-list-item hover:cursor-pointer${
+                            useRouterToCheckPath(item.url) ? " active" : ""
+                          }`}
+                        >
+                          <Link href={item.url} color="inherit" legacyBehavior>
+                            <a className="anchor-nav">{item.title}</a>
+                          </Link>
+                        </li>
+                      )}
+                    </>
+                  );
+                })}
         </ul>
       )}
     </>

@@ -32,19 +32,19 @@ const SizeBinderForm: React.FC<any> = ({
       return (
         <div>
           <Fade right>
-            <div className="flex gap-4 flex-col flex-wrap justify-center items-start">
-              <div className="text-large xs:text-center">
+            <div className="flex gap-4 flex-col flex-wrap justify-center flex-col items-start">
+              <div className="text-large xs:text-center xs:text-[16px]">
                 Where you are on your binding journey?
               </div>
-              <div className="lg:section-padding xl:section-padding w-full flex xl:gap-[50px] lg:gap-[50px] md:gap-[40px] sm:gap-[30px] xs:gap-[30px]">
+              <div className="lg:section-padding xl:section-padding xs:m-auto w-full flex xl:gap-[30px] lg:gap-[30px] md:gap-[30px] sm:gap-[30px] xs:gap-[7.5px]">
                 {bindingJourneyList.map((item, index) => {
                   return (
                     <div
                       key={index}
-                      className="text-box h-[160px] border-4 rounded-md border-black text-center w-full flex items-center justify-center"
+                      className="text-box h-[160px] border-4 rounded-md border-black text-center w-full flex items-center justify-center xs:mb-4"
                     >
                       <label
-                        className={`binder-journey-box w-full h-full max-h-max items-center cursor-pointer px-[20px] py-[30px] relative ${
+                        className={`binder-journey-box w-full h-full max-h-max items-center cursor-pointer xs:px-[0px] px-[15px] py-[25px] relative ${
                           bindingJourney === item && "active"
                         }`}
                       >
@@ -55,7 +55,7 @@ const SizeBinderForm: React.FC<any> = ({
                           value={item}
                           onChange={(event) => handleBindingJourney(event)}
                         />
-                        <span className="absolute top-0 right-0 left-0 bottom-0 inline-flex items-center justify-center px-[20px] py-[30px] text-center w-full text-[18px] leading-[22px]">
+                        <span className="absolute top-0 right-0 left-0 bottom-0 inline-flex items-center justify-center px-[15px] xs:px-[7.5px] py-[25px] xs:py-[15px] text-center w-full text-[18px] xs:text-[12px] leading-[22px] xs:leading-[16px]">
                           {item}
                         </span>
                       </label>
@@ -63,12 +63,12 @@ const SizeBinderForm: React.FC<any> = ({
                   );
                 })}
               </div>
-              <div className="flex gap-4 items-center justify-center">
+              <div className="flex gap-4 items-center justify-between w-full">
                 <div className="prev-btn">
                   <Fade>
                     <button
                       type="button"
-                      className="binder-btn min-w-[200px]"
+                      className="binder-btn min-w-[200px] xs:min-w-[120px] previousBtn"
                       onClick={prevStep}
                     >
                       prev
@@ -79,7 +79,7 @@ const SizeBinderForm: React.FC<any> = ({
                   <Fade>
                     <button
                       type="button"
-                      className="binder-btn min-w-[200px]"
+                      className="binder-btn min-w-[200px] xs:min-w-[120px] nextBtn"
                       onClick={nextStep}
                     >
                       next
@@ -95,14 +95,14 @@ const SizeBinderForm: React.FC<any> = ({
       return (
         <div>
           <Fade right>
-            <div className="flex gap-4 flex-col flex-wrap justify-center items-start">
-              <div className="text-large xs:text-center">
+            <div className="xs:m-auto flex gap-4 xs:gap-2 flex-col flex-wrap justify-center items-center">
+              <div className="text-large xs:text-center xs:text-[16px]">
                 Measure your apex chest
               </div>
-              <div className="font-monumentExtended font-[300] paragraph">
+              <div className="font-monumentExtendedLight font-[100] paragraph">
                 Need help? Watch this <span className="underline">video</span>
               </div>
-              <div className="lg:section-padding xl:section-padding w-full flex flex-wrap gap-2">
+              <div className="lg:section-padding xl:section-padding w-full flex flex-wrap gap-2 xs:gap-1 mt-5 justify-center mb-5 xs:mb-2 xs:mt-2">
                 {apexChest.map((item, index) => {
                   return (
                     <div key={index} className="block">
@@ -126,12 +126,12 @@ const SizeBinderForm: React.FC<any> = ({
                   );
                 })}
               </div>
-              <div className="flex gap-4 items-center justify-center">
+              <div className="flex gap-4 items-center justify-between w-full">
                 <div className="prev-btn">
                   <Fade>
                     <button
                       type="button"
-                      className="binder-btn min-w-[200px]"
+                      className="binder-btn min-w-[200px] xs:min-w-[120px] previousBtn"
                       onClick={prevStep}
                     >
                       prev
@@ -142,7 +142,7 @@ const SizeBinderForm: React.FC<any> = ({
                   <Fade>
                     <button
                       type="button"
-                      className="binder-btn min-w-[200px]"
+                      className="binder-btn min-w-[200px] xs:min-w-[120px] nextBtn"
                       onClick={nextStep}
                     >
                       next
@@ -158,7 +158,7 @@ const SizeBinderForm: React.FC<any> = ({
       return (
         <div>
           <Fade right>
-            <div className="pt-16 pb-16">
+            <div className="pt-0 pb-16">
               <div className="text-large xs:text-center">
                 Your Binder size is
               </div>
@@ -169,7 +169,7 @@ const SizeBinderForm: React.FC<any> = ({
               )}
             </div>
           </Fade>
-          <div className="flex gap-2 items-start justify-start">
+          <div className="flex gap-2 items-start justify-center">
             <Fade right>
               <button
                 type="button"
@@ -182,7 +182,7 @@ const SizeBinderForm: React.FC<any> = ({
             <Fade right>
               <button
                 type="button"
-                className="binder-btn max-w-max"
+                className="binder-btn max-w-max previousBtn"
                 onClick={handleResetSizeFinder}
               >
                 Reset
@@ -198,9 +198,9 @@ const SizeBinderForm: React.FC<any> = ({
       return (
         <div>
           <Fade left>
-            <div className="xs:py-[8] py-16 ">
-              <div className="subtitle-bold">Find your size</div>
-              <div className="product-title uppercase">Size Finder</div>
+            <div className="xs:py-[8] py-5 ">
+              <div className="subtitle-bold lightFont">Find your size</div>
+              <div className="product-title uppercase ">Size Finder</div>
             </div>
           </Fade>
           <Fade bottom>

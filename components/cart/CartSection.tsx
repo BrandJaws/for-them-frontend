@@ -127,7 +127,7 @@ const CartSection = () => {
                           <FaPlus />
                         </span>
                         <p
-                          className="font-monumentExtended font-[300] underline cursor-pointer"
+                          className="lightFont text-[14px] cursor-pointer"
                           onClick={() => handleRemoveCartItem(item.id)}
                         >
                           remove

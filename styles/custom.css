@@ -122,9 +122,7 @@ div#shopify-section-template--15979919704230__c67a4a07-cc59-42c9-ae09-31d0571ae1
     #shopify-section-template--15977662447782__663ef06e-094e-4e6c-9daa-9a21ddcc5f36 .hero-image {
         background-size: cover !important
     }
-}
-
-@media (max-width: 767px) {
+    
     .header .menu-meta {
         margin-right: 5px
     }
