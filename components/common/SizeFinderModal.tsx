@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import { setActiveSizeFinderModal } from "../../reducers/shopify";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +24,7 @@ const SizeFinderModal: React.FC<any> = () => {
     (state: RootState) => state.shopifyReducer
   );
   const handleApexChest = (e: any) => {
+    console.log("apex chest number", e.target.value);
     setApexChestNumber(e.target.value);
   };
   const handleBindingJourney = (e: any) => {
@@ -40,6 +41,7 @@ const SizeFinderModal: React.FC<any> = () => {
         }
       );
       if (isExistsChestNumber) {
+        console.log(isExistsChestNumber, "dasjdaskd")
         setChestSizeChartObj(isExistsChestNumber);
         setCookie("size", isExistsChestNumber.code, { path: "/" });
         setCookie("bindingJourney", bindingJourney, { path: "/" });
@@ -57,10 +59,30 @@ const SizeFinderModal: React.FC<any> = () => {
     }
   };
   const handleResetSizeFinder = () => {
+    setChestSizeChartObj(null);
+    setApexChestNumber("");
+    setBindingJourney("");
     setStep(0);
     removeCookie("size", { path: "/" });
     removeCookie("bindingJourney", { path: "/" });
   }
+  useEffect(() => {
+    if (apexChestNumber) {
+      let isExistsChestNumber = apexSizeChart.find((o: SizeChartProps) => {
+        let isCheckNumberExists = o.measurements.find(
+          (num: string) => num === apexChestNumber
+        );
+        return isCheckNumberExists;
+      });
+      if (isExistsChestNumber) {
+        setChestSizeChartObj(isExistsChestNumber);
+        setSizeErrorMessage("");
+      } else {
+        setChestSizeChartObj(null);
+        setSizeErrorMessage("Size does not exists.");
+      }
+    }
+  }, [apexChestNumber]);
   return (
     <>
       <div className="overlay"></div>

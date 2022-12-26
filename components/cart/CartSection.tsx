@@ -11,14 +11,6 @@ import Link from "next/link";
 const CartSection = () => {
   const { checkout } = useSelector((state: RootState) => state.shopifyReducer);
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (checkout) {
-      client.checkout.fetch(checkout.id).then((checkout) => {
-        // Do something with the checkout
-        console.log(checkout.lineItems, "dkjashdkjasd");
-      });
-    }
-  }, [checkout]);
   const handleUpdateLineItems = (id: string, type: string) => {
     if (checkout) {
       let lineItemFound = checkout.lineItems.find((o) => o.id === id);
@@ -48,33 +40,9 @@ const CartSection = () => {
     if (checkout) {
       window.open(checkout.webUrl, "_blank");
     }
-    // let lineItemsToAdd = cartItems.map((item: any) => {
-    //   let findProductVariant = item.product.variants.find((o: any) => {
-    //     return o.selectedOptions.find(
-    //       (option) => option.value === item.selectedSize
-    //     );
-    //   });
-    //   if (findProductVariant) {
-    //     return {
-    //       variantId: findProductVariant.id,
-    //       quantity: item.quantity,
-    //     };
-    //   }
-    // });
-    // if (lineItemsToAdd.length > 0) {
-    //   client.checkout.create().then((checkout: any) => {
-    //     client.checkout
-    //       .addLineItems(checkout.id, lineItemsToAdd)
-    //       .then((data: any) => {
-    //         dispatch(setCheckout(data));
-    //         window.open(data.webUrl, "_blank");
-    //       });
-    //   });
-    // }
   };
   const handleRemoveCartItem = (id) => {
     const lineItemIdsToRemove = [id];
-
     // Remove an item from the checkout
     client.checkout
       .removeLineItems(checkout.id, lineItemIdsToRemove)
@@ -138,6 +106,21 @@ const CartSection = () => {
                 );
               }) : <div className="text-large">Your cart is empty!</div>}
           </div>
+          <ul className="mb-4">
+            <li className="flex justify-between py-2">
+              <span>Subtotal Price:</span>
+              <span>${checkout.subtotalPrice.amount}</span>
+            </li>
+            <li className="flex justify-between py-2">
+              <span>Total Taxes:</span>
+              <span>${checkout.totalTax.amount}</span>
+            </li>
+            <hr />
+            <li className="flex justify-between py-2">
+              <span>Total Price:</span>
+              <span>${checkout.totalPrice.amount}</span>
+            </li>
+          </ul>
           <div className="cart-btns flex gap-2">
             <Link href="/shop">
               <button className="binder-btn-outline">Continue Shopping</button>

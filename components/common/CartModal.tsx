@@ -15,9 +15,7 @@ import CartBody from "./CartBody";
 
 const CartModal: React.FC<any> = () => {
   const dispatch = useDispatch();
-  const { checkout } = useSelector(
-    (state: RootState) => state.shopifyReducer
-  );
+  const { checkout } = useSelector((state: RootState) => state.shopifyReducer);
   const handleCheckout = () => {
     if (checkout) {
       window.open(checkout.webUrl, "_blank");
@@ -29,19 +27,17 @@ const CartModal: React.FC<any> = () => {
         className="cart-modal fixed right-0 bottom-0 top-0 p-4 flex justify-between flex-col"
         id="cart"
       >
-        <div>
-          <div className="cart-header border-b text-left flex justify-between items-center pb-4">
-            <h1 className="text-medium">Cart</h1>
-            <span
-              className="cursor-pointer"
-              onClick={() => dispatch(setActiveCartModal(false))}
-            >
-              <FaTimes className="w-6 h-6" />
-            </span>
-          </div>
-          <div className="cart-body pt-4">
-            <CartBody />
-          </div>
+        <div className="cart-header border-b text-left flex justify-between items-center pb-4 w-full">
+          <h1 className="text-medium">Cart</h1>
+          <span
+            className="cursor-pointer"
+            onClick={() => dispatch(setActiveCartModal(false))}
+          >
+            <FaTimes className="w-6 h-6" />
+          </span>
+        </div>
+        <div className="cart-body pt-4 h-full w-full">
+          <CartBody />
         </div>
         <div className="cart-footer flex flex-col gap-2 items-start justify-start">
           <Link href="/cart" className="w-full">
