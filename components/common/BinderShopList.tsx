@@ -17,7 +17,7 @@ export const BinderShopComponent = ({ item }) => {
   return (
     <>
       <Fade bottom>
-        <div className="flex flex-col mb-8 items-center justify-center gap-4 mb-4">
+        <div className="flex flex-col mb-8 items-center justify-center gap-4">
           <Image src={item.url} alt="wellness image" />
           <h3 className="text">{item.title}</h3>
           <Link href="/shop" legacyBehavior>
@@ -71,7 +71,7 @@ const BinderShopList = () => {
 
   return (
       <div
-        className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 
+        className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1
         xl:py-[120px] lg:py-[120px] md:py-[90px] sm:py-[80px] xs:py-[70px]"
       >
         {shopData.length > 0 &&

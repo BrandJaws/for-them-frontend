@@ -1,11 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import * as React from "react";
-import sectionImage from "../../assets/images/hero-image.png";
 import Fade from "react-reveal/Fade"
+import { useDispatch } from "react-redux";
+import { setActiveSizeFinderModal } from "../../reducers/shopify";
 
 const HeroSection = () => {
+  const dispatch = useDispatch();
   return (
     <>
       <section className="container mx-auto md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding">
@@ -16,23 +15,23 @@ const HeroSection = () => {
             </Fade>
             <div className="title-large text-center capitalize">PRODUCTS</div>
             <Fade bottom>
-              <div className="xl:text-[24px] lg:text-[20px] md:text-[18px] sm:text-[18px] xs:text-[16px] 
-              xl:leading-[32px] lg:leading-[30px] md:leading-[28px] 
+              <div className="xl:text-[24px] lg:text-[20px] md:text-[18px] sm:text-[18px] xs:text-[16px]
+              xl:leading-[32px] lg:leading-[30px] md:leading-[28px]
               sm:leading-[26px] xs:leading-[26px] text-center">
                 Feel at home in your body without
                 <br className="sm:hidden xs:hidden lg:block" />
-                compromise. Patented design and 
+                compromise. Patented design and
                 <br className="sm:hidden xs:hidden lg:block" />
-                made from 100% recycled nylon 
+                made from 100% recycled nylon
                 <br className="sm:hidden xs:hidden lg:block" />
                 that never curls, rolls, or pills.
               </div>
             </Fade>
-            <Link href="/shop">
+            <a type="button" className="cursor-pointer" onClick={() => dispatch(setActiveSizeFinderModal(true))}>
               <p className="font-monumentExtended font-[400] underline paragraph">
                 find your size
               </p>
-            </Link>
+            </a>
           </div>
         </div>
       </section>

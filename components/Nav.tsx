@@ -10,7 +10,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../stores/store";
-import { setShopifyToEmpty } from "../reducers/shopify";
+import { setActiveCartModal, setActiveSizeFinderModal, setShopifyToEmpty } from "../reducers/shopify";
 
 export default function Nav() {
   const windowSizeValue = useWindowSize();
@@ -33,7 +33,7 @@ export default function Nav() {
       url: "/pages/size-finder",
     }
   ];
-  const { headerNav } = useSelector((state: RootState) => state.shopifyReducer);
+  const { headerNav, checkout } = useSelector((state: RootState) => state.shopifyReducer);
   const [nav, setNav] = useState<Array<NavItemProps>>([]);
   useEffect(() => {
     let copiedNavs = [];
@@ -49,6 +49,9 @@ export default function Nav() {
       setNav(copiedNavs);
     }
   }, [headerNav, dispatch])
+  const handleClickSizeFinder = (e: any) => {
+    dispatch(setActiveSizeFinderModal(true));
+  }
   return (
     <>
       <div className="fixed bg-white text-black px-5 top-0 left-0 right-0 flex justify-between items-center border-b-2 border-black z-[999]">
@@ -61,16 +64,34 @@ export default function Nav() {
               {nav.length > 0 &&
                 nav.map((item, index) => {
                   return (
-                    <li
-                      key={index}
-                      className={`nav-list-item hover:cursor-pointer${
-                        useRouterToCheckPath(item.url) ? " active" : ""
-                      }`}
-                    >
-                      <Link href={item.url} color="inherit" legacyBehavior>
-                        <a className="anchor-nav">{item.title}</a>
-                      </Link>
-                    </li>
+                    <>
+                      {item.slug === "size-finder" ? (
+                        <li
+                          key={index}
+                          className={`nav-list-item hover:cursor-pointer`}
+                        >
+                          <a type="button" className="anchor-nav" onClick={(e) => handleClickSizeFinder(e)}>Size Finder</a>
+                        </li>
+                      ) : item.slug === "editorial" ? (
+                        <li
+                          key={index}
+                          className={`nav-list-item hover:cursor-pointer`}
+                        >
+                          <a type="button" className="anchor-nav" onClick={(e) => handleClickSizeFinder(e)}>Editorial</a>
+                        </li>
+                      ) : (
+                        <li
+                          key={index}
+                          className={`nav-list-item hover:cursor-pointer${
+                            useRouterToCheckPath(item.url) ? " active" : ""
+                          }`}
+                        >
+                          <Link href={item.url} color="inherit" legacyBehavior>
+                            <a className="anchor-nav">{item.title}</a>
+                          </Link>
+                        </li>
+                      )}
+                    </>
                   );
                 })}
             </ul>
@@ -78,8 +99,8 @@ export default function Nav() {
         </div>
         <div className="flex gap-4">
           <div className="shoppingBag relative">
-            <HiOutlineShoppingBag />
-            <span className="badge-count">0</span>
+            <HiOutlineShoppingBag className="cursor-pointer" onClick={() => dispatch(setActiveCartModal(true))} />
+            <span className="badge-count">{checkout && checkout.lineItems.length}</span>
           </div>
           {windowSizeValue.width < 767 && (
             <>

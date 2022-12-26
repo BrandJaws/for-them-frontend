@@ -5,7 +5,7 @@ import weightLessFeel from "../../assets/images/product/weightless-feel.png";
 import antiitchFabric from "../../assets/images/product/anti-itch-fabric.png";
 import customMade from "../../assets/images/product/custom-made.png";
 import rotatableNeckline from "../../assets/images/product/rotatable-neckline.png";
-import { parseShopifyResponse, shopifyClient } from "../../lib/shopify";
+import { client, parseShopifyResponse, shopifyClient } from "../../lib/shopify";
 import Link from "next/link";
 import _ from "lodash";
 import { TfiAngleDown } from "react-icons/tfi";
@@ -14,207 +14,19 @@ import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import PrevArrow from "../../components/common/PrevArrow";
 import Fade from "react-reveal/Fade";
 import BinderShopList from "../../components/common/BinderShopList";
-import { apexChest, apexSizeChart } from "../../utils/data";
-import { withCookies, Cookies, useCookies } from "react-cookie";
+import { apexSizeChart } from "../../utils/data";
+import { useCookies } from "react-cookie";
 import { SizeChartProps } from "../../interfaces";
-
-export const SizeBinderForm = ({
-  setStep,
-  step,
-  apexChestNumber,
-  handleApexChest,
-  handleBuyNow,
-  sizeErrorMessage,
-  chestSizeChartObj,
-}) => {
-  const nextStep = () => {
-    setStep(step + 1);
-  };
-  const prevStep = () => {
-    if (step > 0) {
-      setStep(step - 1);
-    }
-  };
-  switch (step) {
-    case 1:
-      return (
-        <div>
-          <Fade right>
-            <div className="flex gap-4 flex-col flex-wrap justify-center items-start">
-              <div className="text-large xs:text-center">
-                Where you are on your binding journey?
-              </div>
-              <div className="lg:section-padding xl:section-padding w-full flex xl:gap-[50px] lg:gap-[50px] md:gap-[40px] sm:gap-[30px] xs:gap-[30px]">
-                <div className="text-box px-[20px] py-[30px] border-4 rounded-md border-black text-center w-full flex items-center justify-center">
-                  <Fade>
-                    <p className="text-[18px] leading-[22px]">
-                      I&apos;m new to binding + not sure where to start
-                    </p>
-                  </Fade>
-                </div>
-                <div className="text-box px-[20px] py-[30px] border-4 rounded-md border-black text-center w-full flex items-center justify-center">
-                  <Fade>
-                    <p className="text-[18px] leading-[22px]">
-                      None of the binders out there are doing it for me
-                    </p>
-                  </Fade>
-                </div>
-                <div className="text-box px-[20px] py-[30px] border-4 rounded-md border-black text-center w-full flex items-center justify-center">
-                  <Fade>
-                    <p className="text-[18px] leading-[22px]">
-                      I wear a binder daily + I&apos;m looking to get a new one
-                    </p>
-                  </Fade>
-                </div>
-              </div>
-              <div className="flex gap-4 items-center justify-center">
-                <div className="prev-btn">
-                  <Fade>
-                    <button
-                      type="button"
-                      className="binder-btn min-w-[200px]"
-                      onClick={prevStep}
-                    >
-                      prev
-                    </button>
-                  </Fade>
-                </div>
-                <div className="next-btn">
-                  <Fade>
-                    <button
-                      type="button"
-                      className="binder-btn min-w-[200px]"
-                      onClick={nextStep}
-                    >
-                      next
-                    </button>
-                  </Fade>
-                </div>
-              </div>
-            </div>
-          </Fade>
-        </div>
-      );
-    case 2:
-      return (
-        <div>
-          <Fade right>
-            <div className="flex gap-4 flex-col flex-wrap justify-center items-start">
-              <div className="text-large xs:text-center">
-                Measure your apex chest
-              </div>
-              <div className="font-monumentExtended font-[300] paragraph">
-                Need help? Watch this <span className="underline">video</span>
-              </div>
-              <div className="lg:section-padding xl:section-padding w-full flex flex-wrap gap-2">
-                {apexChest.map((item, index) => {
-                  return (
-                    <div key={index} className="block">
-                      <label
-                        className={`checkbox-chest inline-flex items-center cursor-pointer relative ${
-                          apexChestNumber === item && "active"
-                        }`}
-                      >
-                        <input
-                          type="radio"
-                          className="w-6 h-6 rounded-full opacity-0"
-                          name="chest"
-                          value={item}
-                          onChange={(event) => handleApexChest(event)}
-                        />
-                        <span className="absolute top-0 right-0 left-0 bottom-0 inline-flex items-center justify-center">
-                          {item}
-                        </span>
-                      </label>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="flex gap-4 items-center justify-center">
-                <div className="prev-btn">
-                  <Fade>
-                    <button
-                      type="button"
-                      className="binder-btn min-w-[200px]"
-                      onClick={prevStep}
-                    >
-                      prev
-                    </button>
-                  </Fade>
-                </div>
-                <div className="next-btn">
-                  <Fade>
-                    <button
-                      type="button"
-                      className="binder-btn min-w-[200px]"
-                      onClick={nextStep}
-                    >
-                      next
-                    </button>
-                  </Fade>
-                </div>
-              </div>
-            </div>
-          </Fade>
-        </div>
-      );
-    case 3:
-      return (
-        <div>
-          <Fade right>
-            <div className="pt-16 pb-16">
-              <div className="text-large xs:text-center">
-                Your Binder size is
-              </div>
-              {chestSizeChartObj && (
-                <div className="product-title uppercase">
-                  {chestSizeChartObj.code}
-                </div>
-              )}
-            </div>
-          </Fade>
-          <div className="flex flex-col gap-2 items-start justify-start">
-            <Fade right>
-              <button
-                type="button"
-                className="binder-btn max-w-max"
-                onClick={handleBuyNow}
-              >
-                Buy now
-              </button>
-            </Fade>
-            {sizeErrorMessage && (
-              <p className="text text-red-500 font-[600]">{sizeErrorMessage}</p>
-            )}
-          </div>
-        </div>
-      );
-    default:
-      return (
-        <div>
-          <Fade left>
-            <div className="xs:py-[8] py-16 ">
-              <div className="subtitle-bold">Find your size</div>
-              <div className="product-title uppercase">Size Finder</div>
-            </div>
-          </Fade>
-          <Fade bottom>
-            <button
-              type="button"
-              className="binder-btn max-w-max"
-              onClick={nextStep}
-            >
-              Get Started
-            </button>
-          </Fade>
-        </div>
-      );
-  }
-};
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setActiveCartModal,
+  setCheckout,
+} from "../../reducers/shopify";
+import { RootState } from "../../stores/store";
+import SizeBinderForm from "../../components/common/SizeBinderForm";
 
 export default function ProductPage({ product }) {
-  const { id, title, images, variants, handle, description, options } = product;
-  const { src: productImage } = images[0];
+  const { title, images, variants, description, options } = product;
   const { price } = variants[0];
   const sizeFound = options.find((o) => o.name === "Size");
   const colorFound = options.find((o) => o.name === "Color");
@@ -225,10 +37,13 @@ export default function ProductPage({ product }) {
   const [selectedColor, setSelectedColor] = useState<string>(
     colorFound && colorFound.values.length > 0 ? colorFound.values[0].value : ""
   );
-  const [selectedSize, setSelectedSize] = useState<string>("");
+  const [selectedSize, setSelectedSize] = useState<string>(
+    sizeFound && sizeFound.values.length > 0 ? sizeFound.values[0].value : ""
+  );
   const [sizesDropdown, setSizesDropdown] = useState<any>([]);
   const [step, setStep] = useState<number>(0);
   const [apexChestNumber, setApexChestNumber] = useState<string>("");
+  const [bindingJourney, setBindingJourney] = useState<string>("");
   const [sizeErrorMessage, setSizeErrorMessage] = useState<string>("");
   const [chestSizeChartObj, setChestSizeChartObj] = useState<any | null>(null);
   const settingsMainSlider = {
@@ -372,7 +187,10 @@ export default function ProductPage({ product }) {
   const handleApexChest = (e: any) => {
     setApexChestNumber(e.target.value);
   };
-  const [cookies, setCookie, getCookie] = useCookies(["size"]);
+  const handleBindingJourney = (e: any) => {
+    setBindingJourney(e.target.value);
+  };
+  const [cookies, setCookie, removeCookie] = useCookies(["size", "bindingJourney"]);
   const handleBuyNow = () => {
     if (apexChestNumber !== "") {
       setSelectedSize(apexChestNumber);
@@ -387,6 +205,7 @@ export default function ProductPage({ product }) {
       if (isExistsChestNumber) {
         setChestSizeChartObj(isExistsChestNumber);
         setCookie("size", isExistsChestNumber.code, { path: "/" });
+        setCookie("bindingJourney", bindingJourney, { path: "/" });
         if (typeof window !== "undefined") {
           window.scrollTo({
             top: 0,
@@ -442,6 +261,76 @@ export default function ProductPage({ product }) {
       }
     }
   }, [apexChestNumber]);
+  const { checkout } = useSelector(
+    (state: RootState) => state.shopifyReducer
+  );  const dispatch = useDispatch();
+  const handleBuyNowCheckout = async () => {
+    let findProductVariant = variants.find((o: any) => {
+      return o.selectedOptions.find((option) => option.value === selectedSize);
+    });
+    if (findProductVariant) {
+      const lineItemsToAdd = [
+        {
+          variantId: findProductVariant.id,
+          quantity: 1,
+        },
+      ];
+      client.checkout.create().then((checkout: any) => {
+        client.checkout
+          .addLineItems(checkout.id, lineItemsToAdd)
+          .then((data: any) => {
+            dispatch(setCheckout(data));
+            window.open(data.webUrl, "_blank");
+          });
+      });
+    }
+  };
+  const handleAddToBasket = () => {
+    let findProductVariant = variants.find((o: any) => {
+      return o.selectedOptions.find((option) => option.value === selectedSize);
+    });
+    if (findProductVariant) {
+      const lineItemsToAdd = [
+        {
+          variantId: findProductVariant.id,
+          quantity: 1,
+        },
+      ];
+      if (checkout) {
+        client.checkout
+          .addLineItems(checkout.id, lineItemsToAdd)
+          .then((data: any) => {
+            dispatch(setCheckout(data));
+          });
+      } else {
+        client.checkout.create().then((checkout: any) => {
+          client.checkout
+            .addLineItems(checkout.id, lineItemsToAdd)
+            .then((data: any) => {
+              dispatch(setCheckout(data));
+            });
+        });
+      }
+    }
+    dispatch(setActiveCartModal(true));
+    setTimeout(() => {
+      dispatch(setActiveCartModal(false));
+    }, 3000);
+  };
+
+  const handleResetSizeFinder = () => {
+    setSelectedSize(sizeFound && sizeFound.values.length > 0 ? sizeFound.values[0].value : "");
+    setChestSizeChartObj(null);
+    setStep(0);
+    removeCookie("size", { path: "/" });
+    removeCookie("bindingJourney", { path: "/" });
+    if (typeof window !== "undefined") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }
   return (
     <>
       {product && (
@@ -560,7 +449,6 @@ export default function ProductPage({ product }) {
                             <option
                               key={index}
                               value={o.value}
-                              // selected={selectedSize === o.value}
                             >
                               {o.value}
                             </option>
@@ -576,7 +464,7 @@ export default function ProductPage({ product }) {
                   </Link>
                   {colorFound && colorFound.values.length > 0 && (
                     <div className="color-field xs:mt-[15px] xs:mb-[15px] mt-10 mb-10 w-full font-monumentExtended relative">
-                      
+
                       <div className="flex flex-wrap gap-4 pt-0 pb-5">
                         {colorFound.values.map((o, index) => {
                           return (
@@ -604,24 +492,22 @@ export default function ProductPage({ product }) {
                   <br />
                   <div className="cta-btns product-cta-btns flex flex-col flex-wrap  w-full gap-4 justify-center xl:items-center lg:items-center sm:items-start">
                     <Fade bottom>
-                      <Link href="/">
-                        <button
-                          type="button"
-                          className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px]  w-full"
-                        >
-                          Add to basket
-                        </button>
-                      </Link>
+                      <button
+                        type="button"
+                        className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px] w-full"
+                        onClick={handleAddToBasket}
+                      >
+                        Add to basket
+                      </button>
                     </Fade>
                     <Fade bottom>
-                      <Link href="/">
-                        <button
-                          type="button"
-                          className="btn-primary4 xl:min-w-[400px] lg:min-w-[400px]  w-full"
-                        >
-                          Buy now
-                        </button>
-                      </Link>
+                      <button
+                        type="button"
+                        className="btn-primary4 xl:min-w-[400px] lg:min-w-[400px] w-full"
+                        onClick={handleBuyNowCheckout}
+                      >
+                        Buy now
+                      </button>
                     </Fade>
                     <Link href="/">
                       <p className="font-monumentExtended hidden font-[700] underline xs:text-sm">
@@ -706,7 +592,10 @@ export default function ProductPage({ product }) {
                   step={step}
                   apexChestNumber={apexChestNumber}
                   handleApexChest={handleApexChest}
+                  bindingJourney={bindingJourney}
+                  handleBindingJourney={handleBindingJourney}
                   handleBuyNow={handleBuyNow}
+                  handleResetSizeFinder={handleResetSizeFinder}
                   sizeErrorMessage={sizeErrorMessage}
                   chestSizeChartObj={chestSizeChartObj}
                 />

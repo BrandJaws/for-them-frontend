@@ -97,6 +97,15 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
     xs:leading-[16px] rounded-[6px] w-full
 }
 
+.binder-btn-outline {
+    @apply font-monumentExtended bg-transparent xl:px-[60px] lg:px-[45px] md:px-[45px]
+    sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-[20px] md:py-[14px]
+    sm:py-[12px] xs:py-[10px] text-[var(--primary1)] border-black border-2
+    xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[12px]
+    xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px]
+    xs:leading-[16px] rounded-[10px]
+}
+
 .section-padding {
     @apply py-[80px] xs:py-[30px];
 }
@@ -396,4 +405,33 @@ header .anchor-nav {
 }
 .checkbox-chest.active {
     @apply bg-black text-white;
+}
+.cart-modal {
+    z-index: 9999;
+    @apply min-w-[400px] max-w-full bg-white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.binder-journey-box {
+    @apply transition-all ease-in-out duration-700;
+}
+.binder-journey-box.active {
+    @apply bg-black text-white;
+}
+.overlay {
+    @apply fixed left-0 right-0 top-0 bottom-0 w-full h-full bg-[rgba(0,0,0,0.9)] z-[999] hidden;
+}
+.size-finder-modal {
+    @apply fixed left-0 right-0 top-0 bottom-0 w-full h-full z-[999] hidden;
+}
+.size-finder-modal-active .overlay {
+    @apply block;
+}
+.size-finder-modal-active .size-finder-modal {
+    @apply flex h-[70%] w-[60%];
+}
+.size-finder-modal-active {
+    @apply overflow-hidden;
+}
+.modal {
+    @apply w-full sm:h-auto xs:h-auto;
 }
