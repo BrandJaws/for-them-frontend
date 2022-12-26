@@ -20,6 +20,14 @@ const Footer = () => {
   useEffect(() => {
     if (footerNavs.shop) {
       let shopNavFound = footerNavs.shop?.menu?.items?.map((o: any, index: number) => {
+        if (o.type === "HTTP") {
+          return {
+            title: o.title,
+            slug: o.title.split(" ").join("-"),
+            url: o.type === "PAGE" ? "/pages"+o.url.split("pages")[o.url.split("pages").length - 1] : o.url,
+            target: "_blank"
+          }
+        }
         return {
           title: o.title,
           slug: o.title.split(" ").join("-"),
@@ -30,6 +38,14 @@ const Footer = () => {
     }
     if (footerNavs.connect) {
       let connectNavFound = footerNavs.connect?.menu?.items?.map((o: any, index: number) => {
+        if (o.type === "HTTP") {
+          return {
+            title: o.title,
+            slug: o.title.split(" ").join("-"),
+            url: o.type === "PAGE" ? "/pages"+o.url.split("pages")[o.url.split("pages").length - 1] : o.url,
+            target: "_blank"
+          }
+        }
         return {
           title: o.title,
           slug: o.title.split(" ").join("-"),
@@ -40,6 +56,14 @@ const Footer = () => {
     }
     if (footerNavs.discover) {
       let discoverNavFound = footerNavs.discover?.menu?.items?.map((o: any, index: number) => {
+        if (o.type === "HTTP") {
+          return {
+            title: o.title,
+            slug: o.title.split(" ").join("-"),
+            url: o.type === "PAGE" ? "/pages"+o.url.split("pages")[o.url.split("pages").length - 1] : o.url,
+            target: "_blank"
+          }
+        }
         return {
           title: o.title,
           slug: o.title.split(" ").join("-"),
@@ -71,7 +95,7 @@ const Footer = () => {
                       }`}
                     >
                       <Link href={item.url} color="inherit" legacyBehavior>
-                        <a className="anchor-nav text-primary">{item.title}</a>
+                        <a className="anchor-nav text-primary" target={item.target ?? "_self"}>{item.title}</a>
                       </Link>
                     </li>
                   );
@@ -91,7 +115,7 @@ const Footer = () => {
                       }`}
                     >
                       <Link href={item.url} color="inherit" legacyBehavior>
-                        <a className="anchor-nav text-primary">{item.title}</a>
+                        <a className="anchor-nav text-primary" target={item.target ?? "_self"}>{item.title}</a>
                       </Link>
                     </li>
                   );
@@ -111,7 +135,7 @@ const Footer = () => {
                       }`}
                     >
                       <Link href={item.url} color="inherit" legacyBehavior>
-                        <a className="anchor-nav text-primary">{item.title}</a>
+                        <a className="anchor-nav text-primary" target={item.target ?? "_self"}>{item.title}</a>
                       </Link>
                     </li>
                   );
