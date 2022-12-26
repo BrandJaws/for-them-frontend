@@ -15,6 +15,7 @@ export type NavItemProps = {
   title?: string
   slug?: string
   url?: string
+  target?: string
 }
 
 export type WellnessProps = {

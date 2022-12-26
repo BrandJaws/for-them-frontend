@@ -39,6 +39,14 @@ export default function Nav() {
     let copiedNavs = [];
     if (headerNav) {
       let navFound = headerNav?.menu?.items?.map((o: any, index: number) => {
+        if (o.type === "HTTP") {
+          return {
+            title: o.title,
+            slug: o.title.split(" ").join("-"),
+            url: o.type === "PAGE" ? "/pages"+o.url.split("pages")[o.url.split("pages").length - 1] : o.url,
+            target: "_blank"
+          }
+        }
         return {
           title: o.title,
           slug: o.title.split(" ").join("-"),
@@ -87,7 +95,7 @@ export default function Nav() {
                           }`}
                         >
                           <Link href={item.url} color="inherit" legacyBehavior>
-                            <a className="anchor-nav">{item.title}</a>
+                            <a className="anchor-nav" target={item.target ?? "_self"}>{item.title}</a>
                           </Link>
                         </li>
                       )}
@@ -127,7 +135,7 @@ export default function Nav() {
                   }`}
                 >
                   <Link href={item.url} color="inherit" legacyBehavior>
-                    <a className="anchor-nav">{item.title}</a>
+                    <a className="anchor-nav" target={item.target ?? "_self"}>{item.title}</a>
                   </Link>
                 </li>
               );
