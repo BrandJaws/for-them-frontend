@@ -451,11 +451,11 @@ header .anchor-nav {
 }
 
 .image-carousel-secondary .slick-track {
-    @apply flex flex-wrap !w-[400px];
+    @apply flex flex-wrap !w-[400px] xs:!w-full;
 }
 
 .image-carousel-secondary .slick-track .slick-slide {
-    @apply  !w-[200px] !h-[240px];
+    @apply  !w-[200px] !h-[240px] xs:!w-[50%];
 }
 
 .image-carousel-secondary .slick-track .slick-slide img {
@@ -486,4 +486,6 @@ header .anchor-nav {
         transform: rotate(360deg);
     }
 }
+@media screen and (max-width: 767px) {
 
+}

@@ -104,29 +104,37 @@ export default function ProductPage({ product }) {
           slidesToScroll: 1,
           infinite: false,
           dots: false,
+          rows: 1,
+          arrows: false
         },
       },
       {
         breakpoint: 767,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 4,
           slidesToScroll: 1,
           initialSlide: 1,
+          rows: 1,
+          arrows: false
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 4,
           slidesToScroll: 1,
           initialSlide: 1,
+          rows: 1,
+          arrows: false
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 4,
           slidesToScroll: 1,
+          rows: 1,
+          arrows: false
         },
       },
     ],
