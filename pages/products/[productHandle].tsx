@@ -225,15 +225,13 @@ export const SizeBinderForm = ({
 };
 
 export default function ProductPage({ product, allBinder, allColors }) {
-  console.log(JSON.stringify(allColors))
   const { id, title, images, variants, handle, description, options } = product;
   const { src: productImage } = images[0];
   const { price } = variants[0];
   const sizeFound = options.find((o) => o.name === "Size");
-  const colorFound = allColors.values.length > 1 ? allColors : options.find((o) => o.name === "Color")
-  console.log(options)
-  console.log(options?.find((o) => o.name === "Color"))
-  console.log(options?.find((o) => o.name === "Color")?.length)
+  const colorFound = options.find((o) => o.name === "Color") ? allColors : options.find((o) => o.name === "Color")
+  console.log(options.find((o) => o.name === "Color"))
+
   const [slider1, setSlider1] = useState(null);
   const [slider2, setSlider2] = useState(null);
   const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
@@ -531,7 +529,6 @@ export default function ProductPage({ product, allBinder, allColors }) {
     }, 3000);
   };
 
-
   return (
     <>
       {product && (
@@ -590,7 +587,7 @@ export default function ProductPage({ product, allBinder, allColors }) {
                     </ul>
                   </div>
                   <div className="thumbs xs:order-2 sm:order-2 md:order-2 lg:order-3 xl:order-3">
-                    {images.length > 0 && (
+                    {images.length > 1 && (
                       <Slider
                         asNavFor={slider1}
                         className="image-carousel-secondary"
@@ -669,7 +666,6 @@ export default function ProductPage({ product, allBinder, allColors }) {
 
                       <div className="flex flex-wrap gap-4 pt-0 pb-5">
                         {colorFound.values.map((o, index) => {
-                          console.log(o)
                           return (
                             <div key={index} className="color-switch">
                               <input
