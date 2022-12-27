@@ -437,15 +437,20 @@ header .anchor-nav {
 }
 
 .lightFont, .lightFont span
-{ 
-    @apply font-monumentExtendedLight font-[100]; 
+{
+    @apply font-monumentExtendedLight font-[100];
 }
 
 #size-finder .modal-body{
-    @apply overflow-auto h-full flex justify-center items-center; 
+    @apply overflow-auto h-full flex justify-center items-center;
 }
 
 .previousBtn {
     @apply bg-slate-200 text-black;
 }
-
+.cart-info-text {
+    @apply flex justify-between gap-2 py-2 text-[12px];
+}
+.cart-section.cart-info-text {
+    @apply flex justify-between gap-2 py-2 text-[16px];
+}

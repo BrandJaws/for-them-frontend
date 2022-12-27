@@ -106,18 +106,18 @@ const CartSection = () => {
                 );
               }) : <div className="text-large">Your cart is empty!</div>}
           </div>
-          {checkout && (
+          {checkout && checkout.lineItems.length > 0 && (
             <ul className="mb-4">
-              <li className="flex justify-between py-2">
+              <li className="cart-section cart-info-text">
                 <span>Subtotal Price:</span>
                 <span>${checkout.subtotalPrice.amount}</span>
               </li>
-              <li className="flex justify-between py-2">
+              <li className="cart-section cart-info-text">
                 <span>Total Taxes:</span>
-                <span>${checkout.totalTax.amount}</span>
+                <span>(Calculated at next step)</span>
               </li>
               <hr />
-              <li className="flex justify-between py-2">
+              <li className="cart-section cart-info-text">
                 <span>Total Price:</span>
                 <span>${checkout.totalPrice.amount}</span>
               </li>

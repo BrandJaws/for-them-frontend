@@ -103,19 +103,19 @@ const CartBody: React.FC<any> = () => {
             <p>Your cart is empty!</p>
           )}
         </div>
-        {checkout && (
+        {checkout && checkout.lineItems.length > 0 && (
           <div className="w-full">
             <ul className="mb-4">
-              <li className="flex justify-between py-2">
+              <li className="cart-info-text">
                 <span>Subtotal Price:</span>
                 <span>${checkout.subtotalPrice.amount}</span>
               </li>
-              <li className="flex justify-between py-2">
+              <li className="cart-info-text">
                 <span>Total Taxes:</span>
-                <span>${checkout.totalTax.amount}</span>
+                <span>(Calculated at next step)</span>
               </li>
               <hr />
-              <li className="flex justify-between py-2">
+              <li className="cart-info-text">
                 <span>Total Price:</span>
                 <span>${checkout.totalPrice.amount}</span>
               </li>

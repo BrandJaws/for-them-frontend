@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setActiveCartModal,
   setCheckout,
+  setIsLoading,
 } from "../../reducers/shopify";
 import { RootState } from "../../stores/store";
 import SizeBinderForm from "../../components/common/SizeBinderForm";
@@ -296,11 +297,14 @@ export default function ProductPage({ product }) {
           quantity: 1,
         },
       ];
+      dispatch(setIsLoading(true));
       if (checkout) {
         client.checkout
           .addLineItems(checkout.id, lineItemsToAdd)
           .then((data: any) => {
             dispatch(setCheckout(data));
+          }).finally(() => {
+            dispatch(setIsLoading(false));
           });
       } else {
         client.checkout.create().then((checkout: any) => {
@@ -308,6 +312,8 @@ export default function ProductPage({ product }) {
             .addLineItems(checkout.id, lineItemsToAdd)
             .then((data: any) => {
               dispatch(setCheckout(data));
+            }).finally(() => {
+              dispatch(setIsLoading(false));
             });
         });
       }
@@ -315,7 +321,7 @@ export default function ProductPage({ product }) {
     dispatch(setActiveCartModal(true));
     setTimeout(() => {
       dispatch(setActiveCartModal(false));
-    }, 3000);
+    }, 5000);
   };
 
   const handleResetSizeFinder = () => {

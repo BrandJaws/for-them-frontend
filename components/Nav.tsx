@@ -13,13 +13,14 @@ import { RootState } from "../stores/store";
 import {
   setActiveCartModal,
   setActiveSizeFinderModal,
+  setHamBurger,
+  setIsLoading,
   setShopifyToEmpty,
 } from "../reducers/shopify";
 
 export default function Nav() {
   const windowSizeValue = useWindowSize();
   const dispatch = useDispatch();
-  const [hamburger, setHamBurger] = useState<boolean>(false);
   const navigation: Array<NavItemProps> = [
     {
       title: "Home",
@@ -37,7 +38,7 @@ export default function Nav() {
       url: "/pages/size-finder",
     },
   ];
-  const { headerNav, checkout } = useSelector(
+  const { headerNav, checkout, hamburger } = useSelector(
     (state: RootState) => state.shopifyReducer
   );
   const [nav, setNav] = useState<Array<NavItemProps>>([]);
@@ -73,6 +74,10 @@ export default function Nav() {
   const handleClickSizeFinder = (e: any) => {
     dispatch(setActiveSizeFinderModal(true));
   };
+  const handleCartBag = (e: any) => {
+    dispatch(setActiveCartModal(true));
+    dispatch(setIsLoading(false));
+  };
   return (
     <>
       <div className="fixed bg-white text-black px-5 top-0 left-0 right-0 flex justify-between items-center border-b-2 border-black z-[999]">
@@ -85,47 +90,39 @@ export default function Nav() {
               {nav.length > 0 &&
                 nav.map((item, index) => {
                   return (
-                    <>
+                    <li
+                      key={index}
+                      className={
+                        item.slug === "size-finder" || item.slug === "editorial"
+                          ? `nav-list-item hover:cursor-pointer`
+                          : `nav-list-item hover:cursor-pointer${
+                              useRouterToCheckPath(item.url) ? " active" : ""
+                            }`
+                      }
+                    >
                       {item.slug === "size-finder" ? (
-                        <li
-                          key={index}
-                          className={`nav-list-item hover:cursor-pointer`}
+                        <a
+                          type="button"
+                          className="anchor-nav"
+                          onClick={(e) => handleClickSizeFinder(e)}
                         >
-                          <a
-                            type="button"
-                            className="anchor-nav"
-                            onClick={(e) => handleClickSizeFinder(e)}
-                          >
-                            Size Finder
-                          </a>
-                        </li>
+                          Size Finder
+                        </a>
                       ) : item.slug === "editorial" ? (
-                        <li
-                          key={index}
-                          className={`nav-list-item hover:cursor-pointer`}
-                        >
-                          <a type="button" className="anchor-nav">
-                            Editorial
-                          </a>
-                        </li>
+                        <a type="button" className="anchor-nav">
+                          Editorial
+                        </a>
                       ) : (
-                        <li
-                          key={index}
-                          className={`nav-list-item hover:cursor-pointer${
-                            useRouterToCheckPath(item.url) ? " active" : ""
-                          }`}
-                        >
-                          <Link href={item.url} color="inherit" legacyBehavior>
-                            <a
-                              className="anchor-nav"
-                              target={item.target ?? "_self"}
-                            >
-                              {item.title}
-                            </a>
-                          </Link>
-                        </li>
+                        <Link href={item.url} color="inherit" legacyBehavior>
+                          <a
+                            className="anchor-nav"
+                            target={item.target ?? "_self"}
+                          >
+                            {item.title}
+                          </a>
+                        </Link>
                       )}
-                    </>
+                    </li>
                   );
                 })}
             </ul>
@@ -135,18 +132,16 @@ export default function Nav() {
           <div className="shoppingBag relative">
             <HiOutlineShoppingBag
               className="cursor-pointer"
-              onClick={() => dispatch(setActiveCartModal(true))}
+              onClick={handleCartBag}
             />
             <span className="badge-count">
               {checkout && checkout.lineItems.length}
             </span>
           </div>
           {windowSizeValue.width < 767 && (
-            <>
-              <button type="button" onClick={() => setHamBurger(!hamburger)}>
-                <GiHamburgerMenu className="w-5 h-5" />
-              </button>
-            </>
+            <button type="button" onClick={() => dispatch(setHamBurger(true))}>
+              <GiHamburgerMenu className="w-5 h-5" />
+            </button>
           )}
         </div>
       </div>
@@ -159,51 +154,36 @@ export default function Nav() {
           {nav.length > 0 &&
             nav.map((item, index) => {
               return (
-                <>
+                <li
+                  key={index}
+                  className={
+                    item.slug === "size-finder" || item.slug === "editorial"
+                      ? `anchor hover:cursor-pointer`
+                      : `anchor hover:cursor-pointer${
+                          useRouterToCheckPath(item.url) ? " active" : ""
+                        }`
+                  }
+                >
                   {item.slug === "size-finder" ? (
-                    <li
-                      key={index}
-                      className={`nav-list-item hover:cursor-pointer`}
+                    <a
+                      type="button"
+                      className="anchor-nav"
+                      onClick={(e) => handleClickSizeFinder(e)}
                     >
-                      <a
-                        type="button"
-                        className="anchor-nav"
-                        onClick={(e) => handleClickSizeFinder(e)}
-                      >
-                        Size Finder
-                      </a>
-                    </li>
+                      Size Finder
+                    </a>
                   ) : item.slug === "editorial" ? (
-                    <li
-                      key={index}
-                      className={`nav-list-item hover:cursor-pointer`}
-                    >
-                      <a
-                        type="button"
-                        className="anchor-nav"
-                        onClick={(e) => handleClickSizeFinder(e)}
-                      >
-                        Editorial
-                      </a>
-                    </li>
+                    <a type="button" className="anchor-nav">
+                      Editorial
+                    </a>
                   ) : (
-                    <li
-                      key={index}
-                      className={`nav-list-item hover:cursor-pointer${
-                        useRouterToCheckPath(item.url) ? " active" : ""
-                      }`}
-                    >
-                      <Link href={item.url} color="inherit" legacyBehavior>
-                        <a
-                          className="anchor-nav"
-                          target={item.target ?? "_self"}
-                        >
-                          {item.title}
-                        </a>
-                      </Link>
-                    </li>
+                    <Link href={item.url} color="inherit" legacyBehavior>
+                      <a className="anchor-nav" target={item.target ?? "_self"}>
+                        {item.title}
+                      </a>
+                    </Link>
                   )}
-                </>
+                </li>
               );
             })}
         </ul>
