@@ -225,11 +225,15 @@ export const SizeBinderForm = ({
 };
 
 export default function ProductPage({ product, allBinder, allColors }) {
+  console.log(JSON.stringify(allColors))
   const { id, title, images, variants, handle, description, options } = product;
   const { src: productImage } = images[0];
   const { price } = variants[0];
   const sizeFound = options.find((o) => o.name === "Size");
-  const colorFound = options?.find((o) => o.name === "Color")?.length === 1 ? allColors : options?.find((o) => o.name === "Color")
+  const colorFound = allColors.values.length > 1 ? allColors : options.find((o) => o.name === "Color")
+  console.log(options)
+  console.log(options?.find((o) => o.name === "Color"))
+  console.log(options?.find((o) => o.name === "Color")?.length)
   const [slider1, setSlider1] = useState(null);
   const [slider2, setSlider2] = useState(null);
   const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
@@ -665,6 +669,7 @@ export default function ProductPage({ product, allBinder, allColors }) {
 
                       <div className="flex flex-wrap gap-4 pt-0 pb-5">
                         {colorFound.values.map((o, index) => {
+                          console.log(o)
                           return (
                             <div key={index} className="color-switch">
                               <input
