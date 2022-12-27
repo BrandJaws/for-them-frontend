@@ -127,7 +127,7 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 }
 
 .nav-list-item {
-    @apply relative flex items-center justify-center z-10 px-6 md:px-[10px];
+    @apply relative flex items-center justify-center z-10 px-6 md:px-[10px] overflow-hidden xs:py-[15px];
 }
 
 .nav-list-item:hover .anchor-nav, .nav-list-item.active .anchor-nav {
@@ -299,7 +299,7 @@ header .anchor-nav {
 
 .mobile-nav {
     transition: all 0.3s linear;
-    @apply top-[-170px]
+    @apply top-[-300px]
 }
 .mobile-nav.show {
     @apply top-[70px]

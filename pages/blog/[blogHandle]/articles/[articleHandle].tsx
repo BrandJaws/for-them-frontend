@@ -8,8 +8,8 @@ export default function ArticlePage({ article }) {
   return (
     <>
       <div className="article-detail-wrapper">
-        <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-6">
-          <div className="col-span-1">
+        <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-6 border-b-2 border-black">
+          <div className="col-span-1 border-r-2 border-black xs:border-2">
             <Image
               src={articleByHandle.image.src}
               alt="article image"
@@ -17,14 +17,14 @@ export default function ArticlePage({ article }) {
               height={1000}
             />
           </div>
-          <div className="col-span-1 flex items-center justify-center">
-            <div className="subtitle-bold text-left">{articleByHandle.title}</div>
+          <div className="col-span-1 flex items-center justify-center xs:p-6 xs:pt-0">
+            <div className="subtitle-bold text-left lightFont">{articleByHandle.title}</div>
           </div>
         </div>
-        <div className="p-16 container mx-auto">
+        <div className="p-16 xs:p-6 container mx-auto">
           <div className="grid grid-cols-1">
             <div
-              className="page-content"
+              className="page-content lightFont"
               dangerouslySetInnerHTML={{ __html: articleByHandle.contentHtml }}
             ></div>
           </div>

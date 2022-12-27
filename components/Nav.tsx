@@ -152,7 +152,7 @@ export default function Nav() {
       </div>
       {windowSizeValue.width < 767 && (
         <ul
-          className={`mobile-nav fixed left-0 z-[500] right-0 list-none unstyled flex flex-col gap-1 p-4 border-b border-black bg-primary2${
+          className={`mobile-nav fixed left-0 z-[500] right-0 list-none unstyled flex flex-col gap-1 p-4 border-b-2 border-black bg-primary2${
             hamburger ? " show" : ""
           }`}
         >
