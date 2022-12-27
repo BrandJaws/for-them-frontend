@@ -11,7 +11,7 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-4">
           <div className="flex gap-4 flex-col flex-wrap justify-center items-center">
             <Fade right cascade>
-              <div className="subtitle-bold text-center">our</div>
+              <div className="subtitle-bold text-center lightFont">our</div>
             </Fade>
             <div className="title-large text-center capitalize">PRODUCTS</div>
             <Fade bottom>

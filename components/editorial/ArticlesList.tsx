@@ -19,7 +19,7 @@ export const Article = ({ key, product, goToProductPage }) => {
               src={src}
               alt={title}
               loading="lazy"
-              className="product-image object-cover w-full h-full max-h-96 min-h-[24rem] xs:min-h-[16rem] object-top"
+              className="product-image object-contain w-full h-full max-h-96 min-h-[24rem] xs:min-h-[16rem] object-top"
               width={300}
               height={300}
             />
