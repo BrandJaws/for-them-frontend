@@ -83,8 +83,8 @@ h1, h2, h3, h4, h5, h6, span, a, p, strong, li, ul, div, code {
 .btn-primary5 {
     @apply font-monumentExtended bg-[var(--primary2)] xl:px-[60px] lg:px-[45px] md:px-[45px]
     sm:px-[30px] xs:px-[25px] xl:py-[20px] lg:py-[20px] md:py-[14px]
-    sm:py-[12px] xs:py-[18px] text-[var(--primary1)]
-    xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[18px]
+    sm:py-[12px] xs:py-[10px] text-[var(--primary1)]
+    xl:text-[18px] lg:text-[14px] md:text-[16px] sm:text-[14px] xs:text-[12px]
     xl:leading-[22px] lg:leading-[16px] md:leading-[20px] sm:leading-[18px] xs:leading-[16px] rounded-[38px]
 }
 
@@ -181,7 +181,7 @@ header .anchor-nav {
 }
 
 .title-large {
-    @apply font-[100] font-monumentExtended xl:text-[100px] lg:text-[70px] md:text-[60px] sm:text-[60px] xs:text-[40px] xl:leading-[100px] lg:leading-[70px] md:leading-[60px] sm:leading-[60px] xs:leading-[60px]
+    @apply font-[100] font-monumentExtended xl:text-[100px] lg:text-[70px] md:text-[60px] sm:text-[60px] xs:text-[40px] xl:leading-[100px] lg:leading-[70px] md:leading-[60px] sm:leading-[60px] xs:leading-[40px]
 }
 
 .text-small {

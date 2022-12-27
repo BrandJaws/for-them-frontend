@@ -8,7 +8,7 @@ import SectionHeader from "../common/SectionHeader";
 
 const GiftSection = () => {
   return (
-    <section className="container mx-auto md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding">
+    <section className="container mx-auto md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding xs:pt-[30px] xs:pb-[0px]">
       <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-4">
         <div className="flex gap-4 flex-col flex-wrap justify-center items-center">
           <SectionHeader
