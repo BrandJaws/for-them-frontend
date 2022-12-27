@@ -224,12 +224,12 @@ export const SizeBinderForm = ({
   }
 };
 
-export default function ProductPage({ product }) {
+export default function ProductPage({ product, allBinder, allColors }) {
   const { id, title, images, variants, handle, description, options } = product;
   const { src: productImage } = images[0];
   const { price } = variants[0];
   const sizeFound = options.find((o) => o.name === "Size");
-  const colorFound = options.find((o) => o.name === "Color");
+  const colorFound = options?.find((o) => o.name === "Color")?.length === 1 ? allColors : options?.find((o) => o.name === "Color")
   const [slider1, setSlider1] = useState(null);
   const [slider2, setSlider2] = useState(null);
   const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
@@ -363,8 +363,10 @@ export default function ProductPage({ product }) {
       setSizesDropdown(sizeFound.values);
     }
   }, [sizeFound]);
-  const handleColorChange = (val) => {
-    setSelectedColor(val);
+  const handleColorChange = (val, data) => {
+    if (data.otherProduct) {
+      router.push(`/products/${data.handle}`)
+    } else {setSelectedColor(val);}
   };
   const handleAccordionClick = (index: number) => {
     if (accordionOpen) {
@@ -525,6 +527,7 @@ export default function ProductPage({ product }) {
     }, 3000);
   };
 
+
   return (
     <>
       {product && (
@@ -666,13 +669,16 @@ export default function ProductPage({ product }) {
                             <div key={index} className="color-switch">
                               <input
                                 type="radio"
-                                onChange={() => handleColorChange(o.value)}
+                                onChange={() => handleColorChange(o.value, o)}
                                 className={`w-8 h-8 ${_.lowerCase(o.value)
                                   .split(" ")
-                                  .join("-")}${
-                                  selectedColor === o.value ? " checked" : ""
-                                }`}
+                                  .join("-")}`}
                                 name="color"
+                                style={{
+                                  backgroundImage: `url(${o.image.src.replace(".png", "_250x40_crop_center.png").replace(".jpg", "_250x40_crop_center.jpg")})`,  // coming from public folder
+                                  backgroundSize: "cover",
+                                  backgroundPosition: "center"
+                                }}
                               />
                             </div>
                           );
@@ -795,22 +801,55 @@ export default function ProductPage({ product }) {
             </div>
           </section>
           <section>
-            <BinderShopList />
+            <BinderShopList product={product.handle}/>
           </section>
+
         </>
       )}
     </>
   );
 }
 
+function sortByKey(array, key) {
+  return array.sort(function(a, b) {
+    var x = a[key]; var y = b[key];
+    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+  });
+}
+
 export const getServerSideProps = async ({ params }) => {
   const { productHandle } = params;
   // Fetch one product
   const product = await shopifyClient.product.fetchByHandle(productHandle);
+  const allBinders = await client.collection.fetchWithProducts('gid://shopify/Collection/292491067558',{productsFirst: 100});
+  let binders = []
+  let colorsArray = {
+    name: "Color",
+    values: [],
+    type: {"name":"ProductOption","kind":"OBJECT","fieldBaseTypes":{"id":"ID","name":"String","values":"String"},"implementsNode":true}
+  }
+  allBinders.products.forEach(function (item, index) {
+    binders.push({
+      handle: item.handle,
+      color: item.options.find(x => x.name === "Color"),
+      image: item.images[0],
+      title: item.title,
+      publishedAt: item.publishedAt
+    })
+    let colorPush = item.options.find(x => x.name === "Color").values[0]
+        colorPush.otherProduct = true
+        colorPush.handle = item.handle
+        colorPush.image = item.images[1]
+        colorPush.title = item.title
+        colorPush.publishedAt = item.publishedAt
+    colorsArray.values.push(colorPush)
+  });
 
+  colorsArray.values = sortByKey(colorsArray.values,"published_at")
   return {
     props: {
       product: parseShopifyResponse(product),
+      allColors: parseShopifyResponse(colorsArray)
     },
   };
 };

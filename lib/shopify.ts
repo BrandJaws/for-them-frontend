@@ -11,3 +11,5 @@ export const client = Client.buildClient({
 console.log(process.env.SHOPIFY_STORE_DOMAIN, "dkjshfnuweiwds")
 export const parseShopifyResponse = (response) =>
   JSON.parse(JSON.stringify(response));
+
+
