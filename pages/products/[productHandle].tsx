@@ -89,9 +89,10 @@ export default function ProductPage({ product }) {
     ],
   };
   const settingsThumbsSlider = {
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
-    arrows: true,
+    rows: 1,
+    arrows: false,
     centerMode: true,
     focusOnSelect: true,
     swipeToSlide: true,
@@ -99,48 +100,56 @@ export default function ProductPage({ product }) {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
           slidesToScroll: 1,
           infinite: false,
           dots: false,
+          rows: 1,
+          arrows: false
         },
       },
       {
         breakpoint: 767,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 4,
           slidesToScroll: 1,
           initialSlide: 1,
+          rows: 1,
+          arrows: false
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 4,
           slidesToScroll: 1,
           initialSlide: 1,
+          rows: 1,
+          arrows: false
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 4,
           slidesToScroll: 1,
+          rows: 1,
+          arrows: false
         },
       },
     ],
-    nextArrow: (
-      <NextArrow
-        className="slider-next-btn"
-        text={<FiArrowRight color="black" className="w-[35px] h-[30px]" />}
-      />
-    ),
-    prevArrow: (
-      <PrevArrow
-        className="slider-previous-btn"
-        text={<FiArrowLeft color="black" className="w-[35px] h-[30px]" />}
-      />
-    ),
+    // nextArrow: (
+    //   <NextArrow
+    //     className="slider-next-btn"
+    //     text={<FiArrowRight color="black" className="w-[35px] h-[30px]" />}
+    //   />
+    // ),
+    // prevArrow: (
+    //   <PrevArrow
+    //     className="slider-previous-btn"
+    //     text={<FiArrowLeft color="black" className="w-[35px] h-[30px]" />}
+    //   />
+    // ),
   };
   const productSpecs = [
     {
@@ -339,6 +348,25 @@ export default function ProductPage({ product }) {
       });
     }
   }
+  const [formattedImages, setFormattedImages] = useState<Array<any>>([]);
+  useEffect(() => {
+    if (images.length > 0) {
+      let count = 0;
+      let resultantArr = [];
+      images.forEach((img: any) => {
+        if (count === 4) {
+          return;
+        } else {
+          resultantArr.push(img)
+        }
+        count++;
+      })
+      if (resultantArr.length > 0) {
+        setFormattedImages(resultantArr);
+      }
+    }
+  }, [images]);
+
   return (
     <>
       {product && (
@@ -404,15 +432,15 @@ export default function ProductPage({ product }) {
                         ref={(slider) => setSlider2(slider)}
                         {...settingsThumbsSlider}
                       >
-                        {images.map((img: StaticImageData, index: number) => {
+                        {formattedImages.map((img: any, index: number) => {
                           return (
                             <div
                               key={index}
-                              className="lg:h-[150px] lg:w-[150px] image-box flex items-center justify-center"
+                              className="lg:h-full lg:w-full image-box flex items-center justify-center"
                             >
                               <Image
                                 src={img.src}
-                                alt={`Picture of ${title}`}
+                                alt={`${img.id}-${title}`}
                                 width={150}
                                 height={150}
                                 loading="lazy"
