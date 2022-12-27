@@ -7,6 +7,7 @@ import axios from "axios";
 import {
   setActiveCartModal,
   setActiveSizeFinderModal,
+  setHamBurger,
   setNavToStore,
   setPagesToStore,
   setShopifyToEmpty,
@@ -28,7 +29,7 @@ const Layout: React.FC<any> = ({
   children,
   title = "This is the default title",
 }) => {
-  const { isCartOpen, isSizeFinderModal, isLoading } = useSelector(
+  const { isCartOpen, isSizeFinderModal, isLoading, hamburger } = useSelector(
     (state: RootState) => state.shopifyReducer
   );
   const { data } = useSWR("/api/pages", (url) => fetcher(url));
@@ -92,6 +93,9 @@ const Layout: React.FC<any> = ({
       !document.getElementById("size-finder").contains(e.target)
     ) {
       dispatch(setActiveSizeFinderModal(false));
+    }
+    if (hamburger) {
+      dispatch(setHamBurger(false));
     }
   };
   return (

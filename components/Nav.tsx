@@ -13,6 +13,7 @@ import { RootState } from "../stores/store";
 import {
   setActiveCartModal,
   setActiveSizeFinderModal,
+  setHamBurger,
   setIsLoading,
   setShopifyToEmpty,
 } from "../reducers/shopify";
@@ -20,7 +21,6 @@ import {
 export default function Nav() {
   const windowSizeValue = useWindowSize();
   const dispatch = useDispatch();
-  const [hamburger, setHamBurger] = useState<boolean>(false);
   const navigation: Array<NavItemProps> = [
     {
       title: "Home",
@@ -38,7 +38,7 @@ export default function Nav() {
       url: "/pages/size-finder",
     },
   ];
-  const { headerNav, checkout } = useSelector(
+  const { headerNav, checkout, hamburger } = useSelector(
     (state: RootState) => state.shopifyReducer
   );
   const [nav, setNav] = useState<Array<NavItemProps>>([]);
@@ -139,11 +139,9 @@ export default function Nav() {
             </span>
           </div>
           {windowSizeValue.width < 767 && (
-            <>
-              <button type="button" onClick={() => setHamBurger(!hamburger)}>
-                <GiHamburgerMenu className="w-5 h-5" />
-              </button>
-            </>
+            <button type="button" onClick={() => dispatch(setHamBurger(true))}>
+              <GiHamburgerMenu className="w-5 h-5" />
+            </button>
           )}
         </div>
       </div>
@@ -160,8 +158,8 @@ export default function Nav() {
                   key={index}
                   className={
                     item.slug === "size-finder" || item.slug === "editorial"
-                      ? `nav-list-item hover:cursor-pointer`
-                      : `nav-list-item hover:cursor-pointer${
+                      ? `anchor hover:cursor-pointer`
+                      : `anchor hover:cursor-pointer${
                           useRouterToCheckPath(item.url) ? " active" : ""
                         }`
                   }

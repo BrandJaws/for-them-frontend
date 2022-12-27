@@ -53,6 +53,15 @@ export const setActiveSizeFinderModal = createAction(
   }
 );
 
+export const setHamBurger = createAction(
+  "setHamBurger",
+  function prepare(status: boolean) {
+    return {
+      payload: status,
+    };
+  }
+);
+
 export const addProductToCart = createAction(
   "addProductToCart",
   function prepare(product: any) {
@@ -123,6 +132,7 @@ export interface shopifyState {
   headerNav?: any | null;
   isCartOpen?: boolean;
   isLoading?: boolean;
+  hamburger?: boolean;
   cartItems?: any | null;
   checkout?: any | null;
   isSizeFinderModal?: any | null;
@@ -138,6 +148,7 @@ export const initialState: shopifyState = {
   headerNav: null,
   isCartOpen: false,
   isLoading: false,
+  hamburger: false,
   cartItems: null,
   checkout: null,
   isSizeFinderModal: false
@@ -219,6 +230,9 @@ export const shopifySlice = createSlice({
     });
     builder.addCase(setIsLoading, (state, action) => {
       state.isLoading = action.payload;
+    });
+    builder.addCase(setHamBurger, (state, action) => {
+      state.hamburger = action.payload;
     });
   },
 });
