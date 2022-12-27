@@ -52,7 +52,17 @@ const SizeFinderModal: React.FC<any> = () => {
           dispatch(setActiveSizeFinderModal(false));
         }
       }
-      router.push("/shop");
+      console.log(router.query, "router params")
+      if (router.query && router.query.productHandle) {
+        if (typeof window !== "undefined") {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }
+      } else {
+        router.push("/shop");
+      }
     } else {
       setChestSizeChartObj(null);
       setSizeErrorMessage("Size does not exists.");
