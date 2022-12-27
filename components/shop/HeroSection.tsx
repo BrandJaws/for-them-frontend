@@ -7,7 +7,7 @@ const HeroSection = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <section className="container mx-auto md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding">
+      <section className="container mx-auto md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding xs:py-0">
         <div className="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-4">
           <div className="flex gap-4 flex-col flex-wrap justify-center items-center">
             <Fade right cascade>
