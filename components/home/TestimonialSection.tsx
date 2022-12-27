@@ -68,7 +68,7 @@ const TestimonialSection = ({ data }) => {
   };
   return (
     <>
-      <section className="section-padding">
+      <section className="section-padding xs:pt-[0px]">
         <div className="container mx-auto md:px-[15px] sm:px-[15px] xs:px-[15px]">
           <div className="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-4">
             <div>
