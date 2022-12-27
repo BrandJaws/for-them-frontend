@@ -55,7 +55,7 @@ const SizeBinderForm: React.FC<any> = ({
                           value={item}
                           onChange={(event) => handleBindingJourney(event)}
                         />
-                        <span className="absolute top-0 right-0 left-0 bottom-0 inline-flex items-center justify-center px-[15px] xs:px-[7.5px] py-[25px] xs:py-[15px] text-center w-full text-[18px] xs:text-[12px] leading-[22px] xs:leading-[16px]">
+                        <span className="absolute top-0 right-0 left-0 bottom-0 inline-flex items-center justify-center px-[15px] xs:px-[7.5px] py-[25px] xs:py-[15px] text-center w-full text-[18px] md:text-[12px] xs:text-[12px] md:leading-[16px] leading-[22px] xs:leading-[16px]">
                           {item}
                         </span>
                       </label>
@@ -68,7 +68,7 @@ const SizeBinderForm: React.FC<any> = ({
                   <Fade>
                     <button
                       type="button"
-                      className="binder-btn min-w-[200px] xs:min-w-[120px] previousBtn"
+                      className="binder-btn min-w-[150px] xs:min-w-[100px] previousBtn"
                       onClick={prevStep}
                     >
                       prev
@@ -79,7 +79,7 @@ const SizeBinderForm: React.FC<any> = ({
                   <Fade>
                     <button
                       type="button"
-                      className="binder-btn min-w-[200px] xs:min-w-[120px] nextBtn"
+                      className="binder-btn min-w-[150px] xs:min-w-[100px] nextBtn"
                       onClick={nextStep}
                     >
                       next
@@ -131,7 +131,7 @@ const SizeBinderForm: React.FC<any> = ({
                   <Fade>
                     <button
                       type="button"
-                      className="binder-btn min-w-[200px] xs:min-w-[120px] previousBtn"
+                      className="binder-btn min-w-[150px] xs:min-w-[100px] previousBtn"
                       onClick={prevStep}
                     >
                       prev
@@ -142,7 +142,7 @@ const SizeBinderForm: React.FC<any> = ({
                   <Fade>
                     <button
                       type="button"
-                      className="binder-btn min-w-[200px] xs:min-w-[120px] nextBtn"
+                      className="binder-btn min-w-[150px] xs:min-w-[100px] nextBtn"
                       onClick={nextStep}
                     >
                       next
@@ -159,7 +159,7 @@ const SizeBinderForm: React.FC<any> = ({
         <div>
           <Fade right>
             <div className="pt-0 pb-16">
-              <div className="text-large xs:text-center">
+              <div className="text-large xs:text-center mb-6">
                 Your Binder size is
               </div>
               {chestSizeChartObj && (
@@ -173,7 +173,7 @@ const SizeBinderForm: React.FC<any> = ({
             <Fade>
               <button
                 type="button"
-                className="binder-btn min-w-[200px]"
+                className="binder-btn min-w-[150px] xs:min-w-[100px] previousBtn"
                 onClick={prevStep}
               >
                 prev
@@ -182,7 +182,7 @@ const SizeBinderForm: React.FC<any> = ({
             <Fade right>
               <button
                 type="button"
-                className="binder-btn max-w-max"
+                className="binder-btn max-w-max "
                 onClick={handleBuyNow}
               >
                 Buy now

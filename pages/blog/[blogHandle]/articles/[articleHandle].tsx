@@ -8,11 +8,12 @@ export default function ArticlePage({ article }) {
   return (
     <>
       <div className="article-detail-wrapper">
-        <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-6 border-b-2 border-black">
-          <div className="col-span-1 border-r-2 border-black xs:border-2">
+        <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-6 border-b-2 border-black h-[70vh] overflow-hidden">
+          <div className="col-span-1 border-r-2 border-black xs:border-2 h-[70vh]">
             <Image
               src={articleByHandle.image.src}
               alt="article image"
+              className="h-full object-cover object-center"
               width={1000}
               height={1000}
             />
