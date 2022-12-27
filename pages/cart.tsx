@@ -15,7 +15,7 @@ const Cart: React.FC<any> = () => {
         <CartSection />
       </section>
       <section className="">
-        <BinderShopList />
+        <BinderShopList product={null}/>
       </section>
     </>
   );
