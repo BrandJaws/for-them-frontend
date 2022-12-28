@@ -7,7 +7,6 @@ import customMade from "../../assets/images/product/custom-made.png";
 import rotatableNeckline from "../../assets/images/product/rotatable-neckline.png";
 import { client, parseShopifyResponse, shopifyClient } from "../../lib/shopify";
 import Link from "next/link";
-import _ from "lodash";
 import { TfiAngleDown } from "react-icons/tfi";
 import NextArrow from "../../components/common/NextArrow";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
@@ -26,20 +25,25 @@ import {
 import { RootState } from "../../stores/store";
 import SizeBinderForm from "../../components/common/SizeBinderForm";
 
-export default function ProductPage({ product }) {
-  const { title, images, variants, description, options } = product;
+
+export default function ProductPage({ product, allBinder, allColors }) {
+  const { id, title, images, variants, handle, description, options } = product;
+  const { src: productImage } = images[0];
   const { price } = variants[0];
   const sizeFound = options.find((o) => o.name === "Size");
-  const colorFound = options.find((o) => o.name === "Color");
+  const colorFound = options.find((o) => o.name === "Color")
+  const colorList = allColors
+  const isBinder = title.includes("The Binder") ? true : false
+
   const [slider1, setSlider1] = useState(null);
   const [slider2, setSlider2] = useState(null);
   const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
   const [isAccordionOpen, setIsAccordionOpen] = useState<number>(null);
   const [selectedColor, setSelectedColor] = useState<string>(
-    colorFound && colorFound.values.length > 0 ? colorFound.values[0].value : ""
+    colorFound && colorFound.values.length > 0 ? colorFound.values[0].value : null
   );
   const [selectedSize, setSelectedSize] = useState<string>(
-    sizeFound && sizeFound.values.length > 0 ? sizeFound.values[0].value : ""
+    sizeFound && sizeFound.values.length > 0 ? sizeFound.values[0].value : null
   );
   const [sizesDropdown, setSizesDropdown] = useState<any>([]);
   const [step, setStep] = useState<number>(0);
@@ -174,9 +178,6 @@ export default function ProductPage({ product }) {
       setSizesDropdown(sizeFound.values);
     }
   }, [sizeFound]);
-  const handleColorChange = (val) => {
-    setSelectedColor(val);
-  };
   const handleAccordionClick = (index: number) => {
     if (accordionOpen) {
       setAccordionOpen(false);
@@ -299,6 +300,11 @@ export default function ProductPage({ product }) {
     let findProductVariant = variants.find((o: any) => {
       return o.selectedOptions.find((option) => option.value === selectedSize);
     });
+    if (selectedSize === null) {
+      findProductVariant = variants[0]
+    }
+    console.log(findProductVariant)
+    console.log(checkout)
     if (findProductVariant) {
       const lineItemsToAdd = [
         {
@@ -425,7 +431,7 @@ export default function ProductPage({ product }) {
                     </ul>
                   </div>
                   <div className="thumbs xs:order-2 sm:order-2 md:order-2 lg:order-3 xl:order-3">
-                    {images.length > 0 && (
+                    {images.length > 1 && (
                       <Slider
                         asNavFor={slider1}
                         className="image-carousel-secondary"
@@ -456,10 +462,10 @@ export default function ProductPage({ product }) {
               </div>
               <div className="product-detail xl:px-16 lg:px-16 md:px-10 sm:px-8 xs:px-6">
                 <Fade top cascade>
-                  <div className="subtitle-bold subtitle-top text-left ">{title}</div>
+                  <div className="subtitle-bold subtitle-top text-left ">{isBinder ? "The Binder" : ""}</div>
                 </Fade>
                 <div className="flex flex-col flex-wrap gap-4 items-start ">
-                  <div className="title-large capitalize">Orange</div>
+                  <div className="title-large capitalize">{isBinder ? colorFound && colorFound.values.length > 0 ? colorFound.values[0].value : "" : title}</div>
                   <Fade bottom cascade>
                     <div className="subtitle-bold text-center capitalize">
                       ${price.amount} USD
@@ -493,28 +499,33 @@ export default function ProductPage({ product }) {
                       </select>
                     </div>
                   )}
-                  <Link href="/shop">
+                  {isBinder ?  <Link href="/shop">
                     <p className="font-monumentExtended font-[300] underline">
                       find your size
                     </p>
-                  </Link>
+                  </Link> : ""}
                   {colorFound && colorFound.values.length > 0 && (
                     <div className="color-field xs:mt-[15px] xs:mb-[15px] mt-10 mb-10 w-full font-monumentExtended relative">
 
                       <div className="flex flex-wrap gap-4 pt-0 pb-5">
-                        {colorFound.values.map((o, index) => {
+                        {allColors.values.map((o, index) => {
                           return (
                             <div key={index} className="color-switch">
-                              <input
-                                type="radio"
-                                onChange={() => handleColorChange(o.value)}
-                                className={`w-8 h-8 ${_.lowerCase(o.value)
-                                  .split(" ")
-                                  .join("-")}${
-                                  selectedColor === o.value ? " checked" : ""
-                                }`}
-                                name="color"
-                              />
+                              <Link href={`/products/${o.handle}`}>
+                                <input
+                                    type="radio"
+                                    className={`w-8 h-8
+                                        .split(" ")
+                                        .join("-")}`}
+                                    name="color"
+                                    style={{
+                                      backgroundImage: `url(${o.image.src.replace(".png", "_250x40_crop_center.png").replace(".jpg", "_250x40_crop_center.jpg")})`,  // coming from public folder
+                                      backgroundSize: "cover",
+                                      backgroundPosition: "center"
+                                    }}
+                                />
+                              </Link>
+
                             </div>
                           );
                         })}
@@ -619,42 +630,78 @@ export default function ProductPage({ product }) {
               </div>
             </div>
           </section>
-          <section className="section-padding">
-            <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1">
-              <div className=""></div>
-              <div className="right-side section-padding bg-primary5 xl:px-[50px] lg:px-[50px] md:px-[35px] sm:px-[25px] xs:px-[20px] flex flex-col flex-wrap justify-center">
-                <SizeBinderForm
-                  setStep={setStep}
-                  step={step}
-                  apexChestNumber={apexChestNumber}
-                  handleApexChest={handleApexChest}
-                  bindingJourney={bindingJourney}
-                  handleBindingJourney={handleBindingJourney}
-                  handleBuyNow={handleBuyNow}
-                  handleResetSizeFinder={handleResetSizeFinder}
-                  sizeErrorMessage={sizeErrorMessage}
-                  chestSizeChartObj={chestSizeChartObj}
-                />
-              </div>
-            </div>
-          </section>
+          {isBinder ?
+              <section className="section-padding">
+                <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1">
+                  <div className=""></div>
+                  <div className="right-side section-padding bg-primary5 xl:px-[50px] lg:px-[50px] md:px-[35px] sm:px-[25px] xs:px-[20px] flex flex-col flex-wrap justify-center">
+                    <SizeBinderForm
+                        setStep={setStep}
+                        step={step}
+                        apexChestNumber={apexChestNumber}
+                        handleApexChest={handleApexChest}
+                        bindingJourney={bindingJourney}
+                        handleBindingJourney={handleBindingJourney}
+                        handleBuyNow={handleBuyNow}
+                        handleResetSizeFinder={handleResetSizeFinder}
+                        sizeErrorMessage={sizeErrorMessage}
+                        chestSizeChartObj={chestSizeChartObj}
+                    />
+                  </div>
+                </div>
+              </section>
+          : "" }
           <section>
-            <BinderShopList product={product} />
+
+            <BinderShopList product={product.handle}/>
           </section>
+
         </>
       )}
     </>
   );
 }
 
+function sortByKey(array, key) {
+  return array.sort(function(a, b) {
+    var x = a[key]; var y = b[key];
+    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+  });
+}
+
 export const getServerSideProps = async ({ params }) => {
   const { productHandle } = params;
   // Fetch one product
   const product = await shopifyClient.product.fetchByHandle(productHandle);
+  const allBinders = await shopifyClient.collection.fetchWithProducts('gid://shopify/Collection/292491067558',{productsFirst: 100});
+  let binders = []
+  let colorsArray = {
+    name: "Color",
+    values: [],
+    type: {"name":"ProductOption","kind":"OBJECT","fieldBaseTypes":{"id":"ID","name":"String","values":"String"},"implementsNode":true}
+  }
+  allBinders.products.forEach(function (item, index) {
+    binders.push({
+      handle: item.handle,
+      color: item.options.find(x => x.name === "Color"),
+      image: item.images[0],
+      title: item.title,
+      publishedAt: item.publishedAt
+    })
+    let colorPush = item.options.find(x => x.name === "Color").values[0]
+        colorPush.otherProduct = true
+        colorPush.handle = item.handle
+        colorPush.image = item.images[1]
+        colorPush.title = item.title
+        colorPush.publishedAt = item.publishedAt
+    colorsArray.values.push(colorPush)
+  });
 
+  colorsArray.values = sortByKey(colorsArray.values,"published_at")
   return {
     props: {
       product: parseShopifyResponse(product),
+      allColors: parseShopifyResponse(colorsArray)
     },
   };
 };
