@@ -440,7 +440,7 @@ header .anchor-nav {
     @apply  !w-[200px] !h-[240px] xs:!w-[50%];
 }
 .image-carousel-secondary div img {
-    @apply h-full w-full border !object-contain;
+    @apply h-full w-full;
 }
 .loader {
     border: 5px solid #f3f3f3;
