@@ -383,100 +383,73 @@ header .anchor-nav {
 .page-content p {
     @apply mb-2;
 }
-
 .checkbox-chest {
     @apply p-4 xs:p-1 xs:text-[12px] rounded-full flex items-center justify-center border-2 border-black transition-all ease-in-out duration-700;
 }
-
 .checkbox-chest.active {
     @apply bg-black text-white;
 }
-
 .cart-modal {
     z-index: 9999;
     @apply min-w-[300px] max-w-full bg-white;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
-
 .binder-journey-box {
     @apply transition-all ease-in-out duration-700;
 }
-
 .binder-journey-box.active {
     @apply bg-black text-white;
 }
-
 .overlay {
     @apply fixed left-0 right-0 top-0 bottom-0 w-full h-full bg-slate-900 z-[999] hidden;
 }
-
 .size-finder-modal {
     @apply fixed left-0 right-0 top-0 bottom-0 w-full h-full z-[999] hidden;
 }
-
 .size-finder-modal-active .overlay {
     @apply block;
 }
-
 .size-finder-modal-active .size-finder-modal {
     @apply flex h-[70%] w-[60%] xs:w-[94%] xs:h-[50%];
 }
-
 .size-finder-modal-active {
     @apply overflow-hidden;
 }
-
 .modal {
     @apply w-full sm:h-auto xs:h-auto;
 }
-
 .lightFont, .lightFont span {
     @apply font-monumentExtendedLight font-[100];
 }
-
 #size-finder .modal-body {
     @apply overflow-auto h-full flex justify-center items-center xs:items-start
 }
-
 .previousBtn {
     @apply bg-slate-200 text-black;
 }
-
 .cart-info-text {
     @apply flex justify-between gap-2 py-2 text-[12px];
 }
-
 .cart-section.cart-info-text {
     @apply flex justify-between gap-2 py-2 text-[16px];
 }
-
-.image-carousel-secondary .slick-track {
-    @apply flex flex-wrap !w-[400px] xs:!w-full;
+.image-carousel-secondary {
+    @apply flex flex-wrap !w-[400px] xs:!w-full mx-auto;
 }
-
-.image-carousel-secondary .slick-track .slick-slide {
+.image-carousel-secondary div {
     @apply  !w-[200px] !h-[240px] xs:!w-[50%];
 }
-
-.image-carousel-secondary .slick-track .slick-slide img {
+.image-carousel-secondary div img {
     @apply h-full w-full border !object-contain;
 }
-
-.image-carousel-secondary .slick-track .slick-slide div:first-child {
-    @apply w-full h-full;
-}
-
 .loader {
     border: 5px solid #f3f3f3;
-    /* Light grey */
     border-top: 5px solid #3498db;
-    /* Blue */
     border-radius: 50%;
     width: 50px !important;
     height: 50px !important;
     animation: spin 2s linear infinite;
 }
-
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -485,7 +458,4 @@ header .anchor-nav {
     100% {
         transform: rotate(360deg);
     }
-}
-@media screen and (max-width: 767px) {
-
 }

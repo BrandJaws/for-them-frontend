@@ -1,5 +1,5 @@
 import Image, { StaticImageData } from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import weightLessFeel from "../../assets/images/product/weightless-feel.png";
 import antiitchFabric from "../../assets/images/product/anti-itch-fabric.png";
@@ -96,6 +96,7 @@ export default function ProductPage({ product, allBinder, allColors }) {
     slidesToShow: 4,
     slidesToScroll: 1,
     rows: 1,
+          infinite: false,
     arrows: false,
     centerMode: true,
     focusOnSelect: true,
@@ -354,25 +355,20 @@ export default function ProductPage({ product, allBinder, allColors }) {
       });
     }
   }
-  const [formattedImages, setFormattedImages] = useState<Array<any>>([]);
+  const [bottomSliderImages, setBottomSliderImages] = useState<Array<any>>([]);
   useEffect(() => {
     if (images.length > 0) {
-      let count = 0;
-      let resultantArr = [];
-      images.forEach((img: any) => {
-        if (count === 4) {
-          return;
-        } else {
-          resultantArr.push(img)
-        }
-        count++;
-      })
+      let resultantArr = images.slice(Math.max(images.length - 4, 0));
       if (resultantArr.length > 0) {
-        setFormattedImages(resultantArr);
+        setBottomSliderImages(resultantArr);
       }
     }
   }, [images]);
-
+  const sliderRef = useRef<any>();
+  const handleOnClick = (id: any) => {
+    let indexFound = images.findIndex((o: any) => o.id === id);
+    sliderRef.current.slickGoTo(indexFound);
+  };
   return (
     <>
       {product && (
@@ -385,8 +381,8 @@ export default function ProductPage({ product, allBinder, allColors }) {
                     {images.length > 0 && (
                       <Slider
                         asNavFor={slider2}
-                        ref={(slider) => setSlider1(slider)}
                         {...settingsMainSlider}
+                        ref={sliderRef}
                       >
                         {images.map((img: StaticImageData, index: number) => {
                           return (
@@ -432,19 +428,17 @@ export default function ProductPage({ product, allBinder, allColors }) {
                   </div>
                   <div className="thumbs xs:order-2 sm:order-2 md:order-2 lg:order-3 xl:order-3">
                     {images.length > 1 && (
-                      <Slider
-                        asNavFor={slider1}
-                        className="image-carousel-secondary"
-                        ref={(slider) => setSlider2(slider)}
-                        {...settingsThumbsSlider}
-                      >
-                        {formattedImages.map((img: any, index: number) => {
+                      <div className="image-carousel-secondary">
+                        {bottomSliderImages.map((img: any, index: any) => {
                           return (
                             <div
                               key={index}
+                              id={index}
                               className="lg:h-full lg:w-full image-box flex items-center justify-center"
+                              onClick={() => handleOnClick(img.id)}
                             >
                               <Image
+                                id={index}
                                 src={img.src}
                                 alt={`${img.id}-${title}`}
                                 width={150}
@@ -455,7 +449,7 @@ export default function ProductPage({ product, allBinder, allColors }) {
                             </div>
                           );
                         })}
-                      </Slider>
+                      </div>
                     )}
                   </div>
                 </div>
