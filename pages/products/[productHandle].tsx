@@ -7,7 +7,6 @@ import customMade from "../../assets/images/product/custom-made.png";
 import rotatableNeckline from "../../assets/images/product/rotatable-neckline.png";
 import { client, parseShopifyResponse, shopifyClient } from "../../lib/shopify";
 import Link from "next/link";
-import _ from "lodash";
 import { TfiAngleDown } from "react-icons/tfi";
 import NextArrow from "../../components/common/NextArrow";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
@@ -229,18 +228,19 @@ export default function ProductPage({ product, allBinder, allColors }) {
   const { src: productImage } = images[0];
   const { price } = variants[0];
   const sizeFound = options.find((o) => o.name === "Size");
-  const colorFound = options.find((o) => o.name === "Color") ? allColors : options.find((o) => o.name === "Color")
-  console.log(options.find((o) => o.name === "Color"))
+  const colorFound = options.find((o) => o.name === "Color")
+  const colorList = allColors
+  const isBinder = title.includes("The Binder") ? true : false
 
   const [slider1, setSlider1] = useState(null);
   const [slider2, setSlider2] = useState(null);
   const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
   const [isAccordionOpen, setIsAccordionOpen] = useState<number>(null);
   const [selectedColor, setSelectedColor] = useState<string>(
-    colorFound && colorFound.values.length > 0 ? colorFound.values[0].value : ""
+    colorFound && colorFound.values.length > 0 ? colorFound.values[0].value : null
   );
   const [selectedSize, setSelectedSize] = useState<string>(
-    sizeFound && sizeFound.values.length > 0 ? sizeFound.values[0].value : ""
+    sizeFound && sizeFound.values.length > 0 ? sizeFound.values[0].value : null
   );
   const [sizesDropdown, setSizesDropdown] = useState<any>([]);
   const [step, setStep] = useState<number>(0);
@@ -494,6 +494,11 @@ export default function ProductPage({ product, allBinder, allColors }) {
     let findProductVariant = variants.find((o: any) => {
       return o.selectedOptions.find((option) => option.value === selectedSize);
     });
+    if (selectedSize === null) {
+      findProductVariant = variants[0]
+    }
+    console.log(findProductVariant)
+    console.log(checkout)
     if (findProductVariant) {
       const lineItemsToAdd = [
         {
@@ -618,10 +623,10 @@ export default function ProductPage({ product, allBinder, allColors }) {
               </div>
               <div className="product-detail xl:px-16 lg:px-16 md:px-10 sm:px-8 xs:px-6">
                 <Fade top cascade>
-                  <div className="subtitle-bold subtitle-top text-left ">{title}</div>
+                  <div className="subtitle-bold subtitle-top text-left ">{isBinder ? "The Binder" : ""}</div>
                 </Fade>
                 <div className="flex flex-col flex-wrap gap-4 items-start ">
-                  <div className="title-large capitalize">Orange</div>
+                  <div className="title-large capitalize">{isBinder ? colorFound && colorFound.values.length > 0 ? colorFound.values[0].value : "" : title}</div>
                   <Fade bottom cascade>
                     <div className="subtitle-bold text-center capitalize">
                       ${price.amount} USD
@@ -665,22 +670,24 @@ export default function ProductPage({ product, allBinder, allColors }) {
                     <div className="color-field xs:mt-[15px] xs:mb-[15px] mt-10 mb-10 w-full font-monumentExtended relative">
 
                       <div className="flex flex-wrap gap-4 pt-0 pb-5">
-                        {colorFound.values.map((o, index) => {
+                        {allColors.values.map((o, index) => {
                           return (
                             <div key={index} className="color-switch">
-                              <input
-                                type="radio"
-                                onChange={() => handleColorChange(o.value, o)}
-                                className={`w-8 h-8 ${_.lowerCase(o.value)
-                                  .split(" ")
-                                  .join("-")}`}
-                                name="color"
-                                style={{
-                                  backgroundImage: `url(${o.image.src.replace(".png", "_250x40_crop_center.png").replace(".jpg", "_250x40_crop_center.jpg")})`,  // coming from public folder
-                                  backgroundSize: "cover",
-                                  backgroundPosition: "center"
-                                }}
-                              />
+                              <Link href={`/products/${o.handle}`}>
+                                <div
+                                    type="radio"
+                                    className={`w-8 h-8
+                                        .split(" ")
+                                        .join("-")}`}
+                                    name="color"
+                                    style={{
+                                      backgroundImage: `url(${o.image.src.replace(".png", "_250x40_crop_center.png").replace(".jpg", "_250x40_crop_center.jpg")})`,  // coming from public folder
+                                      backgroundSize: "cover",
+                                      backgroundPosition: "center"
+                                    }}
+                                />
+                              </Link>
+
                             </div>
                           );
                         })}
@@ -822,7 +829,7 @@ export const getServerSideProps = async ({ params }) => {
   const { productHandle } = params;
   // Fetch one product
   const product = await shopifyClient.product.fetchByHandle(productHandle);
-  const allBinders = await client.collection.fetchWithProducts('gid://shopify/Collection/292491067558',{productsFirst: 100});
+  const allBinders = await shopifyClient.collection.fetchWithProducts('gid://shopify/Collection/292491067558',{productsFirst: 100});
   let binders = []
   let colorsArray = {
     name: "Color",

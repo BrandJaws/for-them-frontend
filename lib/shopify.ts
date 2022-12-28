@@ -8,8 +8,5 @@ export const client = Client.buildClient({
   storefrontAccessToken: "a8276163001e98b235af5d773c1e827b",
   domain: "for-them-store.myshopify.com",
 });
-console.log(process.env.SHOPIFY_STORE_DOMAIN, "dkjshfnuweiwds")
 export const parseShopifyResponse = (response) =>
-  JSON.parse(JSON.stringify(response));
-
-
+    JSON.parse(JSON.stringify(response));
