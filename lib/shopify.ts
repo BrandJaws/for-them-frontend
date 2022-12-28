@@ -9,4 +9,4 @@ export const client = Client.buildClient({
   domain: "for-them-store.myshopify.com",
 });
 export const parseShopifyResponse = (response) =>
-  JSON.parse(JSON.stringify(response));
+    JSON.parse(JSON.stringify(response));

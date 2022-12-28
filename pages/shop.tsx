@@ -1,4 +1,4 @@
-import ProductsList from "../components/ProductsList";
+import ProductsListShop from "../components/ProductsListShop";
 import { shopifyClient, parseShopifyResponse } from "../lib/shopify";
 import HeroSection from "../components/shop/HeroSection";
 import BinderShopList from "../components/common/BinderShopList";
@@ -11,9 +11,9 @@ const Shop: React.FC<ShopProps> = ({ products }) => {
   return (
     <>
       <HeroSection />
-      <ProductsList products={products} />
+      <ProductsListShop products={products} />
       <section className="">
-        <BinderShopList products={products} />
+        <BinderShopList product={null}/>
       </section>
     </>
   );
@@ -23,11 +23,10 @@ export default Shop;
 
 export const getServerSideProps = async () => {
   // Fetch all the products
-  const products = await shopifyClient.product.fetchAll();
-
+    const collection = await shopifyClient.collection.fetchWithProducts('gid://shopify/Collection/292795383974',{productsFirst: 100})
   return {
     props: {
-      products: parseShopifyResponse(products),
+      products: parseShopifyResponse(collection.products),
     },
   };
 };
