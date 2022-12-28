@@ -178,11 +178,6 @@ export default function ProductPage({ product, allBinder, allColors }) {
       setSizesDropdown(sizeFound.values);
     }
   }, [sizeFound]);
-  const handleColorChange = (val, data) => {
-    if (data.otherProduct) {
-      router.push(`/products/${data.handle}`)
-    } else {setSelectedColor(val);}
-  };
   const handleAccordionClick = (index: number) => {
     if (accordionOpen) {
       setAccordionOpen(false);
@@ -504,11 +499,11 @@ export default function ProductPage({ product, allBinder, allColors }) {
                       </select>
                     </div>
                   )}
-                  <Link href="/shop">
+                  {isBinder ?  <Link href="/shop">
                     <p className="font-monumentExtended font-[300] underline">
                       find your size
                     </p>
-                  </Link>
+                  </Link> : ""}
                   {colorFound && colorFound.values.length > 0 && (
                     <div className="color-field xs:mt-[15px] xs:mb-[15px] mt-10 mb-10 w-full font-monumentExtended relative">
 
@@ -517,7 +512,7 @@ export default function ProductPage({ product, allBinder, allColors }) {
                           return (
                             <div key={index} className="color-switch">
                               <Link href={`/products/${o.handle}`}>
-                                <div
+                                <input
                                     type="radio"
                                     className={`w-8 h-8
                                         .split(" ")
@@ -635,25 +630,27 @@ export default function ProductPage({ product, allBinder, allColors }) {
               </div>
             </div>
           </section>
-          <section className="section-padding">
-            <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1">
-              <div className=""></div>
-              <div className="right-side section-padding bg-primary5 xl:px-[50px] lg:px-[50px] md:px-[35px] sm:px-[25px] xs:px-[20px] flex flex-col flex-wrap justify-center">
-                <SizeBinderForm
-                  setStep={setStep}
-                  step={step}
-                  apexChestNumber={apexChestNumber}
-                  handleApexChest={handleApexChest}
-                  bindingJourney={bindingJourney}
-                  handleBindingJourney={handleBindingJourney}
-                  handleBuyNow={handleBuyNow}
-                  handleResetSizeFinder={handleResetSizeFinder}
-                  sizeErrorMessage={sizeErrorMessage}
-                  chestSizeChartObj={chestSizeChartObj}
-                />
-              </div>
-            </div>
-          </section>
+          {isBinder ?
+              <section className="section-padding">
+                <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1">
+                  <div className=""></div>
+                  <div className="right-side section-padding bg-primary5 xl:px-[50px] lg:px-[50px] md:px-[35px] sm:px-[25px] xs:px-[20px] flex flex-col flex-wrap justify-center">
+                    <SizeBinderForm
+                        setStep={setStep}
+                        step={step}
+                        apexChestNumber={apexChestNumber}
+                        handleApexChest={handleApexChest}
+                        bindingJourney={bindingJourney}
+                        handleBindingJourney={handleBindingJourney}
+                        handleBuyNow={handleBuyNow}
+                        handleResetSizeFinder={handleResetSizeFinder}
+                        sizeErrorMessage={sizeErrorMessage}
+                        chestSizeChartObj={chestSizeChartObj}
+                    />
+                  </div>
+                </div>
+              </section>
+          : "" }
           <section>
 
             <BinderShopList product={product.handle}/>
