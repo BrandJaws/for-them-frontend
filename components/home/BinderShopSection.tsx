@@ -10,7 +10,7 @@ const BinderShopSection = () => {
         description="Your maximum healthy bind without sacrificing comfort, breathability, or style."
         animation="top"
       />
-      <BinderShopList />
+      <BinderShopList product={null}/>
     </section>
   );
 };
