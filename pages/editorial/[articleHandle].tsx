@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { client, parseShopifyResponse } from "../../../../lib/shopify";
+import { client, parseShopifyResponse } from "../../lib/shopify";
 
 export default function ArticlePage({ article }) {
   const { blog } = article;
@@ -35,10 +35,10 @@ export default function ArticlePage({ article }) {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const { articleHandle, blogHandle } = params;
+  const { articleHandle } = params;
   // Fetch one product
   const articleByHandleQuery = client.graphQLClient.query((root: any) => {
-    root.add("blog", { args: { handle: blogHandle } }, (blog: any) => {
+    root.add("blog", { args: { handle: "news" } }, (blog: any) => {
       blog.add("id");
       blog.add("handle");
       blog.add("title");

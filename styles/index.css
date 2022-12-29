@@ -373,7 +373,7 @@ header .anchor-nav {
 }
 
 .accordion-content.show {
-    @apply xl:h-[180px] lg:h-[160px] md:h-[120px] sm:h-auto xs:h-auto opacity-100 overflow-y-auto;
+    @apply xl:h-[180px] lg:h-[160px] md:h-[120px] sm:h-auto xs:h-auto opacity-100 xl:overflow-y-hidden lg:overflow-y-auto md:overflow-y-auto sm:overflow-y-auto xs:overflow-y-auto;
 }
 
 .story-title {

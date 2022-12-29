@@ -27,7 +27,7 @@ export const ProductShop = ({ product, goToProductPage }) => {
           <div className="subtitle-bold text-center">Shop</div>
           <div className="product-title uppercase">{title.includes("GIFT") ? "GIFTCARD" : "BINDERS"}</div>
           <div className="">
-            <Link href={`/products/${handle}`}>
+            <Link href={`/product/${handle}`}>
               <button type="button" className="binder-btn">
                 Shop now
               </button>
@@ -43,7 +43,7 @@ export default function ProductsListShop({ products }) {
   const router = useRouter();
   // Navigate to product's page
   const goToProductPage = (productHandle) =>
-    router.push(`/products/${productHandle}`);
+    router.push(`/product/${productHandle}`);
   return (
     <div className="container mx-auto md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding">
       <div className="grid xl:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-4">

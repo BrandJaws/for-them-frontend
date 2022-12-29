@@ -27,7 +27,7 @@ export const Article = ({ key, product, goToProductPage }) => {
           <div className="text-small text-center mb-5">{blog.title}</div>
           <div className="subtitle-bold text-center lightFont mb-5">{title}</div>
           <div className="">
-            <Link href={`/blog/${blog.handle}/articles/${handle}`}>
+            <Link href={`/editorial/${handle}`}>
               <button type="button" className="binder-btn">
                 Read more
               </button>

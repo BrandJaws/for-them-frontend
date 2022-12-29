@@ -112,6 +112,12 @@ export default function Nav() {
                         <a type="button" className="anchor-nav">
                           Editorial
                         </a>
+                      ) : item.slug === "Our-Story" ? (
+                        <Link href="/our-story" color="inherit" legacyBehavior>
+                          <a className="anchor-nav">
+                            {item.title}
+                          </a>
+                        </Link>
                       ) : (
                         <Link href={item.url} color="inherit" legacyBehavior>
                           <a
@@ -176,6 +182,12 @@ export default function Nav() {
                     <a type="button" className="anchor-nav">
                       Editorial
                     </a>
+                  ) : item.slug === "Our-Story" ? (
+                    <Link href="/our-story" color="inherit" legacyBehavior>
+                      <a type="button" className="anchor-nav">
+                        {item.title}
+                      </a>
+                    </Link>
                   ) : (
                     <Link href={item.url} color="inherit" legacyBehavior>
                       <a className="anchor-nav" target={item.target ?? "_self"}>
