@@ -1,12 +1,6 @@
-import ProductsList from "../components/ProductsList";
-import { shopifyClient, parseShopifyResponse } from "../lib/shopify";
-import HeroSection from "../components/shop/HeroSection";
+import * as React from "react";
 import BinderShopList from "../components/common/BinderShopList";
 import CartSection from "../components/cart/CartSection";
-
-export interface ShopProps {
-  products?: any;
-}
 
 const Cart: React.FC<any> = () => {
   return (
@@ -14,7 +8,7 @@ const Cart: React.FC<any> = () => {
       <section>
         <CartSection />
       </section>
-      <section className="">
+      <section>
         <BinderShopList product={null}/>
       </section>
     </>
@@ -22,14 +16,3 @@ const Cart: React.FC<any> = () => {
 };
 
 export default Cart;
-
-export const getServerSideProps = async () => {
-  // Fetch all the products
-  const products = await shopifyClient.product.fetchAll();
-
-  return {
-    props: {
-      products: parseShopifyResponse(products),
-    },
-  };
-};

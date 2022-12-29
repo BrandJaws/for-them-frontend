@@ -145,6 +145,10 @@ header .anchor-nav {
     @apply font-[100] font-monumentExtended xl:text-[100px] lg:text-[70px] md:text-[60px] sm:text-[60px] xs:text-[40px] xl:leading-[100px] lg:leading-[70px] md:leading-[60px] sm:leading-[60px] xs:leading-[40px]
 }
 
+.shop-heading {
+    @apply font-[100] font-monumentExtended xl:text-[100px] lg:text-[70px] md:text-[60px] sm:text-[60px] xs:text-[40px] xl:leading-[100px] lg:leading-[70px] md:leading-[60px] sm:leading-[60px] xs:leading-[40px]
+}
+
 .text-small {
     @apply font-monumentExtended xl:text-[18px] lg:text-[16px] md:text-[14px] sm:text-[14px] xs:text-[12px] text-[var(--primary1)] xl:leading-[24px] lg:leading-[24px] md:leading-[18px] sm:leading-[16px] xs:leading-[18px]
 }
@@ -356,7 +360,7 @@ header .anchor-nav {
 
 /* accordion style */
 .accordion-item {
-    @apply mb-2;
+    @apply mb-2 overflow-hidden;
 }
 
 .accordion-content {
@@ -369,7 +373,7 @@ header .anchor-nav {
 }
 
 .accordion-content.show {
-    @apply xl:h-[180px] lg:h-[160px] md:h-[120px] sm:h-auto xs:h-auto opacity-100;
+    @apply xl:h-[180px] lg:h-[160px] md:h-[120px] sm:h-auto xs:h-auto opacity-100 overflow-y-auto;
 }
 
 .story-title {

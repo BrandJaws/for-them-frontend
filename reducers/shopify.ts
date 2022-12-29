@@ -116,10 +116,8 @@ export const plusProductQuantity = createAction(
 // // Create an empty checkout
 // let checkoutInst = client.checkout.create().then((checkout) => {
 //   // Do something with the checkout
-//   console.log(checkout, "checkout");
 //   return checkout;
 // });
-// console.log(checkoutInst, "checkoutInst")
 //     } catch (e) {
 //       return e;
 //     }

@@ -2,7 +2,6 @@ import Image from "next/image";
 import { client, parseShopifyResponse } from "../../../../lib/shopify";
 
 export default function ArticlePage({ article }) {
-  console.log(article, "Article Detail");
   const { blog } = article;
   const { articleByHandle } = blog;
   return (
@@ -34,7 +33,8 @@ export default function ArticlePage({ article }) {
     </>
   );
 }
-export const getServerSideProps = async ({ params }) => {
+
+export const getStaticProps = async ({ params }) => {
   const { articleHandle, blogHandle } = params;
   // Fetch one product
   const articleByHandleQuery = client.graphQLClient.query((root: any) => {
@@ -71,3 +71,13 @@ export const getServerSideProps = async ({ params }) => {
     },
   };
 };
+
+export async function getStaticPaths() {
+  // const collection = await shopifyClient.collection.fetchWithProducts('gid://shopify/Collection/292795383974',{productsFirst: 100})
+  // const paths = collection.products.map((product) => ({
+  //   params: { productHandle: product.id }
+  // }))
+  // fallback: false means pages that don’t have the
+  // correct id will 404.
+  return { paths: [], fallback: true }
+}

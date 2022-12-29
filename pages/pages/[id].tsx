@@ -15,7 +15,7 @@ export default function SinglePage({ page }) {
   );
 }
 
-export const getServerSideProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
   const { id } = params;
   // Fetching Footer Connect Nav
   const pageQuery = client.graphQLClient.query((root: any) => {
@@ -52,3 +52,13 @@ export const getServerSideProps = async ({ params }) => {
     },
   };
 };
+
+export async function getStaticPaths() {
+  // const collection = await shopifyClient.collection.fetchWithProducts('gid://shopify/Collection/292795383974',{productsFirst: 100})
+  // const paths = collection.products.map((product) => ({
+  //   params: { productHandle: product.id }
+  // }))
+  // fallback: false means pages that don’t have the
+  // correct id will 404.
+  return { paths: [], fallback: true }
+}

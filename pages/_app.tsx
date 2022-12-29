@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }: any) {
       <>
         <Provider store={store}>
           <CookiesProvider>
-            <Layout title="Shop - For Them">
+            <Layout title="The Binder - For Them">
               <Component {...pageProps} />
             </Layout>
           </CookiesProvider>

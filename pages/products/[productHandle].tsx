@@ -24,10 +24,11 @@ import {
 } from "../../reducers/shopify";
 import { RootState } from "../../stores/store";
 import SizeBinderForm from "../../components/common/SizeBinderForm";
+import { useRouter } from "next/router";
 
 
 export default function ProductPage({ product, allBinder, allColors }) {
-  const { id, title, images, variants, handle, description, options } = product;
+  let { id, title, images, variants, handle, description, options } = product;
   const { src: productImage } = images[0];
   const { price } = variants[0];
   const sizeFound = options.find((o) => o.name === "Size");
@@ -91,70 +92,6 @@ export default function ProductPage({ product, allBinder, allColors }) {
         },
       },
     ],
-  };
-  const settingsThumbsSlider = {
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    rows: 1,
-          infinite: false,
-    arrows: false,
-    centerMode: true,
-    focusOnSelect: true,
-    swipeToSlide: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          infinite: false,
-          dots: false,
-          rows: 1,
-          arrows: false
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          initialSlide: 1,
-          rows: 1,
-          arrows: false
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          initialSlide: 1,
-          rows: 1,
-          arrows: false
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          rows: 1,
-          arrows: false
-        },
-      },
-    ],
-    // nextArrow: (
-    //   <NextArrow
-    //     className="slider-next-btn"
-    //     text={<FiArrowRight color="black" className="w-[35px] h-[30px]" />}
-    //   />
-    // ),
-    // prevArrow: (
-    //   <PrevArrow
-    //     className="slider-previous-btn"
-    //     text={<FiArrowLeft color="black" className="w-[35px] h-[30px]" />}
-    //   />
-    // ),
   };
   const productSpecs = [
     {
@@ -304,8 +241,6 @@ export default function ProductPage({ product, allBinder, allColors }) {
     if (selectedSize === null) {
       findProductVariant = variants[0]
     }
-    console.log(findProductVariant)
-    console.log(checkout)
     if (findProductVariant) {
       const lineItemsToAdd = [
         {
@@ -356,6 +291,7 @@ export default function ProductPage({ product, allBinder, allColors }) {
     }
   }
   const [bottomSliderImages, setBottomSliderImages] = useState<Array<any>>([]);
+  const router = useRouter();
   useEffect(() => {
     if (images.length > 0) {
       let resultantArr = images.slice(Math.max(images.length - 4, 0));
@@ -369,6 +305,11 @@ export default function ProductPage({ product, allBinder, allColors }) {
     let indexFound = images.findIndex((o: any) => o.id === id);
     sliderRef.current.slickGoTo(indexFound);
   };
+
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
+
   return (
     <>
       {product && (
@@ -558,7 +499,7 @@ export default function ProductPage({ product, allBinder, allColors }) {
                   </div>
                   <br />
                   <div className="product-info">
-                    <div className="text-small text-left mb-5">More Info</div>
+                    <div className="text-medium text-left mb-5">More Info</div>
                     <div className="accordion">
                       <div className="accordion-item bg-white">
                         <h2 className="z-[999]">
@@ -663,7 +604,7 @@ function sortByKey(array, key) {
   });
 }
 
-export const getServerSideProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
   const { productHandle } = params;
   // Fetch one product
   const product = await shopifyClient.product.fetchByHandle(productHandle);
@@ -696,6 +637,17 @@ export const getServerSideProps = async ({ params }) => {
     props: {
       product: parseShopifyResponse(product),
       allColors: parseShopifyResponse(colorsArray)
-    },
+    }
+    // revalidate: 60
   };
 };
+
+export async function getStaticPaths() {
+  // const collection = await shopifyClient.collection.fetchWithProducts('gid://shopify/Collection/292795383974',{productsFirst: 100})
+  // const paths = collection.products.map((product) => ({
+  //   params: { productHandle: product.id }
+  // }))
+  // fallback: false means pages that don’t have the
+  // correct id will 404.
+  return { paths: [], fallback: true }
+}

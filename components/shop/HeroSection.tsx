@@ -13,7 +13,9 @@ const HeroSection = () => {
             <Fade right cascade>
               <div className="subtitle-bold text-center lightFont">our</div>
             </Fade>
-            <div className="title-large text-center capitalize">PRODUCTS</div>
+            <Fade top cascade>
+              <div className="shop-heading text-center capitalize">PRODUCTS</div>
+            </Fade>
             <Fade bottom>
               <div className="xl:text-[24px] lg:text-[20px] md:text-[18px] sm:text-[18px] xs:text-[16px]
               xl:leading-[32px] lg:leading-[30px] md:leading-[28px]

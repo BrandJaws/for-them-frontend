@@ -8,7 +8,6 @@ const checkout = async (
   // Create an empty checkout
   client.checkout.create().then((checkout) => {
     // Do something with the checkout
-    console.log(checkout, "Checkout");
   });
   res.status(200);
   res.json(null);

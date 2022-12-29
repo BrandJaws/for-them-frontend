@@ -9,4 +9,19 @@ module.exports = {
     FOOTER_CONNECT_MENU: "footer-connect-menu",
     HEADER_MENU: "header-menu",
   },
+  async headers() {
+    const headers = [];
+    if (process.env.NO_INDEX) {
+      headers.push({
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex',
+          },
+        ],
+        source: '/:path*',
+      });
+    }
+    return headers;
+  },
 };
