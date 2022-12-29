@@ -30,7 +30,7 @@ const SizeFinderModal: React.FC<any> = () => {
     setBindingJourney(e.target.value);
   };
   const handleBuyNow = () => {
-    if (apexChestNumber !== "") {
+    if (apexChestNumber !== "" && !chestSizeChartObj) {
       let isExistsChestNumber = apexSizeChart.find(
         (o: SizeChartProps, index: number) => {
           let isCheckNumberExists = o.measurements.find(
@@ -58,11 +58,27 @@ const SizeFinderModal: React.FC<any> = () => {
           });
         }
       } else {
-        router.push("/shop");
+        router.push("/product/the-binder-orange");
       }
     } else {
-      setChestSizeChartObj(null);
-      setSizeErrorMessage("Size does not exists.");
+      if (chestSizeChartObj) {
+        if (router.query && router.query.productHandle) {
+          if (typeof window !== "undefined") {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          }
+        } else {
+          router.push("/product/the-binder-orange");
+        }
+        if (isSizeFinderModal) {
+          dispatch(setActiveSizeFinderModal(false));
+        }
+      } else {
+        setChestSizeChartObj(null);
+        setSizeErrorMessage("Size does not exists.");
+      }
     }
   };
   const handleResetSizeFinder = () => {

@@ -6,73 +6,109 @@ import { useDispatch, useSelector } from "react-redux";
 // import { useDispatch, useSelector } from "react-redux";
 import FooterLogo from "../assets/images/footer-logo-12.svg";
 import useRouterToCheckPath from "../hooks/useRouterToCheckPath";
-import { NavItemProps, PageEdgesProps, PageSingleEdgeProps } from "../interfaces";
+import {
+  NavItemProps,
+  PageEdgesProps,
+  PageSingleEdgeProps,
+} from "../interfaces";
 import { client, parseShopifyResponse } from "../lib/shopify";
 import { setNavToStore, setPagesToStore } from "../reducers/shopify";
 import { RootState } from "../stores/store";
 import { NextPage } from "next";
 
 const Footer = () => {
-  const { pages, footerNavs } = useSelector((state: RootState) => state.shopifyReducer);
+  const { pages, footerNavs } = useSelector(
+    (state: RootState) => state.shopifyReducer
+  );
   const [shopNav, setShopNav] = useState<Array<NavItemProps>>([]);
   const [connectNav, setConnectNav] = useState<Array<NavItemProps>>([]);
   const [discoverNav, setDiscoverNav] = useState<Array<NavItemProps>>([]);
   useEffect(() => {
     if (footerNavs.shop) {
-      let shopNavFound = footerNavs.shop?.menu?.items?.map((o: any, index: number) => {
-        if (o.type === "HTTP") {
+      let shopNavFound = footerNavs.shop?.menu?.items?.map(
+        (o: any, index: number) => {
+          if (o.type === "HTTP") {
+            return {
+              title: o.title,
+              slug: o.title.split(" ").join("-"),
+              url:
+                o.type === "PAGE"
+                  ? "/pages" +
+                    o.url.split("pages")[o.url.split("pages").length - 1]
+                  : o.url,
+              target: "_blank",
+            };
+          }
           return {
             title: o.title,
             slug: o.title.split(" ").join("-"),
-            url: o.type === "PAGE" ? "/pages"+o.url.split("pages")[o.url.split("pages").length - 1] : o.url,
-            target: "_blank"
-          }
+            url:
+              o.type === "PAGE"
+                ? "/pages" +
+                  o.url.split("pages")[o.url.split("pages").length - 1]
+                : o.url,
+          };
         }
-        return {
-          title: o.title,
-          slug: o.title.split(" ").join("-"),
-          url: o.type === "PAGE" ? "/pages"+o.url.split("pages")[o.url.split("pages").length - 1] : o.url
-        }
-      })
+      );
       setShopNav(shopNavFound);
     }
     if (footerNavs.connect) {
-      let connectNavFound = footerNavs.connect?.menu?.items?.map((o: any, index: number) => {
-        if (o.type === "HTTP") {
+      let connectNavFound = footerNavs.connect?.menu?.items?.map(
+        (o: any, index: number) => {
+          if (o.type === "HTTP") {
+            return {
+              title: o.title,
+              slug: o.title.split(" ").join("-"),
+              url:
+                o.type === "PAGE"
+                  ? "/pages" +
+                    o.url.split("pages")[o.url.split("pages").length - 1]
+                  : o.url,
+              target: "_blank",
+            };
+          }
           return {
             title: o.title,
             slug: o.title.split(" ").join("-"),
-            url: o.type === "PAGE" ? "/pages"+o.url.split("pages")[o.url.split("pages").length - 1] : o.url,
-            target: "_blank"
-          }
+            url:
+              o.type === "PAGE"
+                ? "/pages" +
+                  o.url.split("pages")[o.url.split("pages").length - 1]
+                : o.url,
+          };
         }
-        return {
-          title: o.title,
-          slug: o.title.split(" ").join("-"),
-          url: o.type === "PAGE" ? "/pages"+o.url.split("pages")[o.url.split("pages").length - 1] : o.url
-        }
-      })
+      );
       setConnectNav(connectNavFound);
     }
     if (footerNavs.discover) {
-      let discoverNavFound = footerNavs.discover?.menu?.items?.map((o: any, index: number) => {
-        if (o.type === "HTTP") {
+      let discoverNavFound = footerNavs.discover?.menu?.items?.map(
+        (o: any, index: number) => {
+          if (o.type === "HTTP") {
+            return {
+              title: o.title,
+              slug: o.title.split(" ").join("-"),
+              url:
+                o.type === "PAGE"
+                  ? "/pages" +
+                    o.url.split("pages")[o.url.split("pages").length - 1]
+                  : o.url,
+              target: "_blank",
+            };
+          }
           return {
             title: o.title,
             slug: o.title.split(" ").join("-"),
-            url: o.type === "PAGE" ? "/pages"+o.url.split("pages")[o.url.split("pages").length - 1] : o.url,
-            target: "_blank"
-          }
+            url:
+              o.type === "PAGE"
+                ? "/pages" +
+                  o.url.split("pages")[o.url.split("pages").length - 1]
+                : o.url,
+          };
         }
-        return {
-          title: o.title,
-          slug: o.title.split(" ").join("-"),
-          url: o.type === "PAGE" ? "/pages"+o.url.split("pages")[o.url.split("pages").length - 1] : o.url
-        }
-      })
+      );
       setDiscoverNav(discoverNavFound);
     }
-  }, [footerNavs])
+  }, [footerNavs]);
   return (
     <div className="bg-primary1 section-padding font-monumentExtended">
       <div className="container mx-auto bg-primary1 md:px-[15px] sm:px-[15px] xs:px-[15px]">
@@ -94,9 +130,22 @@ const Footer = () => {
                         useRouterToCheckPath(item.url) ? " active" : ""
                       }`}
                     >
-                      <Link href={item.url} color="inherit" legacyBehavior>
-                        <a className="anchor-nav text-primary" target={item.target ?? "_self"}>{item.title}</a>
-                      </Link>
+                      {item.slug === "Our-Story" ? (
+                        <Link href="/our-story" color="inherit" legacyBehavior>
+                          <a type="button" className="anchor-nav text-primary">
+                            {item.title}
+                          </a>
+                        </Link>
+                      ) : (
+                        <Link href={item.url} color="inherit" legacyBehavior>
+                          <a
+                            className="anchor-nav text-primary"
+                            target={item.target ?? "_self"}
+                          >
+                            {item.title}
+                          </a>
+                        </Link>
+                      )}
                     </li>
                   );
                 })}
@@ -114,9 +163,22 @@ const Footer = () => {
                         useRouterToCheckPath(item.url) ? " active" : ""
                       }`}
                     >
-                      <Link href={item.url} color="inherit" legacyBehavior>
-                        <a className="anchor-nav text-primary" target={item.target ?? "_self"}>{item.title}</a>
-                      </Link>
+                      {item.slug === "Our-Story" ? (
+                        <Link href="/our-story" color="inherit" legacyBehavior>
+                          <a type="button" className="anchor-nav text-primary">
+                            {item.title}
+                          </a>
+                        </Link>
+                      ) : (
+                        <Link href={item.url} color="inherit" legacyBehavior>
+                          <a
+                            className="anchor-nav text-primary"
+                            target={item.target ?? "_self"}
+                          >
+                            {item.title}
+                          </a>
+                        </Link>
+                      )}
                     </li>
                   );
                 })}
@@ -134,9 +196,22 @@ const Footer = () => {
                         useRouterToCheckPath(item.url) ? " active" : ""
                       }`}
                     >
-                      <Link href={item.url} color="inherit" legacyBehavior>
-                        <a className="anchor-nav text-primary" target={item.target ?? "_self"}>{item.title}</a>
-                      </Link>
+                      {item.slug === "Our-Story" ? (
+                        <Link href="/our-story" color="inherit" legacyBehavior>
+                          <a type="button" className="anchor-nav text-primary">
+                            {item.title}
+                          </a>
+                        </Link>
+                      ) : (
+                        <Link href={item.url} color="inherit" legacyBehavior>
+                          <a
+                            className="anchor-nav text-primary"
+                            target={item.target ?? "_self"}
+                          >
+                            {item.title}
+                          </a>
+                        </Link>
+                      )}
                     </li>
                   );
                 })}
@@ -146,5 +221,5 @@ const Footer = () => {
       </div>
     </div>
   );
-}
+};
 export default Footer;

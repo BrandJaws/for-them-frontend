@@ -26,22 +26,23 @@ import { RootState } from "../../stores/store";
 import SizeBinderForm from "../../components/common/SizeBinderForm";
 import { useRouter } from "next/router";
 
-
 export default function ProductPage({ product, allBinder, allColors }) {
   let { id, title, images, variants, handle, description, options } = product;
   const { src: productImage } = images[0];
   const { price } = variants[0];
   const sizeFound = options.find((o) => o.name === "Size");
-  const colorFound = options.find((o) => o.name === "Color")
-  const colorList = allColors
-  const isBinder = title.includes("The Binder") ? true : false
+  const colorFound = options.find((o) => o.name === "Color");
+  const colorList = allColors;
+  const isBinder = title.includes("The Binder") ? true : false;
 
   const [slider1, setSlider1] = useState(null);
   const [slider2, setSlider2] = useState(null);
   const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
   const [isAccordionOpen, setIsAccordionOpen] = useState<number>(null);
   const [selectedColor, setSelectedColor] = useState<string>(
-    colorFound && colorFound.values.length > 0 ? colorFound.values[0].value : null
+    colorFound && colorFound.values.length > 0
+      ? colorFound.values[0].value
+      : null
   );
   const [selectedSize, setSelectedSize] = useState<string>(
     sizeFound && sizeFound.values.length > 0 ? sizeFound.values[0].value : null
@@ -139,7 +140,10 @@ export default function ProductPage({ product, allBinder, allColors }) {
   const handleBindingJourney = (e: any) => {
     setBindingJourney(e.target.value);
   };
-  const [cookies, setCookie, removeCookie] = useCookies(["size", "bindingJourney"]);
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "size",
+    "bindingJourney",
+  ]);
   const handleBuyNow = () => {
     if (apexChestNumber !== "") {
       setSelectedSize(apexChestNumber);
@@ -210,9 +214,8 @@ export default function ProductPage({ product, allBinder, allColors }) {
       }
     }
   }, [apexChestNumber]);
-  const { checkout } = useSelector(
-    (state: RootState) => state.shopifyReducer
-  );  const dispatch = useDispatch();
+  const { checkout } = useSelector((state: RootState) => state.shopifyReducer);
+  const dispatch = useDispatch();
   const handleBuyNowCheckout = async () => {
     let findProductVariant = variants.find((o: any) => {
       return o.selectedOptions.find((option) => option.value === selectedSize);
@@ -239,7 +242,7 @@ export default function ProductPage({ product, allBinder, allColors }) {
       return o.selectedOptions.find((option) => option.value === selectedSize);
     });
     if (selectedSize === null) {
-      findProductVariant = variants[0]
+      findProductVariant = variants[0];
     }
     if (findProductVariant) {
       const lineItemsToAdd = [
@@ -254,7 +257,8 @@ export default function ProductPage({ product, allBinder, allColors }) {
           .addLineItems(checkout.id, lineItemsToAdd)
           .then((data: any) => {
             dispatch(setCheckout(data));
-          }).finally(() => {
+          })
+          .finally(() => {
             dispatch(setIsLoading(false));
           });
       } else {
@@ -263,7 +267,8 @@ export default function ProductPage({ product, allBinder, allColors }) {
             .addLineItems(checkout.id, lineItemsToAdd)
             .then((data: any) => {
               dispatch(setCheckout(data));
-            }).finally(() => {
+            })
+            .finally(() => {
               dispatch(setIsLoading(false));
             });
         });
@@ -276,7 +281,9 @@ export default function ProductPage({ product, allBinder, allColors }) {
   };
 
   const handleResetSizeFinder = () => {
-    setSelectedSize(sizeFound && sizeFound.values.length > 0 ? sizeFound.values[0].value : "");
+    setSelectedSize(
+      sizeFound && sizeFound.values.length > 0 ? sizeFound.values[0].value : ""
+    );
     setChestSizeChartObj(null);
     setApexChestNumber("");
     setBindingJourney("");
@@ -289,7 +296,7 @@ export default function ProductPage({ product, allBinder, allColors }) {
         behavior: "smooth",
       });
     }
-  }
+  };
   const [bottomSliderImages, setBottomSliderImages] = useState<Array<any>>([]);
   const router = useRouter();
   useEffect(() => {
@@ -307,7 +314,7 @@ export default function ProductPage({ product, allBinder, allColors }) {
   };
 
   if (router.isFallback) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   return (
@@ -397,16 +404,26 @@ export default function ProductPage({ product, allBinder, allColors }) {
               </div>
               <div className="product-detail xl:px-16 lg:px-16 md:px-10 sm:px-8 xs:px-6">
                 <Fade top cascade>
-                  <div className="subtitle-bold subtitle-top text-left ">{isBinder ? "The Binder" : ""}</div>
+                  <div className="subtitle-bold subtitle-top text-left ">
+                    {isBinder ? "The Binder" : ""}
+                  </div>
                 </Fade>
                 <div className="flex flex-col flex-wrap gap-4 items-start ">
-                  <div className="title-large capitalize">{isBinder ? colorFound && colorFound.values.length > 0 ? colorFound.values[0].value : "" : title}</div>
+                  <div className="title-large capitalize">
+                    {isBinder
+                      ? colorFound && colorFound.values.length > 0
+                        ? colorFound.values[0].value
+                        : ""
+                      : title}
+                  </div>
                   <Fade bottom cascade>
                     <div className="subtitle-bold text-center capitalize">
                       ${price.amount} USD
                     </div>
                   </Fade>
-                  <div className="text-small mt-5 mb-10 text-left">{description}</div>
+                  <div className="text-small mt-5 mb-10 text-left">
+                    {description}
+                  </div>
                   {sizesDropdown.length > 0 && (
                     <div className="size-field w-full font-monumentExtended relative">
                       <label
@@ -423,10 +440,7 @@ export default function ProductPage({ product, allBinder, allColors }) {
                       >
                         {sizesDropdown.map((o: any, index: number) => {
                           return (
-                            <option
-                              key={index}
-                              value={o.value}
-                            >
+                            <option key={index} value={o.value}>
                               {o.value}
                             </option>
                           );
@@ -434,33 +448,43 @@ export default function ProductPage({ product, allBinder, allColors }) {
                       </select>
                     </div>
                   )}
-                  {isBinder ?  <Link href="/shop">
-                    <p className="font-monumentExtended font-[300] underline">
-                      find your size
-                    </p>
-                  </Link> : ""}
+                  {isBinder ? (
+                    <Link href="/shop">
+                      <p className="font-monumentExtended font-[300] underline">
+                        find your size
+                      </p>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                   {colorFound && colorFound.values.length > 0 && (
                     <div className="color-field xs:mt-[15px] xs:mb-[15px] mt-10 mb-10 w-full font-monumentExtended relative">
-
                       <div className="flex flex-wrap gap-4 pt-0 pb-5">
                         {allColors.values.map((o, index) => {
                           return (
                             <div key={index} className="color-switch">
-                              <Link href={`/products/${o.handle}`}>
+                              <Link href={`/product/${o.handle}`}>
                                 <input
-                                    type="radio"
-                                    className={`w-8 h-8
+                                  type="radio"
+                                  className={`w-8 h-8
                                         .split(" ")
                                         .join("-")}`}
-                                    name="color"
-                                    style={{
-                                      backgroundImage: `url(${o.image.src.replace(".png", "_250x40_crop_center.png").replace(".jpg", "_250x40_crop_center.jpg")})`,  // coming from public folder
-                                      backgroundSize: "cover",
-                                      backgroundPosition: "center"
-                                    }}
+                                  name="color"
+                                  style={{
+                                    backgroundImage: `url(${o.image.src
+                                      .replace(
+                                        ".png",
+                                        "_250x40_crop_center.png"
+                                      )
+                                      .replace(
+                                        ".jpg",
+                                        "_250x40_crop_center.jpg"
+                                      )})`, // coming from public folder
+                                    backgroundSize: "cover",
+                                    backgroundPosition: "center",
+                                  }}
                                 />
                               </Link>
-
                             </div>
                           );
                         })}
@@ -519,14 +543,19 @@ export default function ProductPage({ product, allBinder, allColors }) {
                           }`}
                         >
                           <div className="accordion-body py-2">
-                            <strong>
-                              This is the first item's accordion body.
-                            </strong>{" "}
-                            It is shown by default, until the collapse plugin
-                            adds the appropriate classes that we use to style
-                            each element. These classes control the overall
-                            appearance, as well as the showing and hiding via
-                            CSS transitions.
+                            <strong>Hit Size Finder,</strong> we’ll ask you some
+                            questions and based on your unique body and binding
+                            journey we will offer you the best option for your
+                            maximum healthy bind.
+                            <br />
+                            <br />
+                            Fit-tested on all body types, we cover chest apex
+                            measurements of 28-62". Bye bye toxic sizing, hello
+                            magically-named perfect fits.
+                            <br />
+                            <br />
+                            Try it, love it, or send it back. We’ll cover
+                            shipping.
                           </div>
                         </div>
                       </div>
@@ -549,13 +578,16 @@ export default function ProductPage({ product, allBinder, allColors }) {
                         >
                           <div className="accordion-body py-2">
                             <strong>
-                              This is the second item's accordion body.
+                              Made from 100% recycled nylon that never curls,
                             </strong>{" "}
-                            It is shown by default, until the collapse plugin
-                            adds the appropriate classes that we use to style
-                            each element. These classes control the overall
-                            appearance, as well as the showing and hiding via
-                            CSS transitions.
+                            rolls, or pills. Our patented design is composed of
+                            four breathable compression panels that bind without
+                            compromising your skin, muscles, or movement.
+                            <br />
+                            <br />
+                            An anti-dig under-the-pit cut and 1.5 inch graded
+                            straps combine for a weightless feel. All the
+                            compression without the compromise on comfort.
                           </div>
                         </div>
                       </div>
@@ -565,32 +597,32 @@ export default function ProductPage({ product, allBinder, allColors }) {
               </div>
             </div>
           </section>
-          {isBinder ?
-              <section className="section-padding">
-                <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1">
-                  <div className=""></div>
-                  <div className="right-side section-padding bg-primary5 xl:px-[50px] lg:px-[50px] md:px-[35px] sm:px-[25px] xs:px-[20px] flex flex-col flex-wrap justify-center">
-                    <SizeBinderForm
-                        setStep={setStep}
-                        step={step}
-                        apexChestNumber={apexChestNumber}
-                        handleApexChest={handleApexChest}
-                        bindingJourney={bindingJourney}
-                        handleBindingJourney={handleBindingJourney}
-                        handleBuyNow={handleBuyNow}
-                        handleResetSizeFinder={handleResetSizeFinder}
-                        sizeErrorMessage={sizeErrorMessage}
-                        chestSizeChartObj={chestSizeChartObj}
-                    />
-                  </div>
+          {isBinder ? (
+            <section className="section-padding">
+              <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1">
+                <div className=""></div>
+                <div className="right-side section-padding bg-primary5 xl:px-[50px] lg:px-[50px] md:px-[35px] sm:px-[25px] xs:px-[20px] flex flex-col flex-wrap justify-center">
+                  <SizeBinderForm
+                    setStep={setStep}
+                    step={step}
+                    apexChestNumber={apexChestNumber}
+                    handleApexChest={handleApexChest}
+                    bindingJourney={bindingJourney}
+                    handleBindingJourney={handleBindingJourney}
+                    handleBuyNow={handleBuyNow}
+                    handleResetSizeFinder={handleResetSizeFinder}
+                    sizeErrorMessage={sizeErrorMessage}
+                    chestSizeChartObj={chestSizeChartObj}
+                  />
                 </div>
-              </section>
-          : "" }
+              </div>
+            </section>
+          ) : (
+            ""
+          )}
           <section>
-
-            <BinderShopList product={product.handle}/>
+            <BinderShopList product={product.handle} />
           </section>
-
         </>
       )}
     </>
@@ -598,9 +630,10 @@ export default function ProductPage({ product, allBinder, allColors }) {
 }
 
 function sortByKey(array, key) {
-  return array.sort(function(a, b) {
-    var x = a[key]; var y = b[key];
-    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+  return array.sort(function (a, b) {
+    var x = a[key];
+    var y = b[key];
+    return x < y ? -1 : x > y ? 1 : 0;
   });
 }
 
@@ -608,36 +641,44 @@ export const getStaticProps = async ({ params }) => {
   const { productHandle } = params;
   // Fetch one product
   const product = await shopifyClient.product.fetchByHandle(productHandle);
-  const allBinders = await shopifyClient.collection.fetchWithProducts('gid://shopify/Collection/292491067558',{productsFirst: 100});
-  let binders = []
+  const allBinders = await shopifyClient.collection.fetchWithProducts(
+    "gid://shopify/Collection/292491067558",
+    { productsFirst: 100 }
+  );
+  let binders = [];
   let colorsArray = {
     name: "Color",
     values: [],
-    type: {"name":"ProductOption","kind":"OBJECT","fieldBaseTypes":{"id":"ID","name":"String","values":"String"},"implementsNode":true}
-  }
+    type: {
+      name: "ProductOption",
+      kind: "OBJECT",
+      fieldBaseTypes: { id: "ID", name: "String", values: "String" },
+      implementsNode: true,
+    },
+  };
   allBinders.products.forEach(function (item, index) {
     binders.push({
       handle: item.handle,
-      color: item.options.find(x => x.name === "Color"),
+      color: item.options.find((x) => x.name === "Color"),
       image: item.images[0],
       title: item.title,
-      publishedAt: item.publishedAt
-    })
-    let colorPush = item.options.find(x => x.name === "Color").values[0]
-        colorPush.otherProduct = true
-        colorPush.handle = item.handle
-        colorPush.image = item.images[1]
-        colorPush.title = item.title
-        colorPush.publishedAt = item.publishedAt
-    colorsArray.values.push(colorPush)
+      publishedAt: item.publishedAt,
+    });
+    let colorPush = item.options.find((x) => x.name === "Color").values[0];
+    colorPush.otherProduct = true;
+    colorPush.handle = item.handle;
+    colorPush.image = item.images[1];
+    colorPush.title = item.title;
+    colorPush.publishedAt = item.publishedAt;
+    colorsArray.values.push(colorPush);
   });
 
-  colorsArray.values = sortByKey(colorsArray.values,"published_at")
+  colorsArray.values = sortByKey(colorsArray.values, "published_at");
   return {
     props: {
       product: parseShopifyResponse(product),
-      allColors: parseShopifyResponse(colorsArray)
-    }
+      allColors: parseShopifyResponse(colorsArray),
+    },
     // revalidate: 60
   };
 };
@@ -649,5 +690,5 @@ export async function getStaticPaths() {
   // }))
   // fallback: false means pages that don’t have the
   // correct id will 404.
-  return { paths: [], fallback: true }
+  return { paths: [], fallback: true };
 }
