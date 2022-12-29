@@ -463,7 +463,7 @@ export default function ProductPage({ product, allBinder, allColors }) {
                         {allColors.values.map((o, index) => {
                           return (
                             <div key={index} className="color-switch">
-                              <Link href={`/product/${o.handle}`}>
+                              <Link href={`/products/${o.handle}`}>
                                 <input
                                   type="radio"
                                   className={`w-8 h-8

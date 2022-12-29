@@ -11,15 +11,15 @@ export const BinderShopComponent = ({ item }) => {
     <>
       <Fade bottom>
         <div className="flex flex-col mb-8 items-center justify-center gap-4">
-          <Link href={`/product/${item.handle}`}>
+          <Link href={`/products/${item.handle}`}>
           <Image
               src={item.image.src}
               alt={item.title}
               width={250}
               height={250}
           /></Link>
-          <Link href={`/product/${item.handle}`}><h3 className="text">{item.title.split(" ")[item.title.split(" ").length - 1].trim()}</h3></Link>
-          <Link href={`/product/${item.handle}`} legacyBehavior>
+          <Link href={`/products/${item.handle}`}><h3 className="text">{item.title.split(" ")[item.title.split(" ").length - 1].trim()}</h3></Link>
+          <Link href={`/products/${item.handle}`} legacyBehavior>
             <a className="underline">buy now</a>
           </Link>
         </div>

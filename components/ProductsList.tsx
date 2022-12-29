@@ -30,7 +30,7 @@ export const Product = ({ product, goToProductPage }) => {
             {description}
           </div>
           <div className="">
-            <Link href={`/product/${handle}`}>
+            <Link href={`/products/${handle}`}>
               <button type="button" className="binder-btn">
                 Shop now
               </button>
@@ -46,7 +46,7 @@ export default function ProductsList({ products }) {
   const router = useRouter();
   // Navigate to product's page
   const goToProductPage = (productHandle) =>
-    router.push(`/product/${productHandle}`);
+    router.push(`/products/${productHandle}`);
   return (
     <div className="container mx-auto md:px-[15px] sm:px-[15px] xs:px-[15px] section-padding">
       <div className="grid xl:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-4">
