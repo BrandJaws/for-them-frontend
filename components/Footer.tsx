@@ -130,22 +130,14 @@ const Footer = () => {
                         useRouterToCheckPath(item.url) ? " active" : ""
                       }`}
                     >
-                      {item.slug === "Our-Story" ? (
-                        <Link href="/our-story" color="inherit" legacyBehavior>
-                          <a type="button" className="anchor-nav text-primary">
-                            {item.title}
-                          </a>
-                        </Link>
-                      ) : (
-                        <Link href={item.url} color="inherit" legacyBehavior>
-                          <a
-                            className="anchor-nav text-primary"
-                            target={item.target ?? "_self"}
-                          >
-                            {item.title}
-                          </a>
-                        </Link>
-                      )}
+                      <Link href={item.url} color="inherit" legacyBehavior>
+                        <a
+                          className="anchor-nav text-primary"
+                          target={item.target ?? "_self"}
+                        >
+                          {item.title}
+                        </a>
+                      </Link>
                     </li>
                   );
                 })}
@@ -163,22 +155,14 @@ const Footer = () => {
                         useRouterToCheckPath(item.url) ? " active" : ""
                       }`}
                     >
-                      {item.slug === "Our-Story" ? (
-                        <Link href="/our-story" color="inherit" legacyBehavior>
-                          <a type="button" className="anchor-nav text-primary">
-                            {item.title}
-                          </a>
-                        </Link>
-                      ) : (
-                        <Link href={item.url} color="inherit" legacyBehavior>
-                          <a
-                            className="anchor-nav text-primary"
-                            target={item.target ?? "_self"}
-                          >
-                            {item.title}
-                          </a>
-                        </Link>
-                      )}
+                      <Link href={item.url} color="inherit" legacyBehavior>
+                        <a
+                          className="anchor-nav text-primary"
+                          target={item.target ?? "_self"}
+                        >
+                          {item.title}
+                        </a>
+                      </Link>
                     </li>
                   );
                 })}
@@ -196,22 +180,14 @@ const Footer = () => {
                         useRouterToCheckPath(item.url) ? " active" : ""
                       }`}
                     >
-                      {item.slug === "Our-Story" ? (
-                        <Link href="/our-story" color="inherit" legacyBehavior>
-                          <a type="button" className="anchor-nav text-primary">
-                            {item.title}
-                          </a>
-                        </Link>
-                      ) : (
-                        <Link href={item.url} color="inherit" legacyBehavior>
-                          <a
-                            className="anchor-nav text-primary"
-                            target={item.target ?? "_self"}
-                          >
-                            {item.title}
-                          </a>
-                        </Link>
-                      )}
+                      <Link href={item.url} color="inherit" legacyBehavior>
+                        <a
+                          className="anchor-nav text-primary"
+                          target={item.target ?? "_self"}
+                        >
+                          {item.title}
+                        </a>
+                      </Link>
                     </li>
                   );
                 })}

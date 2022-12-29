@@ -24,4 +24,23 @@ module.exports = {
     }
     return headers;
   },
+  async redirects() {
+    return [
+      {
+        source: '/editorial/:articleHandle*',
+        destination: '/blog/news/articles/:articleHandle*',
+        permanent: true,
+      },
+      {
+        source: '/product/:productHandle*',
+        destination: '/products/:productHandle*',
+        permanent: true,
+      },
+      {
+        source: '/our-story',
+        destination: '/pages/our-story',
+        permanent: true,
+      }
+    ]
+  },
 };

@@ -58,7 +58,7 @@ const SizeFinderModal: React.FC<any> = () => {
           });
         }
       } else {
-        router.push("/product/the-binder-orange");
+        router.push("/products/the-binder-orange");
       }
     } else {
       if (chestSizeChartObj) {
@@ -70,7 +70,7 @@ const SizeFinderModal: React.FC<any> = () => {
             });
           }
         } else {
-          router.push("/product/the-binder-orange");
+          router.push("/products/the-binder-orange");
         }
         if (isSizeFinderModal) {
           dispatch(setActiveSizeFinderModal(false));

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { client, parseShopifyResponse } from "../../lib/shopify";
+import { client, parseShopifyResponse } from "../../../../lib/shopify";
 
 export default function ArticlePage({ article }) {
   const { blog } = article;
