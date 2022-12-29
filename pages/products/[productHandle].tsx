@@ -19,6 +19,7 @@ import { SizeChartProps } from "../../interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setActiveCartModal,
+  setActiveSizeFinderModal,
   setCheckout,
   setIsLoading,
 } from "../../reducers/shopify";
@@ -402,7 +403,7 @@ export default function ProductPage({ product, allBinder, allColors }) {
                   </div>
                 </div>
               </div>
-              <div className="product-detail xl:px-16 lg:px-16 md:px-10 sm:px-8 xs:px-6">
+              <div className="product-detail xl:px-16 lg:px-8 md:px-10 sm:px-8 xs:px-6">
                 <Fade top cascade>
                   <div className="subtitle-bold subtitle-top text-left ">
                     {isBinder ? "The Binder" : ""}
@@ -449,11 +450,11 @@ export default function ProductPage({ product, allBinder, allColors }) {
                     </div>
                   )}
                   {isBinder ? (
-                    <Link href="/shop">
-                      <p className="font-monumentExtended font-[300] underline">
+                    <a type="button" className="cursor-pointer" onClick={() => dispatch(setActiveSizeFinderModal(true))}>
+                      <p className="font-monumentExtended font-[400] underline">
                         find your size
                       </p>
-                    </Link>
+                    </a>
                   ) : (
                     ""
                   )}

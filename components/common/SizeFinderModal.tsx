@@ -30,7 +30,7 @@ const SizeFinderModal: React.FC<any> = () => {
     setBindingJourney(e.target.value);
   };
   const handleBuyNow = () => {
-    if (apexChestNumber !== "" && !chestSizeChartObj) {
+    if (apexChestNumber !== "") {
       let isExistsChestNumber = apexSizeChart.find(
         (o: SizeChartProps, index: number) => {
           let isCheckNumberExists = o.measurements.find(
