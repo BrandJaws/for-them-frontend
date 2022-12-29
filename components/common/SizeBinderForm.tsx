@@ -1,6 +1,7 @@
 import * as React from "react";
 import Fade from "react-reveal/Fade";
 import { apexChest } from "../../utils/data";
+import { useCookies } from "react-cookie";
 
 const SizeBinderForm: React.FC<any> = ({
   setStep,
@@ -14,6 +15,7 @@ const SizeBinderForm: React.FC<any> = ({
   sizeErrorMessage,
   chestSizeChartObj,
 }) => {
+  const [cookies, setCookie, removeCookie] = useCookies(["size", "bindingJourney"]);
   const nextStep = () => {
     setStep(step + 1);
   };
@@ -170,15 +172,17 @@ const SizeBinderForm: React.FC<any> = ({
             </div>
           </Fade>
           <div className="flex gap-2 items-start justify-center">
-            <Fade>
-              <button
-                type="button"
-                className="binder-btn min-w-[150px] xs:min-w-[100px] previousBtn"
-                onClick={prevStep}
-              >
-                prev
-              </button>
-            </Fade>
+            {!cookies.hasOwnProperty("size") && (
+              <Fade>
+                <button
+                  type="button"
+                  className="binder-btn min-w-[150px] xs:min-w-[100px] previousBtn"
+                  onClick={prevStep}
+                >
+                  prev
+                </button>
+              </Fade>
+            )}
             <Fade right>
               <button
                 type="button"

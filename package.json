@@ -25,6 +25,7 @@
     "react-toastify": "^9.1.1",
     "redux-persist": "^6.0.0",
     "reduxsauce": "^1.2.1",
+    "sharp": "^0.31.3",
     "shopify-buy": "^2.17.1",
     "slick-carousel": "^1.8.1",
     "swr": "^2.0.0"

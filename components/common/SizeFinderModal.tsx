@@ -24,7 +24,6 @@ const SizeFinderModal: React.FC<any> = () => {
     (state: RootState) => state.shopifyReducer
   );
   const handleApexChest = (e: any) => {
-    console.log("apex chest number", e.target.value);
     setApexChestNumber(e.target.value);
   };
   const handleBindingJourney = (e: any) => {
@@ -41,7 +40,6 @@ const SizeFinderModal: React.FC<any> = () => {
         }
       );
       if (isExistsChestNumber) {
-        console.log(isExistsChestNumber, "dasjdaskd")
         setChestSizeChartObj(isExistsChestNumber);
         setCookie("size", isExistsChestNumber.code, { path: "/" });
         setCookie("bindingJourney", bindingJourney, { path: "/" });
@@ -52,7 +50,6 @@ const SizeFinderModal: React.FC<any> = () => {
           dispatch(setActiveSizeFinderModal(false));
         }
       }
-      console.log(router.query, "router params")
       if (router.query && router.query.productHandle) {
         if (typeof window !== "undefined") {
           window.scrollTo({
@@ -93,6 +90,21 @@ const SizeFinderModal: React.FC<any> = () => {
       }
     }
   }, [apexChestNumber]);
+  useEffect(() => {
+    if (cookies.hasOwnProperty("size")) {
+      setStep(3);
+      let isExistsChestNumber = apexSizeChart.find(
+        (o: SizeChartProps) => o.code === cookies.size
+      );
+      if (isExistsChestNumber) {
+        setChestSizeChartObj(isExistsChestNumber);
+        setSizeErrorMessage("");
+      } else {
+        setChestSizeChartObj(null);
+        setSizeErrorMessage("Size does not exists.");
+      }
+    }
+  }, [cookies]);
   return (
     <>
       <div className="overlay"></div>
@@ -103,7 +115,7 @@ const SizeFinderModal: React.FC<any> = () => {
         >
           <div className="modal flex flex-col justify-start">
             <div className="cart-header p-4 border-b text-left flex justify-between items-center pb-4">
-              <h1 className="text-medium">Size Finder Modal</h1>
+              <h1 className="text-medium">Size Finder</h1>
               <span
                 className="cursor-pointer"
                 onClick={() => dispatch(setActiveSizeFinderModal(false))}

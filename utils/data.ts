@@ -20,12 +20,36 @@ export const PRODUCTS = [
 ];
 export const TESTIMONIALS: Array<TestimonialProps> = [
   {
-    name: "Ember",
-    description: `“This binder changed my life, I’ve never felt so at home in my body. You’ve given me back my joy, my self love and my sanity.”`,
+    name: "Liz",
+    description: `“I've cried multiple times just looking in the mirror. I cannot put in to words the gender euphoria I'm experiencing right now.”`,
   },
   {
-    name: "Ember 2",
-    description: `“Thank you guys so much for being the most hardworking and up-front company out there. It's obvious that you re all fantastic, sweet, dedicated people.”`,
+    name: "Casper",
+    description: `“This is a thousand times better than any other binder I've tried, actually comfortable to wear and the sizing from the website was very accurate. This rules.”`,
+  },
+  {
+    name: "Brittany",
+    description: `“well 5 stars, 10 out of 10 amazing. this binder feels like it was literally made for me, I haven't taken it off since I got it!”`,
+  },
+  {
+    name: "Alex",
+    description: `“My Binder just came in the mail and I'm so freaking happy right now that I'm crying like super hard.”`,
+  },
+  {
+    name: "Alexis",
+    description: `“Absolutely amazing. Super comfortable and breathable.”`,
+  },
+  {
+    name: "Alia",
+    description: `“It doesn't hurt my ribs to wear! So comfy and I love the color. and it feels really high quality.”`,
+  },
+  {
+    name: "Jordan",
+    description: `“Urmmmm, I can breathe! And so glad it's sensory friendly!”`,
+  },
+  {
+    name: "Tuesday",
+    description: `“The amount of JOY this brought me is incredible. The first time I came out was tough… knowing y'all care makes everything better.”`,
   }
 ];
 export const COLORS: Array<ColorProps> = [

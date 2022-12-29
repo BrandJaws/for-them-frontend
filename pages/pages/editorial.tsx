@@ -16,7 +16,7 @@ const Editorial: React.FC<ShopProps> = ({ articles }) => {
 
 export default Editorial;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   // Fetch all the products
   const articlesQuery = client.graphQLClient.query((root: any) => {
     root.addConnection("articles", { args: { first: 200 } }, (article: any) => {

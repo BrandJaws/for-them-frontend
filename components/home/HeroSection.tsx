@@ -14,22 +14,22 @@ const HeroSection = () => {
             <Image src={sectionImage} alt="hero image" />
           </Fade>
           <div className="flex gap-4 flex-col flex-wrap justify-center items-center">
-            <SectionHeader 
+            {/* <SectionHeader
               title="Binder"
               subtitle="The"
               description="Your maximum healthy bind with comfort, breathability and style."
-            />
-            {/* <Fade right cascade>
+            /> */}
+            <Fade right cascade>
               <div className="subtitle-bold text-center">The</div>
             </Fade>
             <div className="title-large text-center uppercase">Binder</div>
             <Fade right cascade>
-              <div className="text-small">
+              <div className="text-small text-center">
                 Your maximum healthy bind with{" "}
                 <br className="sm:none xs:none" />
                 comfort, breathability and style.
               </div>
-            </Fade> */}
+            </Fade>
             <Link href="/shop">
               <button type="button" className="btn-primary">
                 Shop now

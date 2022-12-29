@@ -21,7 +21,7 @@ const Shop: React.FC<ShopProps> = ({ products }) => {
 
 export default Shop;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   // Fetch all the products
     const collection = await shopifyClient.collection.fetchWithProducts('gid://shopify/Collection/292795383974',{productsFirst: 100})
   return {
