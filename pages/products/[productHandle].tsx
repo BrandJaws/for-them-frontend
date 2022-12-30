@@ -317,7 +317,6 @@ export default function ProductPage({ product, allBinder, allColors }) {
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
-
   return (
     <>
       {product && (
@@ -501,19 +500,21 @@ export default function ProductPage({ product, allBinder, allColors }) {
                     <Fade bottom>
                       <button
                         type="button"
-                        className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px] w-full"
+                        className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px] w-full disabled:!opacity-50"
                         onClick={handleAddToBasket}
+                        disabled={!product.availableForSale}
                       >
-                        Add to basket
+                        {product.availableForSale ? 'Add to basket' : 'Not Available'}
                       </button>
                     </Fade>
                     <Fade bottom>
                       <button
                         type="button"
-                        className="btn-primary4 xl:min-w-[400px] lg:min-w-[400px] w-full"
+                        className="btn-primary4 xl:min-w-[400px] lg:min-w-[400px] w-full disabled:!opacity-50"
                         onClick={handleBuyNowCheckout}
+                        disabled={!product.availableForSale}
                       >
-                        Buy now
+                        {product.availableForSale ? 'Add to basket' : 'Not Available'}
                       </button>
                     </Fade>
                     <Link href="/">
