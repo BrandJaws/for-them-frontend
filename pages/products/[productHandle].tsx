@@ -26,8 +26,10 @@ import {
 import { RootState } from "../../stores/store";
 import SizeBinderForm from "../../components/common/SizeBinderForm";
 import { useRouter } from "next/router";
+import useIsVariantHasStock from "../../hooks/useIsVariantHasStock";
 
 export default function ProductPage({ product, allBinder, allColors }) {
+    console.log(product, "Product detail --- ");
   let { id, title, images, variants, handle, description, options } = product;
   const { src: productImage } = images[0];
   const { price } = variants[0];
@@ -502,9 +504,9 @@ export default function ProductPage({ product, allBinder, allColors }) {
                         type="button"
                         className="btn-primary-outline xl:min-w-[400px] lg:min-w-[400px] w-full disabled:!opacity-50"
                         onClick={handleAddToBasket}
-                        disabled={!product.availableForSale}
+                        disabled={!useIsVariantHasStock(selectedSize, variants)}
                       >
-                        {product.availableForSale ? 'Add to basket' : 'Not Available'}
+                        {useIsVariantHasStock(selectedSize, variants) ? 'Add to basket' : 'Not Available'}
                       </button>
                     </Fade>
                     <Fade bottom>
@@ -512,9 +514,9 @@ export default function ProductPage({ product, allBinder, allColors }) {
                         type="button"
                         className="btn-primary4 xl:min-w-[400px] lg:min-w-[400px] w-full disabled:!opacity-50"
                         onClick={handleBuyNowCheckout}
-                        disabled={!product.availableForSale}
+                        disabled={!useIsVariantHasStock(selectedSize, variants)}
                       >
-                        {product.availableForSale ? 'Add to basket' : 'Not Available'}
+                        {useIsVariantHasStock(selectedSize, variants) ? 'Buy Now' : 'Not Available'}
                       </button>
                     </Fade>
                     <Link href="/">
