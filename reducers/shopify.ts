@@ -109,6 +109,15 @@ export const plusProductQuantity = createAction(
   }
 );
 
+export const setIsOpenVideoModal = createAction(
+  "setIsOpenVideoModal",
+  function prepare(status: boolean) {
+    return {
+      payload: status,
+    };
+  }
+);
+
 // export const handleCheckoutBuyNow = createAsyncThunk(
 //   "users/handleCheckoutBuyNow",
 //   async () => {
@@ -134,6 +143,7 @@ export interface shopifyState {
   cartItems?: any | null;
   checkout?: any | null;
   isSizeFinderModal?: any | null;
+  isOpenVideo?: boolean | null;
 }
 
 export const initialState: shopifyState = {
@@ -149,7 +159,8 @@ export const initialState: shopifyState = {
   hamburger: false,
   cartItems: null,
   checkout: null,
-  isSizeFinderModal: false
+  isSizeFinderModal: false,
+  isOpenVideo: false
 };
 
 export const shopifySlice = createSlice({
@@ -231,6 +242,9 @@ export const shopifySlice = createSlice({
     });
     builder.addCase(setHamBurger, (state, action) => {
       state.hamburger = action.payload;
+    });
+    builder.addCase(setIsOpenVideoModal, (state, action) => {
+      state.isOpenVideo = action.payload;
     });
   },
 });
