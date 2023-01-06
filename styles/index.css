@@ -463,3 +463,19 @@ header .anchor-nav {
         transform: rotate(360deg);
     }
 }
+
+.video-modal .backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.video-modal-iframe {
+    @apply xl:w-[1071px] xl:h-[753px] lg:w-[700px] lg:h-[400px] md:w-[500px] md:h-[400px] sm:w-full sm:h-[400px] sm:px-10 sm:py-10 xs:w-full xs:h-[400px] xs:px-4 xs:py-4
+}

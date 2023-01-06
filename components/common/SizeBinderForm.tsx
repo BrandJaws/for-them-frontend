@@ -2,6 +2,8 @@ import * as React from "react";
 import Fade from "react-reveal/Fade";
 import { apexChest } from "../../utils/data";
 import { useCookies } from "react-cookie";
+import { useDispatch } from "react-redux";
+import { setIsOpenVideoModal } from "../../reducers/shopify";
 
 const SizeBinderForm: React.FC<any> = ({
   setStep,
@@ -29,6 +31,10 @@ const SizeBinderForm: React.FC<any> = ({
     "None of the binders out there are doing it for me",
     "I wear a binder daily + I'm looking to get a new one",
   ];
+  const dispatch = useDispatch();
+  const handleVideo = () => {
+    dispatch(setIsOpenVideoModal(true))
+  }
   switch (step) {
     case 1:
       return (
@@ -102,7 +108,7 @@ const SizeBinderForm: React.FC<any> = ({
                 Measure your apex chest
               </div>
               <div className="font-monumentExtendedLight font-[100] paragraph">
-                Need help? Watch this <span className="underline">video</span>
+                Need help? Watch this <button type="button" className="underline" onClick={handleVideo}>video</button>
               </div>
               <div className="lg:section-padding xl:section-padding w-full flex flex-wrap gap-2 xs:gap-1 mt-5 justify-center mb-5 xs:mb-2 xs:mt-2">
                 {apexChest.map((item, index) => {

@@ -8,6 +8,7 @@ import {
   setActiveCartModal,
   setActiveSizeFinderModal,
   setHamBurger,
+  setIsOpenVideoModal,
   setNavToStore,
   setPagesToStore,
   setShopifyToEmpty,
@@ -29,9 +30,8 @@ const Layout: React.FC<any> = ({
   children,
   title = "This is the default title",
 }) => {
-  const { isCartOpen, isSizeFinderModal, isLoading, hamburger } = useSelector(
-    (state: RootState) => state.shopifyReducer
-  );
+  const { isCartOpen, isSizeFinderModal, isLoading, hamburger, isOpenVideo } =
+    useSelector((state: RootState) => state.shopifyReducer);
   const { data } = useSWR("/api/pages", (url) => fetcher(url));
   const { data: discoverMenu } = useSWR("/api/footerDiscover", (url) =>
     fetcher(url)
@@ -85,17 +85,21 @@ const Layout: React.FC<any> = ({
     }
   }, [data, discoverMenu, shopMenu, connectMenu, headerMenu, dispatch]);
   const handleClickForHideCartModal = (e: any) => {
-    if (isCartOpen && !document.getElementById("cart").contains(e.target)) {
-      dispatch(setActiveCartModal(false));
-    }
-    if (
-      isSizeFinderModal &&
-      !document.getElementById("size-finder").contains(e.target)
-    ) {
-      dispatch(setActiveSizeFinderModal(false));
-    }
-    if (hamburger) {
-      dispatch(setHamBurger(false));
+    if (isOpenVideo) {
+      dispatch(setIsOpenVideoModal(false));
+    } else {
+      if (isCartOpen && !document.getElementById("cart").contains(e.target)) {
+        dispatch(setActiveCartModal(false));
+      }
+      if (
+        isSizeFinderModal &&
+        !document.getElementById("size-finder").contains(e.target)
+      ) {
+        dispatch(setActiveSizeFinderModal(false));
+      }
+      if (hamburger) {
+        dispatch(setHamBurger(false));
+      }
     }
   };
   return (
@@ -126,6 +130,19 @@ const Layout: React.FC<any> = ({
         {isSizeFinderModal && (
           <div className={isSizeFinderModal ? "size-finder-modal-active" : ""}>
             <SizeFinderModal />
+          </div>
+        )}
+        {isOpenVideo && (
+          <div className="video-modal">
+            <div className="backdrop">
+              <iframe
+                className="video-modal-iframe"
+                src="https://www.youtube.com/embed/KiB1fw7klAI?autoplay=1&mute=1"
+                title="Apex Measurement Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
         )}
       </div>
